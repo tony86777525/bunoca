@@ -1,0 +1,30 @@
+.card {
+	border-radius: 50px;
+	min-height: 90vh;
+}
+.title {
+	font-size: 32px;
+	font-weight: bold;
+	text-align: center;
+	padding: 0px 60px 80px 60px;
+	margin-bottom: -40px;
+}
+.space {
+    margin-top: 10vh;
+    padding: 1em;
+}
+.top-div {
+	margin-top: 76px;
+}
+.top-content {
+    position: fixed;
+	top: 76px;
+	left: 3.75%;
+	z-index: 10;
+	color: #fff;
+	text-align: center;
+	font-size: 36px;
+}
+.text {
+	line-height: 2.5em;
+}

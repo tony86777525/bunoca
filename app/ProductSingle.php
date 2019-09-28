@@ -10,6 +10,9 @@ class ProductSingle extends Authenticatable
 {
     use Notifiable;
 
+    const PS_DISPLAY_FLG_ON = 1;
+    const PS_DISPLAY_FLG_OFF = 0;
+
     protected $fillable = [
         'product_id',
         'ps_type',

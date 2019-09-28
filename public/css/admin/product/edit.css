@@ -1,0 +1,39 @@
+.fade.in {
+    background-color: white;
+}
+
+.spacing {
+    margin-top: 4em;
+}
+
+.form {
+    padding: 30px;
+}
+
+form {
+    overflow-x: auto;
+}
+
+.p_image {
+    max-width: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+.ps_title, .ps_content {
+    margin-bottom: 5px;
+}
+
+input.ps_title {
+    width: 100%;
+}
+
+.ps_href_label {
+    width: 100%;
+}
+
+input.ps_href_input {
+    width: calc(100% - 60px);
+}

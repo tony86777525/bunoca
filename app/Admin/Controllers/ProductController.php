@@ -10,19 +10,14 @@ use Encore\Admin\Show;
 
 class ProductController extends BaseController
 {
-    const DATA = 'product';
-
-    protected $language;
-    protected $column_name = [];
-    protected $display_flg_option = [];
-    protected $display_flg_text = [];
-    protected $title = '';
+    protected $title = 'App\Product';
+    protected $page_name = 'product';
 
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
             $this->language = get_language(Admin::user());
-            $lang = \Config::get('const.language.' . $this->language . '.' . self::DATA);
+            $lang = \Config::get('const.language.' . $this->language . '.' . $this->page_name);
             $this->title = $lang['title'];
             $this->column_name = $lang['column'];
             $this->display_flg_option = $lang['display_flg_option'];

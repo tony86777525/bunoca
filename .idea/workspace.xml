@@ -8,7 +8,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable />
@@ -109,20 +109,26 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/vendor/encore/laravel-admin" />
       <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
     </include_path>
   </component>
   <component name="ProjectId" id="1RPDyQhWhoAbZOficq7xHg552O7" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tc" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\laragon\www\bunoca\public" />
-      <recent name="D:\laragon\www\bunoca\config" />
       <recent name="D:\laragon\www\bunoca\app" />
-      <recent name="D:\laragon\www\bunoca\app\Admin\Controllers" />
-      <recent name="D:\laragon\www\bunoca\app\Admin\Extensions" />
+      <recent name="D:\laragon\www\bunoca\resources\views\home" />
+      <recent name="D:\laragon\www\bunoca\public\js" />
+      <recent name="D:\laragon\www\bunoca\public\css" />
+      <recent name="D:\laragon\www\bunoca\app\Services" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -153,7 +159,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1569560091319</updated>
-      <workItem from="1569560092417" duration="4794000" />
+      <workItem from="1569560092417" duration="38111000" />
+      <workItem from="1569668646227" duration="10038000" />
     </task>
     <servers />
   </component>
@@ -165,7 +172,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
