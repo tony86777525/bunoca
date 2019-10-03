@@ -21,6 +21,7 @@ Route::group([
     $router->post('user/product/{id}/update_product_single', 'User\ApiController@update_product_single');
     $router->post('user/product/{id}/delete_product_single', 'User\ApiController@delete_product_single');
     $router->post('user/update_ps_inventory', 'User\ApiController@update_ps_inventory');
+
     // User Procuct
     $router->get('user/product', 'User\ProductController@index');
     $router->get('user/product/create', 'User\ProductController@create');
@@ -29,9 +30,12 @@ Route::group([
     $router->resource('products', ProductController::class);
     $router->resource('product-singles', ProductSingleController::class);
     $router->resource('product-inventory-records', ProductInventoryRecordController::class);
+    // User Order API
+    $router->post('user/update_od_arrival', 'User\ApiController@update_od_arrival');
     // User Order
     $router->get('user/order', 'User\OrderController@index');
     $router->get('user/order/create', 'User\OrderController@create');
+    $router->get('user/order/{id}', 'User\OrderController@show');
     $router->get('user/order/{id}/edit', 'User\OrderController@edit');
 
     $router->resource('orders', OrderController::class);

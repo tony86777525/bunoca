@@ -1,0 +1,63 @@
+.button-spacing, .step-spacing {
+    margin-right: 0.9em;
+}
+
+.step-list.step-list-on {
+    color: green;
+}
+
+.step-hide {
+    display: none;
+}
+
+.spacing {
+    margin-top: 4em;
+}
+
+.step-list {
+    position:relative;
+    background-color: #c2e1f5;
+    font-weight: bold;
+    color: gray;
+}
+
+.step-list:before {
+    display:block;
+    content:"";
+    width:0px;
+    height:0px;
+    border-top:15px solid transparent;
+    border-bottom:15px solid transparent;
+}
+
+.step-list:before {
+    border-left:15px solid #c2e1f5;
+    top:0%;
+    left:100%;
+    position:absolute;
+}
+
+form {
+    overflow-x: auto;
+}
+
+.hide {
+    display: none;
+}
+
+.ps_title, .ps_content {
+    margin-bottom: 5px;
+}
+
+input.ps_title {
+    width: 100%;
+}
+
+.ps_href_label {
+    width: 100%;
+}
+
+input.ps_href_input {
+    width: calc(100% - 60px);
+}
+

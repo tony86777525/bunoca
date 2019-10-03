@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers\User;
 
+use App\OrderDetail;
 use App\Product;
 use App\ProductSingle;
 
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 // Repository
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductAndInventoryRepository;
+use App\Repositories\OrderDetailArrivalRepository;
 
 class ApiController extends Controller
 {
@@ -245,6 +247,47 @@ class ApiController extends Controller
             }
         }else{
             $this->message['message'] = '商品不存在';
+        }
+
+        return response()->json($this->message);
+    }
+
+    public function update_od_arrival(Request $request)
+    {
+        $data = $request->all();
+        if(!empty($data['id'])){
+            try {
+                $order_detail = OrderDetail::find($data['id']);
+                if(!empty($order_detail) && !empty($order_detail->product_single)){
+                    if($order_detail->od_arrival_flg == OrderDetail::OD_ARRIVAL_FLG_ON){
+                        $inventory_number = 1;
+                        $pir_message = $order_detail->order->o_no . ' 取消配貨';
+                        $od_arrival_flg = OrderDetail::OD_ARRIVAL_FLG_OFF;
+                    }else{
+                        $inventory_number = -1;
+                        $pir_message = $order_detail->order->o_no . ' 配貨';
+                        $od_arrival_flg = OrderDetail::OD_ARRIVAL_FLG_ON;
+                    }
+                    $inventory_number = $inventory_number * $order_detail->od_num;
+                    $pir = new ProductAndInventoryRepository();
+
+                    $pir->set_product_single_id($order_detail->product_single->id)
+                        ->set_ps_add_inventory($inventory_number)
+                        ->set_admin_user_id(Admin::user()->id)
+                        ->set_admin_user_name(Admin::user()->username)
+                        ->set_pir_message($pir_message)
+                        ->ps_inventory_update();
+
+                    $order_detail->update(['od_arrival_flg' => $od_arrival_flg]);
+                    $this->message['check'] = true;
+                    $this->message['message'] = '成功';
+                }
+
+            } catch (Exception $e) {
+                $this->message['message'] = '資料不正確或商品不存在';
+            }
+        }else{
+            $this->message['message'] = '訂單不存在';
         }
 
         return response()->json($this->message);

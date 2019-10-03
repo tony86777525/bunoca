@@ -1,192 +1,122 @@
-<div class="row">
-	<form>
-		<div class="col-md-3">
-			<!-- 訂單 -->
-			<h2>訂單資訊</h2>
-			<!-- <div class="form-group">
-				<label for="o_no">訂單編號</label>
-				<input type="text" name="o_no" class="form-control" id="o_no" value="{{$order->o_no}}" placeholder="Enter Order No" disabled="disabled">
-			</div> -->
-			<div class="form-group">
-				<label for="o_no">訂單編號</label>
-				<p>{{$order->o_no}}</p>
-			</div>
-			<div class="form-group">
-				<label for="o_money">商品總額</label>
-				<input type="number" name="o_money" class="form-control" id="o_money" value="{{$order->o_money}}" placeholder="Enter Order Money" disabled="disabled">
-			</div>
-			<div class="form-group">
-				<label for="o_discount">訂單折扣</label>
-				<input type="number" name="o_discount" class="form-control" id="o_discount" value="{{$order->o_discount}}" placeholder="Enter email">
-			</div>
-			<div class="form-group">
-				<label for="o_free_discount">自訂折扣</label>
-				<input type="number" name="o_free_discount" class="form-control" id="o_free_discount" value="{{$order->o_free_discount}}" placeholder="Enter Order Free Discount">
-			</div>
-			<div class="form-group">
-				<label for="o_fee">訂單運費</label>
-				<input type="number" name="o_fee" class="form-control" id="o_fee" value="{{$order->o_fee}}" placeholder="Enter Order Fee">
-			</div>
-			<div class="form-group">
-				<label for="o_pay_monney">付款總額</label>
-				<input type="number" name="o_pay_monney" class="form-control" id="o_pay_monney" value="{{$order->o_pay_monney}}" placeholder="Enter Order Money" disabled="disabled">
-			</div>
-			<!-- 訂購者 -->
-			<h2>訂購者</h2>
-			<div class="form-group">
-				<label for="user_name">會員姓名</label>
-				<input type="text" name="user_name" class="form-control" id="user_name" value="{{$order->user_name}}">
-			</div>
-			<div class="form-group">
-				<label for="email">EMAIL</label>
-				<input type="text" name="email" class="form-control" id="user_name" value="{{$order->user->email}}">
-			</div>
-
-			<div class="form-group">
-				<label for="user_address">寄送住址</label>
-				<input type="text" name="user_address" class="form-control" id="user_address" value="{{$order->user_address}}" placeholder="Enter Address">
-			</div>
-		</div>
-		<div class="col-md-8">
-			<div class="row">
-				<div class="col-md-3">
-					<h2>核對項目</h2>
-					<!-- 核對項目 -->
-					<div class="form-group">
-						<label for="pay_flg">付款狀態</label>
-						<select name="pay_flg" class="form-control" id="pay_flg">
-							<option value="0"{{$order->pay_flg == 0 ? ' selected="selected"': ''}}>未付款</option>
-							<option value="1"{{$order->pay_flg == 1 ? ' selected="selected"': ''}}>已付款</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="arrival_flg">配貨狀態</label>
-						<select name="arrival_flg" class="form-control" id="arrival_flg">
-							<option value="0"{{$order->arrival_flg == 0 ? ' selected="selected"': ''}}>未配貨完成</option>
-							<option value="1"{{$order->arrival_flg == 1 ? ' selected="selected"': ''}}>已配貨完成</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="deliver_flg">出貨狀態</label>
-						<select name="deliver_flg" class="form-control" id="deliver_flg">
-							<option value="0"{{$order->deliver_flg == 0 ? ' selected="selected"': ''}}>未出貨</option>
-							<option value="1"{{$order->deliver_flg == 1 ? ' selected="selected"': ''}}>已出貨</option>
-						</select>
-					</div>
-				</div>
-			</div>
-			<h2>訂購商品</h2>
-			<button type="button" class="btn btn-primary">新增商品</button>
-			<!-- 訂購商品 -->
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col">#{{!empty($order) ? $order->o_num : 0}}</th>
-						<th scope="col">商品名稱</th>
-						<th scope="col">商品規格</th>
-						<th scope="col">商品單價</th>
-						<th scope="col">商品數量</th>
-						<th scope="col">配貨狀態</th>
-						<!-- 查看用 -->
-						<th scope="col">商品庫存</th>
-						<th scope="col">商品總價</th>
-						<th scope="col">操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php $total = 0; ?>
-					@if(!empty($order))
-					@foreach($order->order_detail as $k => $v)
-					
-						@if(!empty($v->product_single))
-						<tr>
-							<th scope="row">{{$k+1}}</th>
-							<td>{{$v->product_single->product->p_name}}</td>
-							<td>{{$v->product_single->ps_type}}</td>
-							<td>{{$v->product_single->ps_price > 0 ? $v->product_single->ps_price : $v->product_single->product->p_price}}</td>
-							<td>{{$v->od_num}}</td>
-							<td>{{$v->od_arrival_flg == 1 ? '已配貨' : '未配貨'}}</td>
-							<td>{{$v->product_single->ps_inventory}}</td>
-							<td>{{$v->od_money}}</td>
-							<td>
-								<a><i class="fa fa-edit"></i></a>
-								<a><i class="fa fa-trash"></i></a>
-								<a><i class="fa fa-truck"></i></a>
-							</td>
-						</tr>
-						@elseif(!empty($v->product_sell))
-							<tr>
-							<th scope="row">{{$k+1}}</th>
-							<td>{{$v->product_sell->ps_name}}</td>
-							<td></td>
-							<td>{{$v->product_sell->ps_price}}</td>
-							<td>{{$v->od_num}}</td>
-							<td>-</td>
-							<td>-</td>
-							<td>{{$v->od_money}}</td>
-							<td>
-								<a><i class="fa fa-edit"></i></a>
-								<a><i class="fa fa-trash"></i></a>
-							</td>
-						</tr>
-							@foreach($v->product_sell->product_sell_detail as $sell)
-							<tr>
-								<td></td>
-								<td>{{$sell->product_single->product->p_name}}</td>
-								<td>{{$sell->product_single->ps_type}}</td>
-								<td>-</td>
-								<td>{{$v->od_money * $sell->psd_quantity}}</td>
-								<td>{{$sell->psd_arrival_flg == 1 ? '已配貨' : '未配貨'}}</td>
-								<td>{{$sell->product_single->ps_inventory}}</td>
-								<td>-</td>
-								<td>
-									<a><i class="fa fa-truck"></i></a>
-								</td>
-							</tr>
-							@endforeach
-						@endif
-						<?php $total += $v->od_money?>
-					
-					@endforeach
-					@endif
-					<tr style="border-top:2px #000000 solid">
-						<td colspan="6"></td>
-						<td>加總</td>
-						<td>{{$total}}</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td colspan="6"></td>
-						<td>折扣</td>
-						<td>{{!empty($order) ? $order->o_discount : 0}}</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td colspan="6"></td>
-						<td>自訂折扣</td>
-						<td>{{!empty($order) ? $order->o_free_discount : 0}}</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td colspan="6"></td>
-						<td>運費</td>
-						<td>{{!empty($order) ? $order->o_fee : 0}}</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td colspan="4"></td>
-						<td>原本</td>
-						<td>{{!empty($order) ? $order->o_money : 0}}</td>
-						<td>小記</td>
-						<td>{{!empty($order) ? $total - $order->o_discount - $order->o_free_discount + $order->o_fee : 0}}</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-
-			<center>
-				<button type="submit" class="btn btn-primary">修改訂單</button>
-			</center>
-		</div>
-	</form>
+<link rel="stylesheet" href="/css/admin/order/detail.css">
+<div class="container">
+    <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-3"><h3><label>{{$o_column_name['o_pay_money']}}： {{$order->o_pay_money}}</label></h3></div>
+        <div class="col-md-3"><h3><label>{{$o_column_name['o_arrival_flg']}}： <span class="<?= 'option' . count($o_arrival_flg_text) . '_text_' . $order->o_arrival_flg ?>">{{$o_arrival_flg_text[$order->o_arrival_flg]}}</span></label></h3></div>
+        <div class="col-md-3"><h3><label>{{$o_column_name['o_pay_flg']}}： <span class="<?= 'option' . count($o_pay_flg_text) . '_text_' . $order->o_pay_flg ?>">{{$o_pay_flg_text[$order->o_pay_flg]}}</span></label></h3></div>
+        <div class="col-md-3"><h3><label>{{$o_column_name['o_deliver_flg']}}： <span class="<?= 'option' . count($o_deliver_flg_text) . '_text_' . $order->o_deliver_flg ?>">{{$o_deliver_flg_text[$order->o_deliver_flg]}}</span></label></h3></div>
+    </div>
+    <div class="row">
+        <div>
+            <ul class="nav nav-tabs">
+                <li><a data-toggle="tab" class="tab-o" href="#o_form">訂單資訊</a></li>
+                <li class="active"><a data-toggle="tab" class="tab-od" href="#od_form">訂單明細</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="o_form" class="tab-pane fade form">
+                    <div class="new-product">
+                        <div class="form-group">
+                            <label for="o_no">{{$o_column_name['o_no']}}： {{$order->o_no}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="o_money">{{$o_column_name['o_money']}}： {{$order->o_money}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="o_discount">{{$o_column_name['o_discount']}}</label>
+                            <input type="number" name="o_discount" class="form-control" id="o_discount" value="{{$order->o_discount}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="o_free_discount">{{$o_column_name['o_free_discount']}}</label>
+                            <input type="number" name="o_free_discount" class="form-control" id="o_free_discount" value="{{$order->o_free_discount}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="o_fee">{{$o_column_name['o_fee']}}</label>
+                            <input type="number" name="o_fee" class="form-control" id="o_fee" value="{{$order->o_fee}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="o_pay_money">{{$o_column_name['o_pay_money']}}： {{$order->o_pay_money}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="o_arrival_flg">{{$o_column_name['o_arrival_flg']}}：
+                                <select name="o_arrival_flg" id="o_arrival_flg">
+                                    @foreach($o_arrival_flg_text as $val => $text)
+                                        <option value="{{$val}}" @if($order->o_pay_flg == $val) selected @endif>{{$text}}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="o_arrival_flg">{{$o_column_name['o_pay_flg']}}：
+                                <select name="o_pay_flg" id="o_pay_flg">
+                                    @foreach($o_pay_flg_text as $val => $text)
+                                        <option value="{{$val}}" @if($order->o_pay_flg == $val) selected @endif>{{$text}}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="o_deliver_flg">{{$o_column_name['o_deliver_flg']}}：
+                                <select name="o_deliver_flg" id="o_deliver_flg">
+                                    @foreach($o_deliver_flg_text as $val => $text)
+                                        <option value="{{$val}}" @if($order->o_deliver_flg == $val) selected @endif>{{$text}}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="p_display_flg">{{$o_column_name['created_at']}}： {{$order->created_at}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="od_form" class="tab-pane fade in active form">
+                    <div class="new-single">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">{{$od_column_name['product_single_id']}}</th>
+                                    <th scope="col">{{$od_column_name['od_money']}}</th>
+                                    <th scope="col">{{$od_column_name['od_num']}}</th>
+                                    <th scope="col">{{$od_column_name['od_arrival_flg']}}</th>
+                                </tr>
+                            </thead>
+                            <tbody class="js-add-new-single">
+                                @foreach($order->order_detail as $k => $v)
+                                <tr>
+                                    <th scope="row">
+                                        {{$k+1}}
+                                    </th>
+                                    <td><a href="/admin/user/product/{{$v->product_single->product->id}}/edit" target="_blank">{{$v->product_single->ps_title}}</a></td>
+                                    <td><span class="js-od-money">{{$v->od_money}}</span><input type="hidden" name="od_money" value="{{$v->od_num}}"></td>
+                                    <td><input type="number" name="od_num" value="{{$v->od_num}}"></td>
+                                    <td>
+                                        <select name="od_arrival_flg" id="od_arrival_flg">
+                                            @foreach($od_arrival_flg_text as $val => $text)
+                                                <option value="{{$val}}" @if($v->od_arrival_flg == $val) selected @endif>{{$text}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td colspan="4"><a href="/admin/user/product/{{$v->product_single->product->id}}/edit" target="_blank">{{$v->product_single->product->p_name}} - {{$v->product_single->ps_type}}</a></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<script>
+    $(function () {
+        $('input[name=o_fee]').change(function() {
+            if($(this).val() <= 0){
+                $(this).val(1);
+            }
+            console.log($(this).val());
+        });
+    });
+</script>

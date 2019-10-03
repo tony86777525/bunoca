@@ -1,0 +1,17 @@
+.fade.in {
+    background-color: white;
+}
+
+.form {
+    padding: 30px;
+}
+
+form {
+    overflow-x: auto;
+}
+
+.ps_title {
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}

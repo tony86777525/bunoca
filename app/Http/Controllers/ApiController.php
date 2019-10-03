@@ -30,6 +30,8 @@ class ApiController extends Controller
     public function send_create_check() {
         try{
             $user = User::find(Auth::user()->id);
+            $sex_option = \Config::get('const.language.chinese.user.sex_text');
+            $user->sex = $sex_option[$user->sex];
             $this->message['check'] = true;
             $this->message['message'] = MailService::send_create_token($user);
         } catch (Exception $e) {

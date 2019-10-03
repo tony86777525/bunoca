@@ -23,7 +23,6 @@ class ProductSingle extends Authenticatable
         'ps_display_flg',
         'ps_image',
         'ps_href',
-
     ];
 
     protected $hidden = [];

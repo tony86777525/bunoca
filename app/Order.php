@@ -38,4 +38,9 @@ class Order extends Authenticatable
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function order_detail()
+    {
+        return $this->hasMany(OrderDetail::class, 'order_id');
+    }
 }

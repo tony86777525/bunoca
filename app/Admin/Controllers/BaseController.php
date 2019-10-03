@@ -16,5 +16,8 @@ class BaseController extends AdminController
     protected $pay_flg_text = [];
     protected $deliver_flg_text = [];
     protected $order_column_name = [];
+    protected $user_column_name = [];
     protected $ps_column_name = [];
+    protected $od_column_name = [];
+    protected $od_arrival_flg_text = [];
 }
