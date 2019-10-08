@@ -27,6 +27,7 @@ class ProductInventoryRecordController extends BaseController
 
     protected function grid()
     {
+        $column_name = $this->column_name;
         $grid = new Grid(new ProductInventoryRecord);
 
         $grid->column('id', __('Id'));
@@ -34,8 +35,9 @@ class ProductInventoryRecordController extends BaseController
 //        $grid->column('product_single_id', __('Product single id'));
         $grid->column('p_name', __($this->column_name['p_name']));
         $grid->column('ps_type', __($this->column_name['ps_type']));
-        $grid->column('admin_user_id', __($this->column_name['admin_user_id']));
-        $grid->column('admin_user_name', __($this->column_name['admin_user_name']));
+        $grid->column('admin_user_name', __($this->column_name['admin_user_name']))->display(function() use($column_name) {
+            return '<a href="/admin/users/' . $this->admin_user_id . '" target="_blank">' . $this->admin_user_name . '</a>';
+        });
         $grid->column('pir_num', __($this->column_name['pir_num']));
         $grid->column('pir_before_num', __($this->column_name['pir_before_num']));
         $grid->column('pir_after_num', __($this->column_name['pir_after_num']));

@@ -60,6 +60,12 @@ class UserController extends BaseController
             $grid->disableCreateButton();
         }
 
+        $grid->tools(function ($tools) {
+            $tools->batch(function ($batch) {
+                $batch->disableDelete();
+            });
+        });
+
         $grid->filter(function ($filter) use ($column_name) {
             $filter->disableIdFilter();
             $filter->like('name', $column_name['name']);

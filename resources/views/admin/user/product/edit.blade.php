@@ -128,9 +128,11 @@
 									@endforeach
 								</tbody>
 							</table>
-							<center>
-								<button type="button" class="btn btn-success add-product-single-table" data-stepClass="step-list-1">新增</button>
-							</center>
+							<table>
+								<tr>
+									<td><button type="button" class="btn btn-success add-product-single-table" data-stepClass="step-list-1">+</button></td>
+								</tr>
+							</table>
 							<center class="spacing">
 								<button type="button" class="btn btn-success button-spacing update-productSingle">儲存</button>
 							</center>

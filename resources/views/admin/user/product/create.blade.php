@@ -50,9 +50,11 @@
                         </thead>
                         <tbody class="js-add-new-single"></tbody>
                     </table>
-                    <center>
-                        <button type="button" class="btn btn-success add-product-single-table" data-stepClass="step-list-1">新增欄位</button>
-                    </center>
+                    <table>
+                        <tr>
+                            <td><button type="button" class="btn btn-success add-product-single-table" data-stepClass="step-list-1">+</button></td>
+                        </tr>
+                    </table>
                     <center class="spacing">
                         <button type="button" class="btn btn-primary next-new-product button-spacing" data-stepClass="step-list-1">上一步</button>
                         <button type="button" class="btn btn-primary create-product" data-stepClass="step-list-3">新增商品</button>

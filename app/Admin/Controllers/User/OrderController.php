@@ -151,8 +151,15 @@ class OrderController extends BaseController
 //        $grid->column('updated_at', __('Updated at'));
 //        $grid->column('deleted_at', __('Deleted at'));
 
+        $grid->disableExport();
         $grid->tools(function ($tools) {
             $tools->append(new UpdateArrival());
+        });
+
+        $grid->tools(function ($tools) {
+            $tools->batch(function ($batch) {
+                $batch->disableDelete();
+            });
         });
 
         return $grid;
@@ -217,7 +224,6 @@ class OrderController extends BaseController
 
     protected function create_form()
     {
-
         $new_order_no = \Config::get('const.create_order_no');
 
         $users = User::get();
@@ -230,7 +236,6 @@ class OrderController extends BaseController
 
     protected function edit_form($id = NULL)
     {
-
         if(!is_null($id)){
             $order = Order::find($id);
             $users = User::get();

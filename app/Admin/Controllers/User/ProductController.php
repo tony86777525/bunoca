@@ -137,9 +137,8 @@ class ProductController extends BaseController
         // $grid->deleted_at('Deleted at');
         $grid->actions(function ($actions) {
             // $actions->disableView();
-            $actions->disableDelete();
             if(Admin::user()->name !== 'Administrator'){
-                $actions->disableEdit();
+                $actions->disableDelete();
             }
         });
 
@@ -150,6 +149,12 @@ class ProductController extends BaseController
 
         $grid->tools(function ($tools) {
             $tools->append(new UpdateInventory());
+        });
+
+        $grid->tools(function ($tools) {
+            $tools->batch(function ($batch) {
+                $batch->disableDelete();
+            });
         });
 
         $grid->filter(function ($filter) use ($p_column_name, $ps_column_name) {

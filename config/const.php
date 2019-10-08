@@ -71,12 +71,12 @@ return [
                     'id' => '#',
                     'p_name' => '商品',
                     'ps_type' => '規格',
-                    'admin_user_id' => '售價',
-                    'admin_user_name' => '庫存',
-                    'pir_num' => '標題',
-                    'pir_before_num' => '內容',
-                    'pir_after_num' => '狀態',
-                    'pir_message' => '圖片',
+                    'admin_user_id' => '操作者ID',
+                    'admin_user_name' => '操作者',
+                    'pir_num' => '入庫',
+                    'pir_before_num' => '入庫前',
+                    'pir_after_num' => '入庫後',
+                    'pir_message' => '備註',
                     'ps_href' => '連結',
                     'created_at' => '時間',
                 ],
@@ -106,7 +106,7 @@ return [
                 ],
                 'arrival_flg_text' => [
                     0 => '未配貨',
-                    1 => '已配貨'
+                    1 => '全配貨'
                 ],
                 'pay_flg_text' => [
                     0 => '未付款',
@@ -126,6 +126,7 @@ return [
                     'product_single_id' => '單品',
                     'od_num' => '數量',
                     'od_money' => '總額',
+                    'od_ps_price' => '單價',
                     'od_arrival_flg' => '配貨狀態',
                     'actions' => '操作',
                     'arrival' => '配貨',
@@ -234,6 +235,7 @@ return [
                     'o_arrival_flg' => '-',
                     'o_pay_flg' => '-',
                     'o_deliver_flg' => '-',
+                    'created_at' => '-'
                 ],
                 'sex' => [
                     0 => '-',
@@ -249,6 +251,24 @@ return [
                     2 => '-'
                 ],
                 'deliver_flg_text' => [
+                    0 => '-',
+                    1 => '-'
+                ],
+            ],
+            'order_detail' => [
+                'title' => '-',
+                'column' => [
+                    'id' => '#',
+                    'order_id' => '-',
+                    'product_single_id' => '-',
+                    'od_num' => '-',
+                    'od_money' => '-',
+                    'od_ps_price' => '-',
+                    'od_arrival_flg' => '-',
+                    'actions' => '-',
+                    'arrival' => '-',
+                ],
+                'arrival_flg_text' => [
                     0 => '-',
                     1 => '-'
                 ],
