@@ -31,8 +31,7 @@
 				<label for="o_fee">訂單運費</label>
 				<input type="number" name="o_fee" class="form-control" id="o_fee" placeholder="Enter Order Fee" value="0">
 			</div>
-			<button type="button" class="btn btn-primary add-order-detail-table">新增訂單並繼續新增訂單商品</button>
-			<button type="button" class="btn btn-primary add-or">xx</button>
+			<button type="button" class="btn btn-primary js-create-order">新增訂單並繼續新增訂單商品</button>
 		</form>
 	</div>
 </div>
@@ -45,7 +44,7 @@
 			$("#user_name").val($(this).find(':selected').attr('data-name'));
 		});
 
-		$(".add-order-detail-table").click(function(){
+		$(".js-create-order").click(function(){
 			$.ajax({
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -56,7 +55,6 @@
 				dataType: "json",
 				success: function (res) {
 					if(res.check){
-						$.pjax.reload('#pjax-container');
 						toastr.success(res.message);
 						window.location.href = '/admin/user/order/' + res.data +  '/edit'
 					}

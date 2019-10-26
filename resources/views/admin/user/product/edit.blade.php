@@ -32,10 +32,10 @@
                                 @if(!empty($product->p_image))
                                     <label for="p_image"><span class="p_image_text">{{$p_column_name['p_image']}}</span><img class="p_image" src="{{env('APP_URL').'/uploads/'.$product->p_image}}"></label>
                                 @else
-                                    <label for="p_image"><span class="p_image_text">{{$p_column_name['p_image']}}</span></label>
+                                    <label for="p_image"><span class="p_image_text">{{$p_column_name['p_image']}}</span><img class="p_image hide"></label>
                                 @endif
                                 <div>
-                                    <input type="file" id="p_image" class="js-image" name="p_image hide">
+                                    <input type="file" id="p_image" class="js-image hide" name="p_image">
                                 </div>
                             </div>
 							<center>
@@ -117,7 +117,7 @@
 											@if(!empty($v->ps_image))
                                                 <label for="ps_image_{{$k}}"><span class="ps_image_{{$k}}_text">選擇圖片</span><img class="ps_image_{{$k}}" src="{{env('APP_URL').'/uploads/'.$v->ps_image}}"></label>
                                             @else
-                                                <label for="ps_image_{{$k}}">選擇圖片</label>
+                                                <label for="ps_image_{{$k}}"><span class="ps_image_{{$k}}_text">選擇圖片</span><img class="ps_image_{{$k}}"></label>
 											@endif
                                             <div>
                                                 <input type="file" id="ps_image_{{$k}}" class="js-image hide" name="ps[{{$k}}][image]">
@@ -146,6 +146,7 @@
 
 <script type="text/javascript" src="/vendor/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="/vendor/ckeditor/adapters/jquery.js"></script>
+<script src="/js/common/jquery.blockUI.js"></script>
 <script type="text/javascript">
 	var num = $(".new-single tbody").find('.js-product-single-column').length;
 	$(".add-product-single-table").click(function(){
@@ -205,7 +206,8 @@
                 .append($('<div>')
                     .append($('<label for="nps_image_' + num + '">')
                         .append($('<span class="nps_image_' + num + '_text"></span>').html('選擇圖片'))
-                        .append($('<input class="js-image hide" type="file" id="nps_image_' + num + '" class="js-image" name="nps[' + num + '][image]"><label for="nps_href_' + num + '" class="ps_href_label">圖片連結<input class="ps_href_input" type="text" id="nps_href_' + num + '" name="nps[' + num + '][href]"></label>'))
+                        .append($('<img class="nps_image_' + num + '" style="display: none;">'))
+                        .append($('<input class="js-image hide" type="file" id="nps_image_' + num + '" name="nps[' + num + '][image]"><label for="nps_href_' + num + '" class="ps_href_label">圖片連結<input class="ps_href_input" type="text" id="nps_href_' + num + '" name="nps[' + num + '][href]"></label>'))
                     )
                 )
             )
@@ -228,6 +230,9 @@
             cache : false,
             processData : false,
             contentType : false,
+            beforeSend : function(){
+                $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });
+            },
 			success: function (res) {
 				if(res.check){
 					$.pjax.reload('#pjax-container');
@@ -255,7 +260,11 @@
             cache : false,
             processData : false,
             contentType : false,
+            beforeSend : function(){
+                $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });
+            },
 			success: function (res) {
+                $.unblockUI();
 				if(res.check){
 					$.pjax.reload('#pjax-container');
 					toastr.success(res.message);
@@ -297,6 +306,7 @@
 
     $('body').on('change', '.js-image', function(){
         $('.' + $(this).attr('id')).attr('src', '');
+        console.log($(this).val());
         if($(this).val()){
             $('.' + $(this).attr('id') + '_text').text('已選取圖片');
             $('.' + $(this).attr('id') + '_text').css('color', 'green');
@@ -304,6 +314,8 @@
             $('.' + $(this).attr('id') + '_text').text('無選取圖片');
             $('.' + $(this).attr('id') + '_text').css('color', 'red');
         }
+
+        readURL(this, $('.' + $(this).attr('id')))
     });
 
     $(".ps_content").each(function(){
@@ -314,5 +326,18 @@
         CKEDITOR.replace(a.attr('id'), {
             customConfig: '/vendor/ckeditor/config.js'
         });
+    }
+
+    function readURL(input, img){
+        if(input.files && input.files[0]){
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                img.attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+            img.show();
+        }else{
+            img.hide();
+        }
     }
 </script>

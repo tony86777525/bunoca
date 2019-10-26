@@ -103,6 +103,7 @@ class ProductController extends BaseController
         $ps_display_flg_text = $this->ps_display_flg_text;
         $grid = new Grid(new Product);
 
+        $grid->model()->orderBy('id', 'DESC');
         $grid->id('#');
         $grid->p_name($this->p_column_name['p_name']);
         $grid->p_price($this->p_column_name['p_price']);
@@ -138,6 +139,7 @@ class ProductController extends BaseController
         $grid->actions(function ($actions) {
             // $actions->disableView();
             if(Admin::user()->name !== 'Administrator'){
+                $actions->disableEdit();
                 $actions->disableDelete();
             }
         });

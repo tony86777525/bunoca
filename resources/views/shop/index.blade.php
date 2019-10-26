@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         @foreach($product->product_single as $ps)
-            <div class="col-12 space bg-light card" id="about">
+            <div class="col-12 space bg-light card">
                 <p class='title wow fadeInLeft'>{{$ps->ps_title}}</p>
                 <div class="row">
                     <div class="col-12 col-md-6 wow fadeIn" data-wow-delay="0.6s">
@@ -20,19 +20,19 @@
                         </div>
                         <hr>
                         <form class="js-add-item" action="#" method="post" onsubmit="return false">
-                            <input type="hidden" name="ps_id" value="{{$ps->ps_id}}">
+                            <input type="hidden" name="ps_id" value="{{$ps->id}}">
                             <div class="input-group">
                                 <div class="mr-2" style="line-height: 30px;">Số lượng:</div>
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary js-button-add" type="button" data-id="ps_quantity_{{$ps->id}}" data-value="1">+</button>
+                                    <button class="btn btn-outline-secondary rounded-0 js-button-add" type="button" data-id="ps_quantity_{{$ps->id}}" data-value="1">+</button>
                                 </div>
                                 <input type="text" class="form-control text-center" name="ps_quantity" id="ps_quantity_{{$ps->id}}" style="max-width: 40px" value="1">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary js-button-add" type="button" data-id="ps_quantity_{{$ps->id}}" data-value="-1" disabled>-</button>
+                                    <button class="btn btn-outline-secondary rounded-0 js-button-add" type="button" data-id="ps_quantity_{{$ps->id}}" data-value="-1" disabled>-</button>
                                 </div>
                             </div>
                             <div class="mt-3">
-                                <button class="btn btn-danger" type="submit" style="width: 100%">Mua ngay</button>
+                                <button class="btn btn-danger w-100" type="submit">Mua ngay</button>
                             </div>
                         </form>
                     </div>

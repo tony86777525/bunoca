@@ -16,7 +16,7 @@
             </div>
             @foreach($products as $product)
             <div class="carousel-item">
-                <a href="/shop/?item={{$product->id}}" target="_blank"><img src="/uploads/{{$product->p_image}}" class="d-block w-100 top-img" alt="...">
+                <a href="{{ route('shop', ['id' => $product->id]) }}/" target="_blank"><img src="/uploads/{{$product->p_image}}" class="d-block w-100 top-img" alt="...">
             </div>
             @endforeach
         </div>

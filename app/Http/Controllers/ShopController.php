@@ -7,17 +7,16 @@ use App\ProductSingle;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class ShopController extends Controller
+class ShopController extends BaseController
 {
     use AuthenticatesUsers;
 
     const P_DISPLAY_FLG_ON = 1;
 
-    public function index(Request $request)
+    public function index($id)
     {
-        $data = $request->all();
-        if(!empty($data['item'])){
-            $product = Product::where('id', $data['item'])->Where('p_display_flg', Product::P_DISPLAY_FLG_ON)->whereHas('product_single', function ($query) {
+        if(!empty($id)){
+            $product = Product::where('id', $id)->Where('p_display_flg', Product::P_DISPLAY_FLG_ON)->whereHas('product_single', function ($query) {
                 $query->where('ps_display_flg', ProductSingle::PS_DISPLAY_FLG_ON);
             })->first();
             if(!empty($product)){

@@ -30,6 +30,7 @@ class ProductInventoryRecordController extends BaseController
         $column_name = $this->column_name;
         $grid = new Grid(new ProductInventoryRecord);
 
+        $grid->model()->orderBy('id', 'DESC');
         $grid->column('id', __('Id'));
 //        $grid->column('product_id', __('Product id'));
 //        $grid->column('product_single_id', __('Product single id'));

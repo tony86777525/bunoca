@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
-
+use App\ProductSingle;
+use App\Order;
+use App\OrderDetail;
 use App\User;
-use Encore\Admin\Facades\Admin;
+
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 // Repository
 use App\Services\MailService;
@@ -27,7 +29,8 @@ class ApiController extends Controller
         ];
     }
 
-    public function send_create_check() {
+    public function send_create_check()
+    {
         try{
             $user = User::find(Auth::user()->id);
             $sex_option = \Config::get('const.language.chinese.user.sex_text');
@@ -41,62 +44,209 @@ class ApiController extends Controller
         return response()->json($this->message);
     }
 
-    public function create_product(Request $request)
+    public function set_buy_record($id, Request $request)
     {
         $data = $request->all();
+        if(!empty($id) && !empty($data['ps_id'])){
+            if(!empty($data['ps_quantity'])){
+                $data['ps_quantity'] = (int)$data['ps_quantity'];
+                $ps = ProductSingle::where('id', $data['ps_id'])->where('product_id', $id)->exists();
+                if(!empty($ps)){
+                    $new_order_list = $this->set_order_list_cookie($data);
+                    $this->message['check'] = true;
 
-        try {
-            $product_insert = [
-                'p_name' => $data['p_name'],
-                'p_price' => $data['p_price'],
-                'p_display_flg' => $data['p_display_flg'],
-            ];
-
-            if(!empty($data['p_image'])){
-                $file_path = $this->upload_image($data['p_image']);
-                $product_insert['p_image'] = $file_path;
-            }
-
-            $id = Product::insertGetId($product_insert);
-
-            if(!empty($id)){
-                foreach($data['nps'] as $product_single){
-                    if(!empty($product_single['type'])){
-                        $pir = new ProductAndInventoryRepository();
-                        $pir->set_product_id($id)
-                            ->set_ps_type($product_single['type'])
-                            ->set_ps_price($product_single['price'])
-                            ->set_ps_inventory($product_single['inventory'])
-                            ->set_ps_title($product_single['title'])
-                            ->set_ps_content($product_single['content'])
-                            ->set_ps_href($product_single['href'])
-                            ->set_ps_display_flg($product_single['display_flg'])
-                            ->set_admin_user_id(Admin::user()->id)
-                            ->set_admin_user_name(Admin::user()->username)
-                            ->set_pir_message('商品頁新增');
-
-                        $file_path = null;
-                        if(!empty($product_single['image'])){
-                            $file_path = $this->upload_image($product_single['image']);
-                            $pir->set_ps_image($file_path);
-                        }
-
-                        $pir->ps_insert();
-                    }
+                    $minutes = \Config::get('const.order_list_time');
+                    return response()->json($this->message)->cookie('bunoca_order_list', $new_order_list, $minutes);
+                }else{
+                    $this->message['message'] = '商品不存在';
                 }
-
-                $this->message['check'] = true;
-                $this->message['message'] = '成功';
+            }else{
+                $this->message['message'] = '商品數量至少為1';
             }
-            $this->message['message'] = '資料不正確';
-        } catch (Exception $e) {
-            $this->message['message'] = '資料不正確';
+        }else{
+            $this->message['message'] = '資料錯誤';
         }
 
         return response()->json($this->message);
     }
 
-    private function upload_image($image_data) {
+    public function get_order_detail_price(Request $request)
+    {
+        $data = $request->all();
+        if(!empty($data['ps_id'])){
+            try {
+                $ps = ProductSingle::find($data['ps_id']);
+                $new_price = recalculate_order_detail_price($ps->ps_price, $data['ps_quantity']);
+
+                $new_order_list = $this->set_order_list_cookie($data, false);
+                $this->message['data'] = $new_price;
+                $this->message['check'] = true;
+                $this->message['message'] = '成功';
+
+                $minutes = \Config::get('const.order_list_time');
+                return response()->json($this->message)->cookie('bunoca_order_list', $new_order_list, $minutes);
+            } catch (Exception $e) {
+                $this->message['message'] = '資料不正確或商品不存在';
+            }
+        }else{
+            $this->message['message'] = '商品不存在';
+        }
+
+        return response()->json($this->message);
+    }
+
+    public function delete_order_detail(Request $request)
+    {
+        $data = $request->all();
+        if(!empty($data['ps_id'])){
+            try {
+                $ps = ProductSingle::find($data['ps_id']);
+
+                $new_order_list = $this->set_order_list_cookie($data, false, true);
+                $this->message['data'] = 0;
+                $this->message['check'] = true;
+                $this->message['message'] = '成功';
+
+                $minutes = \Config::get('const.order_list_time');
+                return response()->json($this->message)->cookie('bunoca_order_list', $new_order_list, $minutes);
+            } catch (Exception $e) {
+                $this->message['message'] = '資料不正確或商品不存在';
+            }
+        }else{
+            $this->message['message'] = '商品不存在';
+        }
+
+        return response()->json($this->message);
+    }
+
+    public function create_order(Request $request)
+    {
+        $data = $request->all();
+        $old_order_list = Cookie::get('bunoca_order_list');
+
+        if(!empty($old_order_list) && !empty($data)) {
+            try {
+                $order_list = json_decode($old_order_list, true);
+                $ps_ids = collect($order_list)->map(function ($item) {
+                    return $item['ps_id'];
+                });
+
+                $ps = ProductSingle::with('product')->whereIn('id', $ps_ids)->get()->keyBy('id')->toArray();
+
+                $o_no = get_order_no();
+                $o = new Order;
+                $o->user_id = Auth::user()->id;
+                $o->user_name = $data['user_name'];
+                $o->user_address = $data['user_address'];
+                $o->o_no = $o_no;
+                $o->o_money = 0;
+                $o->o_discount = 0;
+                $o->o_free_discount =0;
+                $o->o_fee = 0;
+                $o->o_num = 0;
+                $o->o_pay_money = recalculate_order_pay_money($o);
+                $o->o_arrival_flg = Order::O_ARRIVAL_FLG_OFF;
+                $o->o_pay_flg = Order::O_PAY_FLG_OFF;
+                $o->o_deliver_flg = Order::O_DELIVER_FLG_OFF;
+                $o->save();
+
+                $iod = [];
+                foreach($order_list as $ol){
+                    $iod[] = [
+                        'product_single_id' => $ps[$ol['ps_id']]['id'],
+                        'order_id' => $o->id,
+                        'od_num' => $ol['ps_quantity'],
+                        'od_arrival_flg' => OrderDetail::OD_ARRIVAL_FLG_OFF,
+                        'od_money' => $ps[$ol['ps_id']]['ps_price'] * $ol['ps_quantity'],
+                    ];
+                }
+                OrderDetail::insert($iod);
+
+                $new_o = Order::find($o->id);
+                $new_o->o_money = recalculate_order_money($new_o);
+                $new_o->o_pay_money = recalculate_order_pay_money($new_o);
+                $new_o->save();
+
+                $this->message['data'] = $o_no;
+                $this->message['check'] = true;
+                $this->message['message'] = '成功';
+                return response()->json($this->message)->cookie('bunoca_order_list', '', -1);
+            } catch (Exception $e) {
+                $this->message['message'] = '資料不正確或商品不存在';
+            }
+        }
+
+        return response()->json($this->message);
+    }
+
+    public function shopping_pay_result(Request $request)
+    {
+        $data = $request->all();
+        if(!empty($data['o_pay_image']) && !empty($data['o_no'])){
+            $file_path = upload_image($data['o_pay_image'], 'order');
+            $order_update = [];
+            $order_update['o_pay_image'] = $file_path;
+            $order_update['o_pay_flg'] = Order::O_PAY_FLG_ON;
+            try {
+                Order::where('o_no', $data['o_no'])->update($order_update);
+                $this->message['check'] = true;
+                $this->message['message'] = '成功';
+            } catch (Exception $e) {
+                $this->message['message'] = '資料不正確';
+            }
+        }
+
+        return response()->json($this->message);
+    }
+
+    public function update_user(Request $request)
+    {
+        $data = $request->all();
+        if(!empty(Auth::user()->id) && !empty($data)){
+
+            $user_update = [];
+            foreach($data as $name => $value){
+                $user_update[$name] = $value;
+            }
+            try {
+                User::where('id', Auth::user()->id)->update($user_update);
+                $this->message['check'] = true;
+                $this->message['message'] = '成功';
+            } catch (Exception $e) {
+                $this->message['message'] = '資料不正確';
+            }
+        }
+
+        return response()->json($this->message);
+    }
+
+    private function set_order_list_cookie($data, $accumulate = true, $unset = false)
+    {
+        $old_order_list = Cookie::get('bunoca_order_list');
+        $order_list = [];
+        if(!empty($old_order_list)) {
+            $order_list = json_decode($old_order_list, true);
+            if(array_key_exists($data['ps_id'], $order_list)){
+                if($accumulate && !$unset){
+                    $order_list[$data['ps_id']]['ps_quantity'] += $data['ps_quantity'];
+                }elseif(!$unset){
+                    $order_list[$data['ps_id']]['ps_quantity'] = $data['ps_quantity'];
+                }elseif($unset){
+                    unset($order_list[$data['ps_id']]);
+                }
+            }else{
+                $order_list[$data['ps_id']] = $data;
+            }
+        } elseif(!$unset) {
+            $order_list[$data['ps_id']] = $data;
+        }
+        $new_order_list = json_encode($order_list);
+
+        return $new_order_list;
+    }
+
+    private function upload_image($image_data)
+    {
         $file = $image_data;
         $extension = $file->getClientOriginalExtension();
         $file_name = strval(time()) . str_random(5) . '.' . $extension;

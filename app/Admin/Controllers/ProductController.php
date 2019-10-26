@@ -31,6 +31,7 @@ class ProductController extends BaseController
     {
         $grid = new Grid(new Product);
 
+        $grid->model()->orderBy('id', 'DESC');
         $grid->column('id', __($this->column_name['id']));
         $grid->column('p_name', __($this->column_name['p_name']));
         $grid->column('p_display_flg', __($this->column_name['p_display_flg']))->switch($this->display_flg_option);

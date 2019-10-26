@@ -32,6 +32,7 @@
                         </div>
                         <div class="form-group">
                             <label for="p_display_flg">{{$o_column_name['o_pay_flg']}}： <span class="<?= 'option' . count($o_pay_flg_text) . '_text_' . $order->o_pay_flg ?>">{{$o_pay_flg_text[$order->o_pay_flg]}}</span></label>
+                            <button type="button" class="btn btn-primary js-create-order-detail-table" data-toggle="modal" data-target="#o_pay_image">check</button>
                         </div>
                         <div class="form-group">
                             <label for="p_display_flg">{{$o_column_name['o_deliver_flg']}}： <span class="<?= 'option' . count($o_deliver_flg_text) . '_text_' . $order->o_deliver_flg ?>">{{$o_deliver_flg_text[$order->o_deliver_flg]}}</span></label>
@@ -73,6 +74,20 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="o_pay_image" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img style="width: 100%" src="{{ env('APP_URL').'/uploads/'.$order->o_pay_image }}">
             </div>
         </div>
     </div>

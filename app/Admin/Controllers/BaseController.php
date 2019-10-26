@@ -12,6 +12,7 @@ class BaseController extends AdminController
     protected $display_flg_text = [];
 
     protected $sex_text = [];
+    protected $sex_option = [];
     protected $arrival_flg_text = [];
     protected $pay_flg_text = [];
     protected $deliver_flg_text = [];

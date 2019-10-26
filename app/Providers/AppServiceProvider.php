@@ -7,6 +7,16 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
+     * All of the container singletons that should be registered.
+     *
+     * @var array
+     */
+    public $singletons = [
+        \App\Presenters\MainPresenter::class => \App\Presenters\MainPresenter::class,
+    ];
+
+
+    /**
      * Register any application services.
      *
      * @return void

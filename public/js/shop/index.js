@@ -1,25 +1,38 @@
 $(function(){
-    $('.js-add-item').submit(function() {
+    $(".js-add-item").submit(function () {
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: "POST",
-            url: "create_product",
-            data: data,
+            url: "set_buy_record",
+            data: $(this).serialize(),
             dataType: "json",
-            cache : false,
-            processData : false,
-            contentType : false,
             success: function (res) {
                 if(res.check){
-                    toastr.success(res.message);
-                    window.location.href = '/admin/user/product';
+                    swal({
+                        title: '已加入購物車',
+                        text: "是否前往結帳",
+                        type: 'success',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: '前往結帳',
+                        cancelButtonText: '繼續選購'
+                    }).then((result) => {
+                        if (result) {
+                            window.location.href = '/home/shoppingCart';
+                        }
+                    }).catch(swal.noop);
+                }else{
+                    swal({
+                        type: 'error',
+                        title: '請稍後再試',
+                        text: res.message,
+                    })
                 }
             },
-            error : function() {
-
-            }
+            error : function() {}
         });
     });
 

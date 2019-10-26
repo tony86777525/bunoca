@@ -32,6 +32,7 @@ class UserController extends BaseController
         $column_name = $this->column_name;
         $grid = new Grid(new User);
 
+        $grid->model()->orderBy('id', 'DESC');
         $grid->column('id', __($this->column_name['id']));
         $grid->column('name', __($this->column_name['name']));
         $grid->column('sex', __($this->column_name['sex']))->display(function() use ($sex_text) {
@@ -110,7 +111,7 @@ class UserController extends BaseController
         $form = new Form(new User);
 
         $form->text('name', __($this->column_name['id']));
-        $form->switch('sex', __($this->column_name['sex']))->options($this->sex_text);
+        $form->select('sex', __($this->column_name['sex']))->options($this->sex_text);
         $form->text('address', __($this->column_name['address']));
         $form->mobile('phone', __($this->column_name['phone']));
         $form->email('email', __($this->column_name['email']));

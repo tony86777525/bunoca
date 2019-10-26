@@ -2,35 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Order;
+use App\ProductSingle;
 use App\User;
-use App\Mail\UserCheck;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Auth;
+use App\Config;
 
-class HomeController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\View;
+
+class HomeController extends BaseController
 {
     protected $message;
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    protected $data;
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home', [
-            'page' => 'index',
-        ]);
+        $this->data['page'] = 'index';
+        $this->after();
+        return view('home', $this->data);
     }
 
     public function mail_check(Request $request)
@@ -68,14 +60,119 @@ class HomeController extends Controller
         $this->message['message'] = $message;
         $this->message['check'] = $check;
 
-        return view('home', [
-            'page' => 'result',
-            'message' => $this->message
-        ]);
+        $this->data['page'] = 'result';
+        $this->data['message'] = $this->message;
+        $this->after();
+        return view('home', $this->data);
     }
 
-    public function order()
+    public function shopping_cart()
     {
-        return view('order');
+        $order_list_data = Cookie::get('bunoca_order_list');
+        $order_list = [];
+        $product_single = [];
+
+        if(!empty($order_list_data)) {
+            $order_list = json_decode($order_list_data, true);
+
+            $ps_ids = collect($order_list)->map(function ($item) {
+                return $item['ps_id'];
+            });
+
+            $product_single = ProductSingle::with('product')->whereIn('id', $ps_ids)->get()->keyBy('id')->toArray();
+        }
+
+        $this->data['page'] = 'shopping_cart';
+        $this->data['order_list'] = $order_list;
+        $this->data['product_single'] = $product_single;
+        $this->after();
+        return view('home', $this->data);
+    }
+
+    public function shopping_pay($o_no)
+    {
+        $order = [];
+        $account = [];
+
+        if(!empty($o_no)) {
+            $order = Order::with('order_detail', 'user', 'order_detail.product_single')
+                ->where('user_id', Auth::user()->id)
+                ->where('o_no', $o_no)
+                ->where('o_pay_flg', Order::O_PAY_FLG_OFF)
+                ->first();
+            $account = Config::first()->account;
+        }
+
+        if(empty($order)){
+            return redirect('/home');
+        }
+
+        $this->data['page'] = 'shopping_pay';
+        $this->data['order'] = $order;
+        $this->data['account'] = $account;
+        $this->after();
+        return view('home', $this->data);
+    }
+
+    public function order_record()
+    {
+        if(!empty(Auth::user()->cre)){
+            return redirect('/home');
+        }
+
+        $orders = Order::with('order_detail', 'user', 'order_detail.product_single')->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+
+        $this->data['page'] = 'order_record';
+        $this->data['orders'] = $orders;
+        $this->after();
+        return view('home', $this->data);
+    }
+
+    public function order_detail($o_no)
+    {
+        $order = Order::with('order_detail', 'user', 'order_detail.product_single')->where('user_id', Auth::user()->id)->where('o_no', $o_no)->orderBy('id', 'DESC')->first();
+
+        if(empty($order)){
+            return redirect('/home');
+        }
+
+        $this->data['page'] = 'order_detail';
+        $this->data['order'] = $order;
+        $this->after();
+        return view('home', $this->data);
+    }
+
+    public function user()
+    {
+        $user = User::find(Auth::user()->id);
+
+        $this->data['page'] = 'user';
+        $this->data['user'] = $user;
+        $this->after();
+        return view('home', $this->data);
+    }
+
+    private function after()
+    {
+        $this->data['order_list_count'] = $this->get_order_list_count();
+        $this->data['unpay_order_count'] = $this->get_unpay_order_count();
+    }
+
+    private function get_order_list_count()
+    {
+        $count = 0;
+        $bunoca_order_list = Cookie::get('bunoca_order_list');
+        if($bunoca_order_list){
+            $count = count(json_decode(Cookie::get('bunoca_order_list'), true));
+        }
+
+        return $count;
+    }
+
+    private function get_unpay_order_count()
+    {
+        $count = Order::where('user_id', Auth::user()->id)->where('o_pay_flg', Order::O_PAY_FLG_OFF)->count();
+
+        return $count;
     }
 }

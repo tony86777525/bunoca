@@ -57,14 +57,15 @@ function get_order_no()
     return date('YmdHis') . rand(100, 999);
 }
 
-function upload_image($image_data)
+function upload_image($image_data, $dir = '')
 {
+    $dir = $dir ? $dir . '/' : $dir;
     $file = $image_data;
     $extension = $file->getClientOriginalExtension();
-    $file_name = strval(time()) . str_random(5) . '.' . $extension;
-    $destination_path = public_path() . '/uploads/images/';
+    $file_name = strval(time()) . \Str::random(5) . '.' . $extension;
+    $destination_path = public_path() . '/uploads/images/' . $dir;
     $file->move($destination_path, $file_name);
-    $file_path = 'images/' . $file_name;
+    $file_path = 'images/' . $dir . $file_name;
 
     return $file_path;
 }

@@ -44,6 +44,7 @@ class OrderController extends BaseController
         $sex_text = $this->sex_text;
         $grid = new Grid(new Order);
 
+        $grid->model()->orderBy('id', 'DESC');
         $grid->column('id', __($this->column_name['id']));
         $grid->column(__($this->column_name['user_id']))->expand(function () use($user_column_name, $sex_text) {
             $header = [$user_column_name['name'], $user_column_name['sex'], $user_column_name['address'], $user_column_name['phone'], $user_column_name['email'], $user_column_name['times'], $user_column_name['updated_at']];

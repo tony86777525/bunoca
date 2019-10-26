@@ -50,4 +50,6 @@ Route::group([
     $router->resource('users', UserController::class);
     $router->resource('orders', OrderController::class);
     $router->resource('order-details', OrderDetailController::class);
+
+    $router->resource('configs', ConfigController::class);
 });

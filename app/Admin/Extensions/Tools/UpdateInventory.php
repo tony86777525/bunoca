@@ -39,7 +39,11 @@ $(document).on('click', '.update_ps_inventory', function() {
 				url: 'update_ps_inventory',
 				data : $('#ps-' + $(this).attr("data-id")).serialize(),
 				dataType: "json",
+                beforeSend : function(){
+                    $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });
+                },
 				success : function (res) {
+				    $.unblockUI();
 	                if(res.check){
 	                    $.pjax.reload('#pjax-container');
 	                    toastr.success(res.message);
@@ -55,5 +59,8 @@ EOT;
 	public function render()
 	{
 		Admin::script($this->script());
+        return <<<EOT
+<script src="/js/common/jquery.blockUI.js"></script>
+EOT;
 	}
 }

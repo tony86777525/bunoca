@@ -2,22 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47246bb4-72cd-4d10-b339-3f5d5ad20b63" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/home/shopping_cart.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/home/tool.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ProductInventoryRecordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ProductInventoryRecordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/User/ApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/User/ApiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/User/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/User/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Common/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Common/function.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/User/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/User/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/const.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/const.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/admin/order/detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin/order/detail.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/admin/order/edit.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin/order/edit.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/laravel-admin/AdminLTE/bootstrap/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/laravel-admin/AdminLTE/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/user/order/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/user/order/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/user/order/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/user/order/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/user/product/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/user/product/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/user/product/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/user/product/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/home/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/home/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/index/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/home/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/shop/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/shop/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index/common/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index/common/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/shop/common/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/common/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/shop/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -132,22 +136,23 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-pjax" />
     </include_path>
   </component>
   <component name="ProjectId" id="1RPDyQhWhoAbZOficq7xHg552O7" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/home/common" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\laragon\www\bunoca\public\css\admin" />
-      <recent name="D:\laragon\www\bunoca\resources\views\admin\user\order" />
-      <recent name="D:\laragon\www\bunoca\app\Repositories" />
+      <recent name="D:\laragon\www\bunoca\resources\views\home\common" />
+      <recent name="D:\laragon\www\bunoca\app\Http\Controllers" />
+      <recent name="D:\laragon\www\bunoca\resources\views\home" />
+      <recent name="D:\laragon\www\bunoca\public\js\common" />
       <recent name="D:\laragon\www\bunoca\app" />
-      <recent name="D:\laragon\www\bunoca\app\Admin\Extensions\Tools" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -192,7 +197,16 @@
       <workItem from="1570113701806" duration="4906000" />
       <workItem from="1570346084591" duration="18115000" />
       <workItem from="1570412598834" duration="10974000" />
-      <workItem from="1570542635642" duration="3426000" />
+      <workItem from="1570542635642" duration="5565000" />
+      <workItem from="1570972478213" duration="9801000" />
+      <workItem from="1571152786676" duration="55838000" />
+      <workItem from="1571666200096" duration="12648000" />
+      <workItem from="1571844884621" duration="1375000" />
+      <workItem from="1571846312499" duration="1794000" />
+      <workItem from="1571848158084" duration="1109000" />
+      <workItem from="1572058524258" duration="608000" />
+      <workItem from="1572059215405" duration="687000" />
+      <workItem from="1572060005013" duration="8772000" />
     </task>
     <servers />
   </component>
@@ -225,5 +239,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php</url>
+          <line>4</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/config/const.php</url>
+          <line>4</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'order_list_time' => 7*24*60,
     'language' => [
         'chinese' => [
             'user' => [
@@ -18,7 +19,11 @@ return [
                 'sex_text' => [
                     0 => '女',
                     1 => '男'
-                ]
+                ],
+                'sex_option' => [
+                    'on'  => ['value' => 1, 'text' => '男', 'color' => 'primary'],
+                    'off'  => ['value' => 0, 'text' => '女', 'color' => 'danger'],
+                ],
             ],
             'product' => [
                 'title' => '商品',
@@ -136,6 +141,13 @@ return [
                     1 => '已配貨'
                 ],
             ],
+            'config' => [
+                'title' => '設定',
+                'column' => [
+                    'id' => '#',
+                    'account' => '帳戶',
+                ],
+            ],
         ],
         'vietnamese' => [
             'user' => [
@@ -222,7 +234,7 @@ return [
                 'title' => '-',
                 'column' => [
                     'id' => '#',
-                    'user_id' => '-',
+                    'user_id' => 'users',
                     'user_name' => '-',
                     'user_address' => '-',
                     'o_no' => '-',
@@ -232,7 +244,7 @@ return [
                     'o_fee' => '-',
                     'o_num' => '-',
                     'o_pay_money' => '-',
-                    'o_arrival_flg' => '-',
+                    'o_arrival_flg' => 'o_arrival_flg',
                     'o_pay_flg' => '-',
                     'o_deliver_flg' => '-',
                     'created_at' => '-'
@@ -264,7 +276,7 @@ return [
                     'od_num' => '-',
                     'od_money' => '-',
                     'od_ps_price' => '-',
-                    'od_arrival_flg' => '-',
+                    'od_arrival_flg' => 'arrival',
                     'actions' => '-',
                     'arrival' => '-',
                 ],
@@ -273,6 +285,138 @@ return [
                     1 => '-'
                 ],
             ],
+            'config' => [
+                'title' => '-',
+                'column' => [
+                    'id' => '#',
+                    'account' => '-',
+                ],
+            ],
         ],
+
+        'frontend' => [
+            'chinese' => [
+                'message' => '訊息',
+                'goIndex' => '回首頁',
+                'userMailCheck' => '會員驗證',
+                'userMailUncheck' => '尚未通過會員驗證',
+                'userMailChecked' => '已通過會員驗證',
+                'finish' => '完成',
+
+                'active' => '操作',
+                'toOrderDetail' => '明細',
+                'toOrderPay' => '付款',
+
+                'user' => '會員中心',
+                'userName' => '收件人',
+                'userPhone' => '電話',
+                'userEmail' => 'Email',
+                'userAddress' => '收件地址',
+                'userSexType' => '性別',
+                'userSex' => [
+                    0 => '女',
+                    1 => '男'
+                ],
+
+                'userLoginTimes' => '次登入',
+                'userToChange' => '修改',
+                'userToRevert' => '還原',
+                'userToSave' => '確定',
+
+                'shoppingCart' => '購物車',
+                'shoppingCartToPay' => '前往付款',
+                'shoppingCartNoCount' => '購物車內尚無商品',
+                'shoppingCartUnPay' => '項商品未結帳',
+
+                'orderNo' => '訂單編號',
+                'orderPay' => '付款',
+                'orderCount' => '項訂單',
+                'orderLittleTotal' => '小計',
+                'orderMoney' => '訂單總額',
+                'orderNoCount' => '尚無訂單',
+                'orderPayTo' => '請匯款至',
+                'orderPayAndUpload' => '上傳匯款紀錄的照片',
+                'orderPayType' => '付款狀態',
+                'orderPayFlg' => [
+                    0 => '未付款',
+                    1 => '待確認',
+                    2 => '已付款'
+                ],
+                'orderDeliverType' => '付款狀態',
+                'orderDeliverFlg' => [
+                    0 => '待出貨',
+                    1 => '已出貨'
+                ],
+
+                'OrderDetail' => '訂單明細',
+                'orderDetailCount' => '項商品',
+                'orderDetailType' => '商品',
+                'orderDetailNum' => '數量',
+                'orderDetailMoney' => '價錢',
+
+                'orderRecord' => '訂單紀錄',
+            ],
+            'vietnamese' => [
+                'message' => '訊息',
+                'goIndex' => '回首頁',
+                'userMailCheck' => '會員驗證',
+                'userMailUncheck' => '尚未通過會員驗證',
+                'userMailChecked' => '已通過會員驗證',
+                'finish' => '完成',
+
+                'active' => '操作',
+                'toOrderDetail' => '明細',
+                'toOrderPay' => '付款',
+
+                'user' => '會員中心',
+                'userName' => '收件人',
+                'userPhone' => '電話',
+                'userEmail' => 'Email',
+                'userAddress' => '收件地址',
+                'userSexType' => '性別',
+                'userSex' => [
+                    0 => '女',
+                    1 => '男'
+                ],
+
+                'userLoginTimes' => '次登入',
+                'userToChange' => '修改',
+                'userToRevert' => '還原',
+                'userToSave' => '確定',
+
+                'shoppingCart' => '購物車',
+                'shoppingCartToPay' => '前往付款',
+                'shoppingCartNoCount' => '購物車內尚無商品',
+                'shoppingCartUnPay' => '項商品未結帳',
+
+                'orderNo' => '訂單編號',
+                'orderPay' => '付款',
+                'orderCount' => '項訂單',
+                'orderLittleTotal' => '小計',
+                'orderMoney' => '訂單總額',
+                'orderNoCount' => '尚無訂單',
+                'orderPayTo' => '請匯款至',
+                'orderPayAndUpload' => '上傳匯款紀錄的照片',
+                'orderPayType' => '付款狀態',
+                'orderPayFlg' => [
+                    0 => '未付款',
+                    1 => '待確認',
+                    2 => '已付款'
+                ],
+                'orderDeliverType' => '付款狀態',
+                'orderDeliverFlg' => [
+                    0 => '待出貨',
+                    1 => '已出貨'
+                ],
+
+                'OrderDetail' => '訂單明細',
+                'orderDetailCount' => '項商品',
+                'orderDetailType' => '商品',
+                'orderDetailNum' => '數量',
+                'orderDetailMoney' => '價錢',
+
+                'orderRecord' => '訂單紀錄',
+            ],
+        ]
     ],
 ];

@@ -51,7 +51,7 @@ class ApiController extends Controller
             ];
 
             if(!empty($data['p_image'])){
-                $file_path = upload_image($data['p_image']);
+                $file_path = upload_image($data['p_image'], 'product');
                 $product_insert['p_image'] = $file_path;
             }
 
@@ -75,7 +75,7 @@ class ApiController extends Controller
 
                         $file_path = null;
                         if(!empty($product_single['image'])){
-                            $file_path = upload_image($product_single['image']);
+                            $file_path = upload_image($product_single['image'], 'product');
                             $pir->set_ps_image($file_path);
                         }
 
@@ -85,6 +85,7 @@ class ApiController extends Controller
 
                 $this->message['check'] = true;
                 $this->message['message'] = '成功';
+                return response()->json($this->message);
             }
             $this->message['message'] = '資料不正確';
         } catch (Exception $e) {
@@ -106,7 +107,7 @@ class ApiController extends Controller
                 ];
 
                 if(!empty($data['p_image'])){
-                    $file_path = upload_image($data['p_image']);
+                    $file_path = upload_image($data['p_image'], 'product');
                     $product_insert['p_image'] = $file_path;
                 }
 
@@ -150,7 +151,7 @@ class ApiController extends Controller
 
                             $file_path = null;
                             if(!empty($product_single['image'])){
-                                $file_path = upload_image($product_single['image']);
+                                $file_path = upload_image($product_single['image'], 'product_single');
                                 $pir->set_ps_image($file_path);
                             }
 
@@ -177,7 +178,7 @@ class ApiController extends Controller
 
                             $file_path = null;
                             if(!empty($product_single['image'])){
-                                $file_path = upload_image($product_single['image']);
+                                $file_path = upload_image($product_single['image'], 'product_single');
                                 $pir->set_ps_image($file_path);
                             }
 

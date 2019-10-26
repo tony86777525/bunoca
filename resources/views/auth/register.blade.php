@@ -29,7 +29,10 @@
                             <label for="sex" class="col-md-4 col-form-label text-md-right">{{ __('Sex') }}</label>
 
                             <div class="col-md-6">
-                                <input id="sex" type="sex" class="form-control @error('sex') is-invalid @enderror" name="sex" value="{{ old('sex') }}" required autocomplete="sex">
+                                <select id="sex" type="sex" class="form-control @error('sex') is-invalid @enderror" name="sex" required autocomplete="sex">
+                                    <option value="0" @if(old('sex') == 0) selected @endif>Male</option>
+                                    <option value="1" @if(old('sex') == 1) selected @endif>Female</option>
+                                </select>
 
                                 @error('sex')
                                 <span class="invalid-feedback" role="alert">

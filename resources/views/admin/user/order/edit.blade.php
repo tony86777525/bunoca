@@ -2,9 +2,17 @@
 <div class="container">
     <div class="row" style="margin-bottom: 20px">
         <div class="col-md-3"><h3><label>{{$o_column_name['o_pay_money']}}： {{$order->o_pay_money}}</label></h3></div>
-        <div class="col-md-3"><h3><label>{{$o_column_name['o_arrival_flg']}}： <span class="<?= 'option' . count($o_arrival_flg_text) . '_text_' . $order->o_arrival_flg ?>">{{$o_arrival_flg_text[$order->o_arrival_flg]}}</span></label></h3></div>
-        <div class="col-md-3"><h3><label>{{$o_column_name['o_pay_flg']}}： <span class="<?= 'option' . count($o_pay_flg_text) . '_text_' . $order->o_pay_flg ?>">{{$o_pay_flg_text[$order->o_pay_flg]}}</span></label></h3></div>
-        <div class="col-md-3"><h3><label>{{$o_column_name['o_deliver_flg']}}： <span class="<?= 'option' . count($o_deliver_flg_text) . '_text_' . $order->o_deliver_flg ?>">{{$o_deliver_flg_text[$order->o_deliver_flg]}}</span></label></h3></div>
+        <div class="col-md-3"><h3><label>{{$o_column_name['o_arrival_flg']}}： <span class="{{ 'option' . count($o_arrival_flg_text) . '_text_' . $order->o_arrival_flg }}">{{$o_arrival_flg_text[$order->o_arrival_flg]}}</span></label></h3></div>
+        <div class="col-md-3">
+            <h3>
+                @if($order->o_pay_flg == App\Order::O_PAY_FLG_ON)
+                    <label data-toggle="modal" data-target="#o_pay_image">{{ $o_column_name['o_pay_flg']}}： <span class="{{ 'option' . count($o_pay_flg_text) . '_text_' . $order->o_pay_flg }}"><button type="button" class="btn btn-danger">CHECK</button></span></label>
+                @else
+                    <label>{{$o_column_name['o_pay_flg']}}： <span class="{{ 'option' . count($o_pay_flg_text) . '_text_' . $order->o_pay_flg }}">{{$o_pay_flg_text[$order->o_pay_flg]}}</span></label>
+                @endif
+            </h3>
+        </div>
+        <div class="col-md-3"><h3><label>{{$o_column_name['o_deliver_flg']}}： <span class="{{ 'option' . count($o_deliver_flg_text) . '_text_' . $order->o_deliver_flg }}">{{$o_deliver_flg_text[$order->o_deliver_flg]}}</span></label></h3></div>
     </div>
     <div class="row">
         <div>
@@ -175,6 +183,25 @@
         </div>
     </div>
 </div>
+
+@if($order->o_pay_image)
+    <div class="modal fade" id="o_pay_image" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img style="width: 100%" src="{{ env('APP_URL').'/uploads/'.$order->o_pay_image }}">
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
+<script src="/js/common/jquery.blockUI.js"></script>
 <script>
     $(function () {
         $(".js-create-order-detail").click(function() {
@@ -186,7 +213,11 @@
                 url: "create_order_detail",
                 data: $('#create-order-detail-form').serialize(),
                 dataType: "json",
+                beforeSend : function(){
+                    $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });
+                },
                 success: function (res) {
+                    $.unblockUI();
                     if(res.check){
                         $('#create-detail').modal('hide');
                         $.pjax.reload('#pjax-container');
@@ -209,10 +240,11 @@
                 type: "POST",
                 url: "get_all_product",
                 dataType: "json",
-                // cache : false,
-                // processData : false,
-                // contentType : false,
+                beforeSend : function(){
+                    $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });
+                },
                 success: function (res) {
+                    $.unblockUI();
                     if(res.check){
                         var p = res.data.p;
 
@@ -239,7 +271,11 @@
                 url: "update_order_and_detail",
                 data: $('#order-update-form').serialize(),
                 dataType: "json",
+                beforeSend : function(){
+                    $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });
+                },
                 success: function (res) {
+                    $.unblockUI();
                     if(res.check){
                         $.pjax.reload('#pjax-container');
                         toastr.success(res.message);
@@ -263,6 +299,9 @@
                     'od_num': od_num,
                 },
                 dataType: "json",
+                beforeSend : function(){
+                    $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });
+                },
             });
         }
 
@@ -275,6 +314,7 @@
             const ps_id = $(this).attr("data-id");
             let data = get_order_detail_price(ps_id, od_num);
             data.success(function(res) {
+                $.unblockUI();
                 if(res.check){
                     $('.js-od-money-' + od_id).html(res.data);
                 }else{
@@ -326,10 +366,11 @@
                 url: "update_order_and_detail",
                 data: $('#order-update-form').serialize(),
                 dataType: "json",
-                // cache : false,
-                // processData : false,
-                // contentType : false,
+                beforeSend : function(){
+                    $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });
+                },
                 success: function (res) {
+                    $.unblockUI();
                     if(res.check){
                         $.pjax.reload('#pjax-container');
                         toastr.success(res.message);
@@ -352,7 +393,11 @@
                     'od_id': $(this).attr("data-odid"),
                 },
                 dataType: "json",
+                beforeSend : function(){
+                    $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });
+                },
                 success: function (res) {
+                    $.unblockUI();
                     if(res.check){
                         $.pjax.reload('#pjax-container');
                         toastr.success(res.message);
