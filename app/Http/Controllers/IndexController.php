@@ -6,7 +6,7 @@ use App\Product;
 use App\ProductSingle;
 //use Illuminate\Http\Request;
 
-class IndexController extends BaseController
+class IndexController extends Controller
 {
     /**
      * Display a listing of the resource.

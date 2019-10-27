@@ -21,7 +21,10 @@ Route::get('/', function () {
 
 Route::get('/', 'IndexController@index')->name('index');
 Route::get('index', 'IndexController@index')->name('index');
-Route::get('house', 'HouseController@index');
+Route::get('house', 'HouseController@index')->name('house');
+Route::get('house/WestPoint', 'HouseController@westPoint')->name('WestPoint');
+Route::get('house/OceanPark', 'HouseController@oceanPark')->name('OceanPark');
+Route::get('house/SmartCity', 'HouseController@smartCity')->name('SmartCity');
 Route::get('shop/{id}/', 'ShopController@index')->name('shop');
 Route::post('shop/{id}/set_buy_record', 'ApiController@set_buy_record');
 

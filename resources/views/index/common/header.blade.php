@@ -11,8 +11,11 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('index') }}#about">GIỚI THIỆU<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('index') }}#companyLocation">公司位置<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('house') }}">房地產</a>
                     </li>
                     <!--<li class="nav-item">
                         <a class="nav-link" href="#">最近消息</a>
@@ -22,9 +25,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/shop">購物中心</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/house">越南房地產</a>
                     </li>-->
                 </ul>
                 @guest

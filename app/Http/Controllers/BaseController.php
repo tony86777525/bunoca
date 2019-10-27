@@ -10,7 +10,7 @@ class BaseController extends Controller
 {
     protected $mainPresenter;
     protected $site = 'frontend';
-    protected $language = 'chinese';
+    protected $language = 'vietnamese';
 
     public function __construct(MainPresenter $mainPresenter)
     {

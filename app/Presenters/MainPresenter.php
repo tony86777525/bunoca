@@ -14,7 +14,7 @@ class MainPresenter  {
 
     public function setLanguage($language)
     {
-        $this->language = $language; \Config::get('const.frontend.' . $language);
+        $this->language = $language;
     }
 
     public function setPage($page)

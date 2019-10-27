@@ -22,6 +22,7 @@ class HomeController extends BaseController
     {
         $this->data['page'] = 'index';
         $this->after();
+
         return view('home', $this->data);
     }
 
