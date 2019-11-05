@@ -106,6 +106,7 @@ class ProductController extends BaseController
         $grid->model()->orderBy('id', 'DESC');
         $grid->id('#');
         $grid->p_name($this->p_column_name['p_name']);
+        $grid->p_title($this->p_column_name['p_title']);
         $grid->p_price($this->p_column_name['p_price']);
         $grid->p_display_flg($this->p_column_name['p_display_flg'])->display(function() use ($p_display_flg_text) {
             return '<span class="option' . count($p_display_flg_text) . '_text_' . $this->p_display_flg .'">' . $p_display_flg_text[$this->p_display_flg] . '</span>';
@@ -178,7 +179,7 @@ class ProductController extends BaseController
 
     protected function create_form()
     {
-        return view('admin.user.product.create');
+        return view('admin.user.product.index');
     }
 
     protected function edit_form($id = NULL)

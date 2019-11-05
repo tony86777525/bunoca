@@ -1,3 +1,4 @@
+@inject('mainPresenter', 'App\Presenters\MainPresenter')
 <div class="fixed-top">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="">
         <div class="container">
@@ -14,18 +15,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('index') }}#companyLocation">公司位置<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('house') }}">房地產</a>
+                    <li class="dropdown">
+                        <div class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">台灣精品</div>
+                        <div class="dropdown-menu">
+                            @foreach($mainPresenter->productList() as $product)
+                                <a class="dropdown-item" href="{{ route('shop', ['id' => $product->id]) }}/" target="_blank">{{ $product->p_title }}</a>
+                            @endforeach
+                        </div>
                     </li>
-                    <!--<li class="nav-item">
-                        <a class="nav-link" href="#">最近消息</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">聯絡我們</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/shop">購物中心</a>
-                    </li>-->
                 </ul>
                 @guest
                     <div>

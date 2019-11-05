@@ -34,6 +34,7 @@ return [
                 'column' => [
                     'id' => '#',
                     'p_name' => '商品',
+                    'p_title' => '商品(越)',
                     'p_price' => '售價',
                     'p_display_flg' => '狀態',
                     'p_image' => '圖片',
@@ -178,6 +179,7 @@ return [
                 'column' => [
                     'id' => '#',
                     'p_name' => '-',
+                    'p_title' => '-',
                     'p_price' => '-',
                     'p_display_flg' => '-',
                     'p_image' => '-',

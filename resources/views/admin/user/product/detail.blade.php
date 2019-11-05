@@ -14,6 +14,9 @@
                             <label for="p_name">{{$p_column_name['p_name']}}： {{$product->p_name}}</label>
                         </div>
                         <div class="form-group">
+                            <label for="p_title">{{$p_column_name['p_title']}}： {{$product->p_title}}</label>
+                        </div>
+                        <div class="form-group">
                             <label for="p_price">{{$p_column_name['p_price']}}： {{$product->p_price}}</label></div>
                         <div class="form-group">
                             <label for="p_display_flg">{{$p_column_name['p_display_flg']}}： {{$p_display_flg_text[$product->p_display_flg]}}</label>

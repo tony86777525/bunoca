@@ -228,7 +228,7 @@ class OrderController extends BaseController
         $new_order_no = \Config::get('const.create_order_no');
 
         $users = User::get();
-        return view('admin.user.order.create',compact(
+        return view('admin.user.order.index',compact(
             'new_order_no',
             'order',
             'users'

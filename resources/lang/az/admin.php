@@ -14,7 +14,7 @@ return [
     'avatar'                => 'Profil şəkli',
     'list'                  => 'List',
     'new'                   => 'Yeni',
-    'create'                => 'Yarat',
+    'index'                => 'Yarat',
     'delete'                => 'Sil',
     'remove'                => 'Kənarlaşdırın',
     'edit'                  => 'Yenilə',

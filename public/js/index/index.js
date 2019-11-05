@@ -1,4 +1,8 @@
 $(function () {
+    new WOW().init();
+});
+
+$(function () {
 	$('.fixed-top a[href*="#"]:not([href="#"])').click(function() {
 		var target = $(this.hash);
 		$('html,body').animate({
@@ -7,6 +11,7 @@ $(function () {
 		return false;
 	 });
 });
+
 $(function() {
 	$('.navbar-collapse .navbar-nav .nav-item .nav-link').click(function() {
 		$('.navbar-collapse.collapse.show').removeClass('show');

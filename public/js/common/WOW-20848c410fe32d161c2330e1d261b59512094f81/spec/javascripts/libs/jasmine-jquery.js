@@ -303,7 +303,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       var actualArgs = data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)]
 
       if (!actualArgs) {
-        throw "There is no spy for " + eventName + " on " + selector.toString() + ". Make sure to create a spy using spyOnEvent."
+        throw "There is no spy for " + eventName + " on " + selector.toString() + ". Make sure to index a spy using spyOnEvent."
       }
 
       return actualArgs

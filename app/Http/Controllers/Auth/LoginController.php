@@ -39,6 +39,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        return view('user.auth.login');
+    }
+
     public function authenticated(Request $request, $user)
     {
         User::where('email', $request->input('email'))->increment('times');

@@ -14,7 +14,7 @@ return [
     'avatar'                => 'Avatar',
     'list'                  => 'Senarai',
     'new'                   => 'Tambah',
-    'create'                => 'Buat',
+    'index'                => 'Buat',
     'delete'                => 'Padam',
     'remove'                => 'Keluarkan',
     'edit'                  => 'Edit',

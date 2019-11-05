@@ -46,6 +46,7 @@ class ApiController extends Controller
         try {
             $product_insert = [
                 'p_name' => $data['p_name'],
+                'p_title' => $data['p_title'],
                 'p_price' => $data['p_price'],
                 'p_display_flg' => $data['p_display_flg'],
             ];
@@ -102,6 +103,7 @@ class ApiController extends Controller
             try {
                 $product_insert = [
                     'p_name' => $data['p_name'],
+                    'p_title' => $data['p_title'],
                     'p_price' => $data['p_price'],
                     'p_display_flg' => $data['p_display_flg'],
                 ];
@@ -198,26 +200,6 @@ class ApiController extends Controller
 
         return response()->json($this->message);
     }
-
-//    public function delete_product($id, Request $request)
-//    {
-//        if(!empty($id)){
-//            try {
-//                $p = new ProductRepository();
-//                $p->set_product_ids($id)->p_delete();
-//
-//                $this->message['check'] = true;
-//                $this->message['status'] = true;
-//                $this->message['message'] = '成功';
-//            } catch (Exception $e) {
-//                $this->message['message'] = '資料不正確或商品不存在';
-//            }
-//        }else{
-//            $this->message['message'] = '商品不存在';
-//        }
-//
-//        return response()->json($this->message);
-//    }
 
     public function delete_product_single(Request $request)
     {

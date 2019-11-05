@@ -2,47 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Presenters\HousePresenter;
 
 class HouseController extends Controller
 {
+    private $housePresenter;
+
+    public function __construct(HousePresenter $housePresenter)
+    {
+        $this->housePresenter = $housePresenter;
+    }
+
     public function index()
     {
-        return view('house', [
-            'page' => 'index'
-        ]);
+        return view('user.house.index');
     }
 
     public function smartCity()
     {
-        return view('house', [
-            'page' => 'smart_city',
-            'side_title' => [
-                'title' => 'Smart City',
-                'href' => 'SmartCity',
-            ]
-        ]);
+        $this->housePresenter->setNavbarName('Smart City');
+        $this->housePresenter->setNavbarRouteName('smartCity');
+        return view('user.house.smartCity');
     }
 
     public function westPoint()
     {
-        return view('house', [
-            'page' => 'west_point',
-            'side_title' => [
-                'title' => 'West Point',
-                'href' => 'WestPoint',
-            ]
-        ]);
+        $this->housePresenter->setNavbarName('West Point');
+        $this->housePresenter->setNavbarRouteName('westPoint');
+        return view('user.house.westPoint');
     }
 
     public function oceanPark()
     {
-        return view('house', [
-            'page' => 'ocean_park',
-            'side_title' => [
-                'title' => 'Ocean Park',
-                'href' => 'OceanPark',
-            ]
-        ]);
+        $this->housePresenter->setNavbarName('Ocean Park');
+        $this->housePresenter->setNavbarRouteName('oceanPark');
+        return view('user.house.oceanPark');
     }
 }

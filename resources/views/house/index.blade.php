@@ -23,27 +23,27 @@
             </section>
 
             <section>
-                <p class='title'>案場</p>
+                <p class='title body-text'>案場</p>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-12 col-md-4">
                         <a href="/house/SmartCity">
-                            <img src="{{ asset('img/house/SmartCity/SC_1.jpg') }}" width="100%" alt="...">
+                            <img src="{{ asset('img/house/SmartCity/SC_1.jpg') }}" width="100%" height="200" alt="...">
                             <div class="card-body">
                                 <p class='title text-dark'>SmartCity</p>
                             </div>
                         </a>
                     </div>
-                    <div class="col-4">
+                    <div class="col-12 col-md-4">
                         <a href="/house/WestPoint">
-                            <img src="{{ asset('img/house/WestPoint/WP1.jpg') }}" width="100%" alt="...">
+                            <img src="{{ asset('img/house/WestPoint/WP1.jpg') }}" width="100%" height="200" alt="...">
                             <div class="card-body">
                                 <p class='title text-dark'>WestPoint</p>
                             </div>
                         </a>
                     </div>
-                    <div class="col-4">
+                    <div class="col-12 col-md-4">
                         <a href="/house/OceanPark">
-                            <img src="{{ asset('img/house/OceanPark/OP1.jpg') }}" width="100%" height="196.5" alt="...">
+                            <img src="{{ asset('img/house/OceanPark/OP1.jpg') }}" width="100%" height="200" alt="...">
                             <div class="card-body">
                                 <p class='title text-dark'>OceanPark</p>
                             </div>

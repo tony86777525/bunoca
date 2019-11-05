@@ -16,6 +16,10 @@
                         <input type="text" name="p_name" class="form-control" id="p_name" placeholder="Enter Product Name">
                     </div>
                     <div class="form-group">
+                        <label for="p_title">商品名稱(越)</label>
+                        <input type="text" name="p_title" class="form-control" id="p_title" placeholder="Enter Product Title">
+                    </div>
+                    <div class="form-group">
                         <label for="p_price">預設價格</label>
                         <input type="number" name="p_price" class="form-control" id="p_price" placeholder="Enter Product Price">
                     </div>
@@ -146,8 +150,8 @@
         make_ckeditor($('#new_ps_content_' + num));
         num += 1;
     });
-    $(".create-product").click(function(){
-        data = new FormData($('#product-create-form')[0]);
+    $(".index-product").click(function(){
+        data = new FormData($('#product-index-form')[0]);
         $(".ps_content").each(function(){
             data.append($(this).attr('name'), CKEDITOR.instances[$(this).attr('id')].getData());
         });

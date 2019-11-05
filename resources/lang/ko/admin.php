@@ -14,7 +14,7 @@ return [
     'avatar'                => '프로필',
     'list'                  => '목록',
     'new'                   => '만들기',
-    'create'                => '생성',
+    'index'                => '생성',
     'delete'                => '삭제',
     'remove'                => '제거',
     'edit'                  => '편집',

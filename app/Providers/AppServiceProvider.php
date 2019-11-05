@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public $singletons = [
         \App\Presenters\MainPresenter::class => \App\Presenters\MainPresenter::class,
+        \App\Presenters\HousePresenter::class => \App\Presenters\HousePresenter::class,
     ];
 
 

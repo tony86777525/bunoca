@@ -78,6 +78,6 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $sex_text_option = \Config::get('const.language.chinese.user.sex_text');
-        return view('auth.register', compact('sex_text_option'));
+        return view('user.auth.register', compact('sex_text_option'));
     }
 }

@@ -14,7 +14,7 @@ return [
     'avatar'                => 'Profil resmi',
     'list'                  => 'Liste',
     'new'                   => 'Yeni',
-    'create'                => 'Oluştur',
+    'index'                => 'Oluştur',
     'delete'                => 'Sil',
     'remove'                => 'Kaldır',
     'edit'                  => 'Düzenle',

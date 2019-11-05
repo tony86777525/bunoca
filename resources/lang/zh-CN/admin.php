@@ -14,7 +14,7 @@ return [
     'avatar'                => '头像',
     'list'                  => '列表',
     'new'                   => '新增',
-    'create'                => '创建',
+    'index'                => '创建',
     'delete'                => '删除',
     'remove'                => '移除',
     'edit'                  => '编辑',

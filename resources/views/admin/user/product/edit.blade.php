@@ -18,6 +18,10 @@
                                 <input type="text" name="p_name" class="form-control" id="p_name" value="{{$product->p_name}}" placeholder="Enter Product Name">
 							</div>
                             <div class="form-group">
+                                <label for="p_title">{{$p_column_name['p_title']}}</label>
+                                <input type="text" name="p_title" class="form-control" id="p_title" value="{{$product->p_title}}" placeholder="Enter Product Title">
+                            </div>
+                            <div class="form-group">
                                 <label for="p_price">{{$p_column_name['p_price']}}</label>
                                 <input type="number" name="p_price" class="form-control" id="p_price" value="{{$product->p_price}}" placeholder="Enter Product Price">
                             </div>

@@ -8,17 +8,18 @@ use Illuminate\Support\Facades\Route;
 
 class BaseController extends Controller
 {
-    protected $mainPresenter;
     protected $site = 'frontend';
     protected $language = 'vietnamese';
 
-    public function __construct(MainPresenter $mainPresenter)
+    public function __construct()
     {
         $this->middleware('auth');
+        $this->mainPresenter()->setSite($this->site);
+        $this->mainPresenter()->setLanguage($this->language);
+    }
 
-        $this->mainPresenter = $mainPresenter;
-
-        $this->mainPresenter->setSite($this->site);
-        $this->mainPresenter->setLanguage($this->language);
+    public function mainPresenter() : MainPresenter
+    {
+        return resolve(MainPresenter::class);
     }
 }

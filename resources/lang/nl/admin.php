@@ -14,7 +14,7 @@ return [
     'avatar'                => 'Profielfoto',
     'list'                  => 'Lijst',
     'new'                   => 'Nieuw',
-    'create'                => 'Maak',
+    'index'                => 'Maak',
     'delete'                => 'Wissen',
     'remove'                => 'Verwijder',
     'edit'                  => 'Wijzigen',

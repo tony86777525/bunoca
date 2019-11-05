@@ -446,7 +446,7 @@ function createDOMPurify() {
   /**
    * _createIterator
    *
-   * @param  {Document} root document/fragment to create iterator for
+   * @param  {Document} root document/fragment to index iterator for
    * @return {Iterator} iterator instance
    */
   var _createIterator = function _createIterator(root) {

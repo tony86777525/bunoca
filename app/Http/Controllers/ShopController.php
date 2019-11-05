@@ -19,8 +19,11 @@ class ShopController extends Controller
             $product = Product::where('id', $id)->Where('p_display_flg', Product::P_DISPLAY_FLG_ON)->whereHas('product_single', function ($query) {
                 $query->where('ps_display_flg', ProductSingle::PS_DISPLAY_FLG_ON);
             })->first();
+
             if(!empty($product)){
-                return view('shop', ['page' => 'index', 'product' => $product]);
+                return view('user.shop.index', [
+                    'product' => $product
+                ]);
             }
         }
 

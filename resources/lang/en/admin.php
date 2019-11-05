@@ -14,7 +14,7 @@ return [
     'avatar'                => 'Avatar',
     'list'                  => 'List',
     'new'                   => 'New',
-    'create'                => 'Create',
+    'index'                => 'Create',
     'delete'                => 'Delete',
     'remove'                => 'Remove',
     'edit'                  => 'Edit',
@@ -103,5 +103,5 @@ return [
     'menu_titles'            => [],
     'prev'                   => 'Prev',
     'next'                   => 'Next',
-    'quick_create'           => 'Quick create',
+    'quick_create'           => 'Quick index',
 ];

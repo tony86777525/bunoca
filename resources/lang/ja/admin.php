@@ -14,7 +14,7 @@ return [
     'avatar'                => 'アバター',
     'list'                  => '一覧',
     'new'                   => '新規',
-    'create'                => '作成',
+    'index'                => '作成',
     'delete'                => '削除',
     'remove'                => '消去',
     'edit'                  => '編集',

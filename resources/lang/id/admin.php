@@ -14,7 +14,7 @@ return [
     'avatar'                => 'Avatar',
     'list'                  => 'Daftar',
     'new'                   => 'Baru',
-    'create'                => 'Buat',
+    'index'                => 'Buat',
     'delete'                => 'Hapus',
     'remove'                => 'Hapus',
     'edit'                  => 'Ubah',

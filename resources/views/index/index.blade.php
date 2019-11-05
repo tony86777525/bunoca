@@ -1,8 +1,9 @@
+@inject('mainPresenter', 'App\Presenters\MainPresenter')
 <div class="top-div">
     <div id="carouselExampleIndicators" data-interval="3000" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            @foreach($products as $key => $product)
+            @foreach($mainPresenter->productList() as $key => $product)
                 <li data-target="#carouselExampleIndicators" data-slide-to="<?= $key+1 ?>"></li>
             @endforeach
         </ol>
@@ -14,10 +15,10 @@
                     <p>BUNOCA VIETNAM</p>
                 </div>
             </div>
-            @foreach($products as $product)
-            <div class="carousel-item">
-                <a href="{{ route('shop', ['id' => $product->id]) }}/" target="_blank"><img src="/uploads/{{$product->p_image}}" class="d-block w-100 top-img" alt="...">
-            </div>
+            @foreach($mainPresenter->productList() as $product)
+                <div class="carousel-item">
+                    <a href="{{ route('shop', ['id' => $product->id]) }}/" target="_blank"><img src="/uploads/{{$product->p_image}}" class="d-block w-100 top-img" alt="..."></a>
+                </div>
             @endforeach
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

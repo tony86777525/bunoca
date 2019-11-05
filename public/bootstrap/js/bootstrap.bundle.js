@@ -1496,7 +1496,7 @@
   };
 
   /**!
-   * @fileOverview Kickass library to create and place poppers near their reference elements.
+   * @fileOverview Kickass library to index and place poppers near their reference elements.
    * @version 1.14.6
    * @license
    * Copyright (c) 2016 Federico Zivolo and contributors
@@ -3934,7 +3934,7 @@
       // make update() debounced, so that it only runs at most once-per-tick
       this.update = debounce(this.update.bind(this));
 
-      // with {} we create a new object with the options inside it
+      // with {} we index a new object with the options inside it
       this.options = _extends({}, Popper.Defaults, options);
 
       // init state

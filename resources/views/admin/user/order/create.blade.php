@@ -44,14 +44,14 @@
 			$("#user_name").val($(this).find(':selected').attr('data-name'));
 		});
 
-		$(".js-create-order").click(function(){
+		$(".js-index-order").click(function(){
 			$.ajax({
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				},
 				type: "POST",
-				url: "create/create_order",
-				data: $('#create-order-form').serialize(),
+				url: "index/create_order",
+				data: $('#index-order-form').serialize(),
 				dataType: "json",
 				success: function (res) {
 					if(res.check){

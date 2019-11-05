@@ -204,14 +204,14 @@
 <script src="/js/common/jquery.blockUI.js"></script>
 <script>
     $(function () {
-        $(".js-create-order-detail").click(function() {
+        $(".js-index-order-detail").click(function() {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: "POST",
                 url: "create_order_detail",
-                data: $('#create-order-detail-form').serialize(),
+                data: $('#index-order-detail-form').serialize(),
                 dataType: "json",
                 beforeSend : function(){
                     $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });
@@ -219,7 +219,7 @@
                 success: function (res) {
                     $.unblockUI();
                     if(res.check){
-                        $('#create-detail').modal('hide');
+                        $('#index-detail').modal('hide');
                         $.pjax.reload('#pjax-container');
                         toastr.success(res.message);
                     }
@@ -230,7 +230,7 @@
             });
         });
 
-        $(".js-create-order-detail-table").click(function () {
+        $(".js-index-order-detail-table").click(function () {
             $('select#n_product_single_id option').remove();
             $('select#n_product_single_id').append($("<option></option>").attr("value", "0").text("----"));
             $.ajax({
