@@ -28,14 +28,14 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.js-index-order', function(){
+    $(document).on('click', '.js-create-order', function(){
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: "POST",
             url: "create_order",
-            data: $('#index-order-form').serialize(),
+            data: $('#create-order-form').serialize(),
             dataType: "json",
             beforeSend : function(){
                 $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });

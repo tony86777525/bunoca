@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('css/common/bootstrap.min.css') }}" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/common/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common/nprogress.css') }}">
     <!-- Basic Css Start -->
     <!-- Page Css Start -->
     @yield('pageCss')
@@ -20,15 +22,28 @@
 </head>
 <body>
     @yield('navbar')
-    @yield('contents')
+
+    <div id="pjax-container">
+        <div class="container top-div">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    @yield('contents')
+                </div>
+            </div>
+        </div>
+    </div>
     @yield('footer')
     <!-- Basic Js Start -->
     <script src="{{ asset('js/common/jquery-3.3.1.slim.min.js') }}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="{{ asset('js/common/popper.min.js') }}" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="{{ asset('js/common/bootstrap.min.js') }}" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="{{ asset('js/common/wow.min.js') }}"></script>
-    <script src="{{ asset('js/common/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('js/common/jquery-2.1.4.min.js') }}"></script>
     <script src="{{ asset('js/common/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('js/common/jquery.pjax.js') }}"></script>
+    <script src="{{ asset('js/common/nprogress.js') }}"></script>
+    <script src="{{ asset('js/common/toastr.min.js') }}"></script>
+    <script src="{{ asset('js/common/jquery.blockUI.js') }}"></script>
     <!-- Basic Js End -->
     <!-- Page Js Start -->
     @yield('pageJs')

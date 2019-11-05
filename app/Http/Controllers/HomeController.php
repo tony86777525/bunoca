@@ -20,10 +20,9 @@ class HomeController extends BaseController
 
     public function index()
     {
-        $this->data['page'] = 'index';
         $this->after();
 
-        return view('home', $this->data);
+        return view('user.home.index', $this->data);
     }
 
     public function mail_check(Request $request)
@@ -61,10 +60,9 @@ class HomeController extends BaseController
         $this->message['message'] = $message;
         $this->message['check'] = $check;
 
-        $this->data['page'] = 'result';
         $this->data['message'] = $this->message;
         $this->after();
-        return view('home', $this->data);
+        return view('user.home.result', $this->data);
     }
 
     public function shopping_cart()
@@ -83,11 +81,10 @@ class HomeController extends BaseController
             $product_single = ProductSingle::with('product')->whereIn('id', $ps_ids)->get()->keyBy('id')->toArray();
         }
 
-        $this->data['page'] = 'shopping_cart';
         $this->data['order_list'] = $order_list;
         $this->data['product_single'] = $product_single;
         $this->after();
-        return view('home', $this->data);
+        return view('user.home.shopping_cart', $this->data);
     }
 
     public function shopping_pay($o_no)
@@ -108,11 +105,10 @@ class HomeController extends BaseController
             return redirect('/home');
         }
 
-        $this->data['page'] = 'shopping_pay';
         $this->data['order'] = $order;
         $this->data['account'] = $account;
         $this->after();
-        return view('home', $this->data);
+        return view('user.home.shopping_pay', $this->data);
     }
 
     public function order_record()
@@ -123,10 +119,9 @@ class HomeController extends BaseController
 
         $orders = Order::with('order_detail', 'user', 'order_detail.product_single')->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
 
-        $this->data['page'] = 'order_record';
         $this->data['orders'] = $orders;
         $this->after();
-        return view('home', $this->data);
+        return view('user.home.order_record', $this->data);
     }
 
     public function order_detail($o_no)
@@ -137,20 +132,18 @@ class HomeController extends BaseController
             return redirect('/home');
         }
 
-        $this->data['page'] = 'order_detail';
         $this->data['order'] = $order;
         $this->after();
-        return view('home', $this->data);
+        return view('user.home.order_detail', $this->data);
     }
 
     public function user()
     {
         $user = User::find(Auth::user()->id);
 
-        $this->data['page'] = 'user';
         $this->data['user'] = $user;
         $this->after();
-        return view('home', $this->data);
+        return view('user.home.user', $this->data);
     }
 
     private function after()

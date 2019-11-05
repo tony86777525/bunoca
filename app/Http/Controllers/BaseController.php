@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Route;
 class BaseController extends Controller
 {
     protected $site = 'frontend';
-    protected $language = 'vietnamese';
+//    protected $language = 'vietnamese';
+    protected $language = 'chinese';
 
     public function __construct()
     {
