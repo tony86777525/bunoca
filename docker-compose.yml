@@ -1,0 +1,82 @@
+#bunoca
+#local.bunoca.tw
+version: "3"
+
+networks:
+  backend:
+  frontend:
+
+services:
+
+  # web-server
+  web-server:
+    container_name: nginx
+    networks:
+      - frontend
+      - backend
+    image: nginx:1.17
+    ports:
+      - "9502:9502"
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./docker/log/nginx:/var/log/nginx
+      - ./docker/nginx/conf:/etc/nginx/conf.d
+      - ./docker/ssl:/etc/ssl
+      - ./:/var/www/html/bunoca
+
+  # php-fpm
+  php-fpm:
+    container_name: php
+    networks:
+      - backend
+    image: php:7.2-fpm
+    expose:
+      - 9000
+    tty: true
+    volumes:
+      - ./docker/php/conf.d/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./docker/php/php-fpm.d:/usr/local/etc/php-fpm.d
+      - ./docker/ssl:/etc/ssl
+      - ./:/var/www/html/bunoca
+
+#  # swoole
+#  swoole:
+#    container_name: swoole
+#    networks:
+#      - backend
+#    image: tinayork/php
+#    expose:
+#      - 9501
+#    tty: true
+#    command: php /var/www/html/bunoca/artisan swoole
+#    volumes:
+#      - ./docker/ssl:/etc/ssl
+#      - ./:/var/www/html/bunoca
+  
+  # database
+  database:
+    container_name: mysql
+    networks:
+      - backend
+    ports:
+      - "3306:3306"
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: bunoca
+      MYSQL_USER: bunoca
+      MYSQL_PASSWORD: 37123840
+    volumes:
+      - ./docker/mysql/local.cnf:/etc/mysql/conf.d/local.cnf
+      - ./docker/mysql/data:/var/lib/mysql
+  
+#  # cache
+#  cache:
+#    container_name: redis
+#    networks:
+#      - backend
+#    image: redis:5
+#    ports:
+#      - "6379:6379"

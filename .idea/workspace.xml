@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47246bb4-72cd-4d10-b339-3f5d5ad20b63" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/const.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/const.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -125,15 +128,16 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="D:\laragon\www\bunoca\resources\views\home\common" />
       <recent name="D:\laragon\www\bunoca\app\Http\Controllers" />
       <recent name="D:\laragon\www\bunoca\resources\views\home" />
       <recent name="D:\laragon\www\bunoca\public\js\common" />
-      <recent name="D:\laragon\www\bunoca\app" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -189,7 +193,7 @@
       <workItem from="1572059215405" duration="687000" />
       <workItem from="1572060005013" duration="8772000" />
       <workItem from="1572077456761" duration="48000" />
-      <workItem from="1572155274121" duration="1698000" />
+      <workItem from="1572155274121" duration="4442000" />
     </task>
     <servers />
   </component>
