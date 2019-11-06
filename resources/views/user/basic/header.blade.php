@@ -16,8 +16,8 @@
                     @endif
                 </ul>
                 @guest
-                    <div><a href="/login" class="nav-link">登入</a></div>
-                    <div><a href="/register" class="nav-link">註冊</a></div>
+                    <div><a href="/login" class="nav-link">Đăng nhập</a></div>
+                    <div><a href="/register" class="nav-link">Đăng ký</a></div>
                 @else
                     <div>
                         <a href="/login" class="nav-link">{{ Auth::user()->name }}</a>

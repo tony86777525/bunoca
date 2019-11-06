@@ -37,7 +37,7 @@
                             @endif
                         @endif
                         <div>
-                            <a href="/home" class="btn btn-primary" style="margin-top: 100px;">會員</a>
+                            <a href="/home" class="btn btn-primary" style="margin-top: 100px;">Thành viên</a>
                             <a href="/index" class="btn btn-primary" style="margin-top: 100px;">回首頁</a>
                         </div>
                     </div>

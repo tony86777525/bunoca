@@ -156,146 +156,148 @@ return [
         ],
         'vietnamese' => [
             'user' => [
-                'title' => '-',
+                'title' => 'Thành viên',
                 'column' => [
                     'id' => '#',
-                    'name' => '-',
-                    'sex' => '-',
-                    'address' => '-',
-                    'phone' => '-',
-                    'email' => '-',
-                    'times' => '-',
-                    'updated_at' => '-',
+                    'name' => 'Tên',
+                    'sex' => 'Giới tính',
+                    'address' => 'Địa chỉ',
+                    'phone' => 'Điện thoại',
+                    'email' => 'Địa chỉ email',
+                    'times' => '登入次數',
+                    'updated_at' => '最後登入',
                 ],
                 'sex_text' => [
-                    0 => '-',
-                    1 => '-'
-                ]
+                    0 => '女',
+                    1 => '男'
+                ],
+                'sex_option' => [
+                    'on'  => ['value' => 1, 'text' => '男', 'color' => 'primary'],
+                    'off'  => ['value' => 0, 'text' => '女', 'color' => 'danger'],
+                ],
             ],
             'product' => [
-                'title' => '-',
-                'id' => '#',
-                'title' => '-',
+                'title' => 'SẢN PHẨM',
                 'column' => [
                     'id' => '#',
-                    'p_name' => '-',
-                    'p_title' => '-',
-                    'p_price' => '-',
-                    'p_display_flg' => '-',
-                    'p_image' => '-',
-                    'updated_at' => '-',
+                    'p_name' => 'SẢN PHẨM',
+                    'p_title' => 'SẢN PHẨM',
+                    'p_price' => 'Giá Cả',
+                    'p_display_flg' => 'Trạng thái',
+                    'p_image' => '圖片',
+                    'updated_at' => '最後更新',
                 ],
                 'display_flg_option' => [
-                    'on'  => ['value' => 1, 'text' => 'ON<BR>SALE', 'color' => 'primary'],
-                    'off'  => ['value' => 0, 'text' => 'OFF<BR>SALE', 'color' => 'danger'],
+                    'on'  => ['value' => 1, 'text' => 'Trong bán', 'color' => 'primary'],
+                    'off'  => ['value' => 0, 'text' => '停售中', 'color' => 'danger'],
                 ],
                 'display_flg_text' => [
-                    0 => 'OFF',
-                    1 => 'ON'
+                    0 => '停售中',
+                    1 => 'Trong bán'
                 ],
             ],
             'product_single' => [
-                'title' => '-',
+                'title' => '單品',
                 'column' => [
                     'id' => '#',
-                    'product.p_name' => '-',
-                    'ps_type' => '-',
-                    'ps_price' => '-',
-                    'ps_inventory' => '-',
-                    'ps_title' => '-',
-                    'ps_content' => '-',
-                    'ps_display_flg' => '-',
-                    'ps_image' => '-',
-                    'ps_href' => '-',
-                    'updated_at' => '-',
-                    'actions' => '-',
-                    'update_ps_inventory' => '-'
+                    'product_id' => 'SẢN PHẨM',
+                    'ps_type' => '規格',
+                    'ps_price' => 'Giá Cả',
+                    'ps_inventory' => 'Hàng tồn kho',
+                    'ps_title' => '標題',
+                    'ps_content' => '內容',
+                    'ps_display_flg' => 'Trạng thái',
+                    'ps_image' => '圖片',
+                    'ps_href' => '連結',
+                    'updated_at' => '最後更新',
+                    'actions' => 'Hoạt động',
+                    'update_ps_inventory' => 'Hàng Nhập kho'
                 ],
                 'display_flg_option' => [
-                    'on'  => ['value' => 1, 'text' => 'ON<BR>SALE', 'color' => 'primary'],
-                    'off'  => ['value' => 0, 'text' => 'OFF<BR>SALE', 'color' => 'danger'],
+                    'on'  => ['value' => 1, 'text' => 'Trong bán', 'color' => 'primary'],
+                    'off'  => ['value' => 0, 'text' => '停售中', 'color' => 'danger'],
                 ],
                 'display_flg_text' => [
-                    0 => 'OFF',
-                    1 => 'ON'
+                    0 => '停售中',
+                    1 => 'Trong bán'
                 ],
             ],
             'product_inventory_record' => [
-                'title' => '-',
+                'title' => '庫存紀錄',
                 'column' => [
                     'id' => '#',
-                    'p_name' => '-',
-                    'ps_type' => '-',
-                    'admin_user_id' => '-',
-                    'admin_user_name' => '-',
-                    'pir_num' => '-',
-                    'pir_before_num' => '-',
-                    'pir_after_num' => '-',
-                    'pir_message' => '-',
-                    'ps_href' => '-',
-                    'created_at' => '-',
+                    'p_name' => 'SẢN PHẨM',
+                    'ps_type' => '規格',
+                    'admin_user_id' => '操作者ID',
+                    'admin_user_name' => '操作者',
+                    'pir_num' => 'Hàng Nhập kho',
+                    'pir_before_num' => '入庫前',
+                    'pir_after_num' => '入庫後',
+                    'pir_message' => '備註',
+                    'ps_href' => '連結',
+                    'created_at' => '時間',
                 ],
             ],
             'order' => [
-                'title' => '-',
+                'title' => 'Đặt hàng',
                 'column' => [
                     'id' => '#',
-                    'user_id' => 'users',
-                    'user_name' => '-',
-                    'user_address' => '-',
-                    'o_no' => '-',
-                    'o_money' => '-',
-                    'o_discount' => '-',
-                    'o_free_discount' => '-',
-                    'o_fee' => '-',
-                    'o_num' => '-',
-                    'o_pay_money' => '-',
-                    'o_arrival_flg' => 'o_arrival_flg',
-                    'o_pay_flg' => '-',
-                    'o_deliver_flg' => '-',
-                    'created_at' => '-'
+                    'user_id' => 'Thành viên',
+                    'user_name' => '收件姓名',
+                    'user_address' => '收件地址',
+                    'o_no' => '訂單編號',
+                    'o_money' => 'Tổng số tiền',
+                    'o_discount' => '訂單折扣',
+                    'o_free_discount' => '自訂折扣',
+                    'o_fee' => 'Phí Vận chuyển',
+                    'o_num' => 'Hạng  Mục',
+                    'o_pay_money' => 'Tổng số tiền phải trả',
+                    'o_arrival_flg' => 'Trạng thái đặt hàng',
+                    'o_pay_flg' => 'trạng thái thanh toán',
+                    'o_deliver_flg' => 'Tình trạng vận chuyển',
+                    'created_at' => 'Thời gian đặt hàng',
                 ],
                 'sex' => [
-                    0 => '-',
-                    1 => '-'
+                    0 => '女',
+                    1 => '男'
                 ],
                 'arrival_flg_text' => [
-                    0 => '-',
-                    1 => '-'
+                    0 => '未配貨',
+                    1 => '全配貨'
                 ],
                 'pay_flg_text' => [
-                    0 => '-',
-                    1 => '-',
-                    2 => '-'
+                    0 => 'Chưa thanh toán',
+                    1 => '待確認',
+                    2 => 'Đã thanh toán'
                 ],
                 'deliver_flg_text' => [
-                    0 => '-',
-                    1 => '-'
+                    0 => '未出貨',
+                    1 => 'Đã đặt hàng '
                 ],
             ],
             'order_detail' => [
-                'title' => '-',
+                'title' => '訂單明細',
                 'column' => [
                     'id' => '#',
-                    'order_id' => '-',
-                    'product_single_id' => '-',
-                    'od_num' => '-',
-                    'od_money' => '-',
-                    'od_ps_price' => '-',
-                    'od_arrival_flg' => 'arrival',
-                    'actions' => '-',
-                    'arrival' => '-',
+                    'order_id' => 'Đặt hàng',
+                    'product_single_id' => '單品',
+                    'od_num' => 'Số lượng',
+                    'od_money' => '總額',
+                    'od_ps_price' => '單價',
+                    'od_arrival_flg' => '配貨狀態',
+                    'actions' => 'Hoạt động',
+                    'arrival' => '配貨',
                 ],
                 'arrival_flg_text' => [
-                    0 => '-',
-                    1 => '-'
+                    0 => 'Chưa đặt hàng',
+                    1 => 'Đã đặt hàng'
                 ],
             ],
             'config' => [
-                'title' => '-',
+                'title' => '設定',
                 'column' => [
                     'id' => '#',
-                    'account' => '-',
+                    'account' => '帳戶',
                 ],
             ],
         ],
@@ -348,7 +350,7 @@ return [
                     1 => '待確認',
                     2 => '已付款'
                 ],
-                'orderDeliverType' => '付款狀態',
+                'orderDeliverType' => '出貨狀態',
                 'orderDeliverFlg' => [
                     0 => '待出貨',
                     1 => '已出貨'
@@ -363,65 +365,65 @@ return [
                 'orderRecord' => '訂單紀錄',
             ],
             'vietnamese' => [
-                'message' => 'Tin nhắn',
-                'goIndex' => 'Trở về nhà',
-                'userMailCheck' => 'Xác minh thành viên',
-                'userMailUncheck' => 'Không được xác minh bởi thành viên',
-                'userMailChecked' => 'Xác nhận bởi thành viên',
-                'finish' => 'Hoàn thành',
+                'message' => '訊息',
+                'goIndex' => '回首頁',
+                'userMailCheck' => '會員驗證',
+                'userMailUncheck' => '尚未通過會員驗證',
+                'userMailChecked' => '已通過會員驗證',
+                'finish' => '完成',
 
                 'active' => 'Hoạt động',
-                'toOrderDetail' => 'Chi tiết',
-                'toOrderPay' => 'Thanh toán',
+                'toOrderDetail' => '明細',
+                'toOrderPay' => 'thanh toán',
 
                 'user' => 'Thành viên',
-                'userName' => 'Người nhận',
+                'userName' => 'Tên',
                 'userPhone' => 'Điện thoại',
-                'userEmail' => 'Email',
-                'userAddress' => 'Nhận địa chỉ',
+                'userEmail' => 'Địa chỉ email',
+                'userAddress' => 'Địa chỉ',
                 'userSexType' => 'Giới tính',
                 'userSex' => [
-                    0 => 'Male',
-                    1 => 'Female'
+                    0 => '女',
+                    1 => '男'
                 ],
 
-                'userLoginTimes' => 'Số lần Đăng nhập',
-                'userToChange' => 'Sửa đổi',
-                'userToRevert' => 'Khôi phục',
+                'userLoginTimes' => '次登入',
+                'userToChange' => 'Chỉnh sửa',
+                'userToRevert' => '還原',
                 'userToSave' => 'Xác định',
 
-                'shoppingCart' => 'Giỏ hàng',
-                'shoppingCartToPay' => 'Đi thanh toán',
-                'shoppingCartNoCount' => 'Không có mặt hàng nào trong giỏ hàng',
-                'shoppingCartUnPay' => 'Dự án Hàng hóa chưa giải quyết',
+                'shoppingCart' => '購物車',
+                'shoppingCartToPay' => 'Đi đến thanh toán',
+                'shoppingCartNoCount' => '購物車內尚無商品',
+                'shoppingCartUnPay' => '項商品未結帳',
 
-                'orderNo' => 'Số thứ tự',
-                'orderPay' => 'Thanh toán',
-                'orderCount' => 'Dự án Mục thứ tự',
-                'orderLittleTotal' => 'Tổng phụ',
-                'orderMoney' => 'Tổng số đơn hàng',
-                'orderNoCount' => 'Chưa có đơn hàng nào',
-                'orderPayTo' => 'Vui lòng gửi tiền đến',
-                'orderPayAndUpload' => 'Tải lên một hình ảnh của hồ sơ chuyển tiền',
-                'orderPayType' => 'Tình trạng thanh toán',
+                'orderNo' => '訂單編號',
+                'orderPay' => 'thanh toán',
+                'orderCount' => '項訂單',
+                'orderLittleTotal' => '小計',
+                'orderMoney' => 'Tổng số tiền phải trả',
+                'orderNoCount' => '尚無訂單',
+                'orderPayTo' => '請匯款至',
+                'orderPayAndUpload' => '上傳匯款紀錄的照片',
+                'orderPayType' => 'trạng thái thanh toán',
                 'orderPayFlg' => [
-                    0 => 'Chưa trả',
-                    1 => 'Đang chờ xác nhận',
-                    2 => 'Trả tiền'
+                    0 => 'Chưa thanh toán',
+                    1 => '待確認',
+                    2 => 'Đã thanh toán'
                 ],
-                'orderDeliverType' => 'Tình trạng thanh toán',
+                'orderDeliverType' => 'Tình trạng vận chuyển',
                 'orderDeliverFlg' => [
-                    0 => 'Chờ giao hàng',
-                    1 => 'Vận chuyển'
+                    0 => '待出貨',
+                    1 => '已出貨'
                 ],
 
-                'OrderDetail' => 'Chi tiết đặt hàng',
-                'orderDetailCount' => 'Dự án Hàng hóa',
-                'orderDetailType' => 'Hàng hóa',
+                'OrderDetail' => '訂單明細',
+                'orderDetailCount' => '項商品',
+                'orderDetailType' => 'SẢN PHẨM',
                 'orderDetailNum' => 'Số lượng',
-                'orderDetailMoney' => 'Giá',
+                'orderDetailMoney' => 'Tổng số tiền',
 
-                'orderRecord' => 'Hồ sơ đặt hàng',
+                'orderRecord' => '訂單紀錄',
             ],
         ]
     ],
