@@ -39,6 +39,8 @@ return [
                     'p_display_flg' => '狀態',
                     'p_image' => '圖片',
                     'updated_at' => '最後更新',
+                    'product' => '商品',
+                    'product_detail' => '商品明細',
                 ],
                 'display_flg_option' => [
                     'on'  => ['value' => 1, 'text' => '販售中', 'color' => 'primary'],
@@ -112,6 +114,8 @@ return [
                     'order' => '訂單',
                     'order_detail' => '訂單明細',
                     'order_detail_insert' => '商品入單',
+                    'sure_to_arrival' => '確定要配貨嗎?',
+                    'add_order_and_continue_add_order_detail' => '新增訂單並繼續新增訂單商品',
                 ],
                 'sex' => [
                     0 => '女',
@@ -156,6 +160,13 @@ return [
                     'account' => '帳戶',
                 ],
             ],
+            'api' => [
+                'fail' => '失敗',
+                'success' => '成功',
+                'no_true_data' => '資料不正確',
+                'no_product' => '商品不存在',
+                'no_order' => '訂單不存在',
+            ]
         ],
         'vietnamese' => [
             'user' => [
@@ -189,6 +200,8 @@ return [
                     'p_display_flg' => 'Trạng thái',
                     'p_image' => '圖片',
                     'updated_at' => '最後更新',
+                    'product' => 'SẢN PHẨM',
+                    'product_detail' => '商品明細',
                 ],
                 'display_flg_option' => [
                     'on'  => ['value' => 1, 'text' => 'Trong bán', 'color' => 'primary'],
@@ -262,6 +275,8 @@ return [
                     'order' => 'Số thứ tự',
                     'order_detail' => 'Đặt hàng',
                     'order_detail_insert' => '商品入單',
+                    'sure_to_arrival' => 'chắc chắn muốn đặt hàng?',
+                    'add_order_and_continue_add_order_detail' => '新增訂單並繼續新增訂單商品',
                 ],
                 'sex' => [
                     0 => '女',
@@ -306,6 +321,13 @@ return [
                     'account' => '帳戶',
                 ],
             ],
+            'api' => [
+                'fail' => 'FAIL',
+                'success' => 'SUCCESS',
+                'no_true_data' => 'NOT TRUE DATA',
+                'no_product' => 'NO PRODUCT',
+                'no_order' => 'NO ORDER',
+            ]
         ],
 
         'frontend' => [

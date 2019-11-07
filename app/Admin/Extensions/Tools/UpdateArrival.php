@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Request;
 
 class UpdateArrival extends AbstractTool
 {
+    protected $column_name = [];
+
+    public function __construct($column_name)
+    {
+        $this->column_name = $column_name;
+    }
 
 	public function getToken()
 	{
@@ -26,12 +32,12 @@ $.ajaxSetup({
 $(document).on('click', '.update_od_arrival', function() {
 	swal.fire({
 		title : '',
-		text : '確定要配貨嗎?',
+		text : '{$this->column_name['sure_to_arrival']}',
 		type : 'warning',
 		showCancelButton: true,
 		confirmButtonColor: "#DD6B55",
-		confirmButtonText: "確定!",
-		cancelButtonText: "取消!"
+		confirmButtonText: "YES",
+		cancelButtonText: "NO"
 	}).then((result) => {
 		if(result.value){
 			$.ajax({

@@ -21,22 +21,24 @@ class ApiController extends Controller
 {
     protected $message;
     protected $language;
+    protected $message_text;
 
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
             $this->language = get_language(Admin::user());
-
+            $this->message_text = \Config::get('const.language.' . $this->language . '.api');
+            $this->message = [
+                'status' => false,
+                'check' => false,
+                'language' => false,
+                'message' => $this->message_text['fail'],
+                'data' => NULL,
+            ];
             return $next($request);
         });
 
-        $this->message = [
-            'status' => false,
-            'check' => false,
-            'language' => false,
-            'message' => '失敗',
-            'data' => NULL,
-        ];
+
     }
 
     public function create_product(Request $request)
@@ -85,12 +87,12 @@ class ApiController extends Controller
                 }
 
                 $this->message['check'] = true;
-                $this->message['message'] = '成功';
+                $this->message['message'] = $this->message_text['success'];
                 return response()->json($this->message);
             }
-            $this->message['message'] = '資料不正確';
+            $this->message['message'] = $this->message_text['no_true_data'];
         } catch (Exception $e) {
-            $this->message['message'] = '資料不正確';
+            $this->message['message'] = $this->message_text['no_true_data'];
         }
 
         return response()->json($this->message);
@@ -116,12 +118,12 @@ class ApiController extends Controller
                 Product::where('id', $data['id'])->update($product_insert);
 
                 $this->message['check'] = true;
-                $this->message['message'] = '成功';
+                $this->message['message'] = $this->message_text['success'];
             } catch (Exception $e) {
-                $this->message['message'] = '資料不正確或商品不存在';
+                $this->message['message'] = $this->message_text['no_true_data'];
             }
         }else{
-            $this->message['message'] = '商品不存在';
+            $this->message['message'] = $this->message_text['no_product'];
         }
 
         return response()->json($this->message);
@@ -190,12 +192,12 @@ class ApiController extends Controller
                 }
 
                 $this->message['check'] = true;
-                $this->message['message'] = '成功';
+                $this->message['message'] = $this->message_text['success'];
             } catch (Exception $e) {
-                $this->message['message'] = '資料不正確或商品不存在';
+                $this->message['message'] = $this->message_text['no_true_data'];
             }
         }else{
-            $this->message['message'] = '商品不存在';
+            $this->message['message'] = $this->message_text['no_product'];
         }
 
         return response()->json($this->message);
@@ -209,12 +211,12 @@ class ApiController extends Controller
                 ProductSingle::destroy($data['id']);
 
                 $this->message['check'] = true;
-                $this->message['message'] = '成功';
+                $this->message['message'] = $this->message_text['success'];
             } catch (Exception $e) {
-                $this->message['message'] = '資料不正確或商品不存在';
+                $this->message['message'] = $this->message_text['no_true_data'];
             }
         }else{
-            $this->message['message'] = '商品不存在';
+            $this->message['message'] = $this->message_text['no_product'];
         }
 
         return response()->json($this->message);
@@ -225,21 +227,22 @@ class ApiController extends Controller
         $data = $request->all();
         if(!empty($data['id'])){
             try {
-                $pir = new ProductAndInventoryRepository();
-                $pir->set_product_single_id($data['id'])
-                    ->set_ps_add_inventory($data['inventory'])
-                    ->set_admin_user_id(Admin::user()->id)
-                    ->set_admin_user_name(Admin::user()->username)
-                    ->set_pir_message('商品列表頁個別修改')
-                    ->ps_inventory_update();
-
+                if($data['inventory']){
+                    $pir = new ProductAndInventoryRepository();
+                    $pir->set_product_single_id($data['id'])
+                        ->set_ps_add_inventory($data['inventory'])
+                        ->set_admin_user_id(Admin::user()->id)
+                        ->set_admin_user_name(Admin::user()->username)
+                        ->set_pir_message('商品列表頁個別修改')
+                        ->ps_inventory_update();
+                }
                 $this->message['check'] = true;
-                $this->message['message'] = '成功';
+                $this->message['message'] = $this->message_text['success'];
             } catch (Exception $e) {
-                $this->message['message'] = '資料不正確或商品不存在';
+                $this->message['message'] = $this->message_text['no_true_data'];
             }
         }else{
-            $this->message['message'] = '商品不存在';
+            $this->message['message'] = $this->message_text['no_product'];
         }
 
         return response()->json($this->message);
@@ -277,14 +280,14 @@ class ApiController extends Controller
                     $o->save();
 
                     $this->message['check'] = true;
-                    $this->message['message'] = '成功';
+                    $this->message['message'] = $this->message_text['success'];
                 }
 
             } catch (Exception $e) {
-                $this->message['message'] = '資料不正確或商品不存在';
+                $this->message['message'] = $this->message_text['no_true_data'];
             }
         }else{
-            $this->message['message'] = '訂單不存在';
+            $this->message['message'] = $this->message_text['no_order'];
         }
 
         return response()->json($this->message);
@@ -299,12 +302,12 @@ class ApiController extends Controller
                 $new_price = recalculate_order_detail_price($ps->ps_price, $data['od_num']);
                 $this->message['data'] = $new_price;
                 $this->message['check'] = true;
-                $this->message['message'] = '成功';
+                $this->message['message'] = $this->message_text['success'];
             } catch (Exception $e) {
-                $this->message['message'] = '資料不正確或商品不存在';
+                $this->message['message'] = $this->message_text['no_true_data'];
             }
         }else{
-            $this->message['message'] = '商品不存在';
+            $this->message['message'] = $this->message_text['no_product'];
         }
 
         return response()->json($this->message);
@@ -334,9 +337,9 @@ class ApiController extends Controller
 
             $this->message['data'] = $o->id;
             $this->message['check'] = true;
-            $this->message['message'] = '成功';
+            $this->message['message'] = $this->message_text['success'];
         } catch (Exception $e) {
-            $this->message['message'] = '資料不正確';
+            $this->message['message'] = $this->message_text['no_true_data'];
         }
 
         return response()->json($this->message);
@@ -370,12 +373,12 @@ class ApiController extends Controller
                 $o->save();
 
                 $this->message['check'] = true;
-                $this->message['message'] = '成功';
+                $this->message['message'] = $this->message_text['success'];
             } catch (Exception $e) {
-                $this->message['message'] = '資料不正確或商品不存在';
+                $this->message['message'] = $this->message_text['no_true_data'];
             }
         }else{
-            $this->message['message'] = '商品不存在';
+            $this->message['message'] = $this->message_text['no_product'];
         }
 
         return response()->json($this->message);
@@ -421,12 +424,12 @@ class ApiController extends Controller
                 $o->save();
 
                 $this->message['check'] = true;
-                $this->message['message'] = '成功';
+                $this->message['message'] = $this->message_text['success'];
             } catch (Exception $e) {
-                $this->message['message'] = '資料不正確或商品不存在';
+                $this->message['message'] = $this->message_text['no_true_data'];
             }
         }else{
-            $this->message['message'] = '商品不存在';
+            $this->message['message'] = $this->message_text['no_product'];
         }
 
         return response()->json($this->message);
@@ -449,13 +452,13 @@ class ApiController extends Controller
                     $o->save();
 
                     $this->message['check'] = true;
-                    $this->message['message'] = '成功';
+                    $this->message['message'] = $this->message_text['success'];
                 }
             } catch (Exception $e) {
-                $this->message['message'] = '資料不正確或訂單商品不存在';
+                $this->message['message'] = $this->message_text['no_true_data'];
             }
         }else{
-            $this->message['message'] = '訂單不存在';
+            $this->message['message'] = $this->message_text['no_order'];
         }
 
         return response()->json($this->message);
@@ -471,9 +474,9 @@ class ApiController extends Controller
             $this->message['data']['p'] = $p;
             $this->message['data']['language'] = $this->language;
             $this->message['check'] = true;
-            $this->message['message'] = '成功';
+            $this->message['message'] = $this->message_text['success'];
         } catch (Exception $e) {
-            $this->message['message'] = '資料不正確';
+            $this->message['message'] = $this->message_text['no_true_data'];
         }
 
         return response()->json($this->message);

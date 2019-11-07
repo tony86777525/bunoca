@@ -51,13 +51,13 @@ class UserController extends BaseController
         $grid->actions(function ($actions) {
             // $actions->disableView();
             $actions->disableDelete();
-            if(Admin::user()->name !== 'Administrator'){
+            if(!Admin::user()->isRole('admin')){
                 $actions->disableEdit();
             }
         });
 
         $grid->disableExport();
-        if(Admin::user()->name !== 'Administrator') {
+        if(!Admin::user()->isRole('admin')) {
             $grid->disableCreateButton();
         }
 

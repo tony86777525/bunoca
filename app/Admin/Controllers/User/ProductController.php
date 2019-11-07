@@ -179,7 +179,18 @@ class ProductController extends BaseController
 
     protected function create_form()
     {
-        return view('admin.user.product.create');
+        $p_column_name = $this->p_column_name;
+        $ps_column_name = $this->ps_column_name;
+        $p_display_flg_text = $this->p_display_flg_text;
+        $ps_display_flg_text = $this->ps_display_flg_text;
+        return view('admin.user.product.create',compact(
+            [
+                'p_column_name',
+                'ps_column_name',
+                'p_display_flg_text',
+                'ps_display_flg_text',
+            ]
+        ));
     }
 
     protected function edit_form($id = NULL)

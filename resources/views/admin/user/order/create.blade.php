@@ -3,35 +3,31 @@
         <form id="create-order-form" action="#" method="POST" onsubmit="return false">
             <!-- 訂購者 -->
             <div class="form-group">
-                <label for="user_id">會員</label>
+                <label for="user_id">{{$o_column_name['user_id']}}</label>
                 <select name="user_id" class="form-control" id="user_id">
-                    <option value="0">請選擇</option>
+                    <option value="0">-</option>
                     @foreach($users as $user)
                         <option value="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-address="{{$user->address}}">{{$user->name}} - {{$user->email}}</option>
                     @endforeach
                 </select>
             </div>
             <div class="form-group">
-                <label for="user_name">收件人</label>
+                <label for="user_name">{{$o_column_name['user_name']}}</label>
                 <input type="text" name="user_name" class="form-control" id="user_name" placeholder="Enter Name">
             </div>
             <div class="form-group">
-                <label for="email">EMAIL</label>
-                <input type="text" name="email" class="form-control" id="email" placeholder="Enter Email">
-            </div>
-            <div class="form-group">
-                <label for="user_address">寄送住址</label>
+                <label for="user_address">{{$o_column_name['user_address']}}</label>
                 <input type="text" name="user_address" class="form-control" id="user_address" placeholder="Enter Address">
             </div>
             <div class="form-group">
-                <label for="o_free_discount">自訂折扣</label>
-                <input type="number" name="o_free_discount" class="form-control" id="o_free_discount" placeholder="Enter Order Free Discount" value="0">
-            </div>
-            <div class="form-group">
-                <label for="o_fee">訂單運費</label>
+                <label for="o_fee">{{$o_column_name['o_discount']}}</label>
                 <input type="number" name="o_fee" class="form-control" id="o_fee" placeholder="Enter Order Fee" value="0">
             </div>
-            <button type="button" class="btn btn-primary js-create-order">新增訂單並繼續新增訂單商品</button>
+            <div class="form-group">
+                <label for="o_free_discount">{{$o_column_name['o_free_discount']}}</label>
+                <input type="number" name="o_free_discount" class="form-control" id="o_free_discount" placeholder="Enter Order Free Discount" value="0">
+            </div>
+            <button type="button" class="btn btn-primary js-create-order">{{$o_column_name['add_order_and_continue_add_order_detail']}}}</button>
         </form>
     </div>
 </div>

@@ -3,8 +3,8 @@
     <div class="row">
         <div>
             <ul class="nav nav-tabs">
-                <li><a data-toggle="tab" class="tab-o" href="#o_form">訂單資訊</a></li>
-                <li class="active"><a data-toggle="tab" class="tab-od" href="#od_form">訂單明細</a></li>
+                <li><a data-toggle="tab" class="tab-o" href="#o_form">{{ $o_column_name['order'] }}</a></li>
+                <li class="active"><a data-toggle="tab" class="tab-od" href="#od_form">{{ $o_column_name['order_detail'] }}</a></li>
             </ul>
             <div class="tab-content">
                 <div id="o_form" class="tab-pane fade form">
@@ -28,11 +28,13 @@
                             <label for="p_display_flg">{{$o_column_name['o_pay_money']}}： {{$order->o_pay_money}}</label>
                         </div>
                         <div class="form-group">
-                            <label for="p_display_flg">{{$o_column_name['o_arrival_flg']}}： <span class="<?= 'option' . count($o_arrival_flg_text) . '_text_' . $order->o_arrival_flg ?>">{{$o_arrival_flg_text[$order->o_arrival_flg]}}</span></label>
+                            <label for="p_display_flg">{{$o_column_name['o_arrival_flg']}}： <span class="{{ 'option' . count($o_arrival_flg_text) . '_text_' . $order->o_arrival_flg }}">{{$o_arrival_flg_text[$order->o_arrival_flg]}}</span></label>
                         </div>
                         <div class="form-group">
-                            <label for="p_display_flg">{{$o_column_name['o_pay_flg']}}： <span class="<?= 'option' . count($o_pay_flg_text) . '_text_' . $order->o_pay_flg ?>">{{$o_pay_flg_text[$order->o_pay_flg]}}</span></label>
-                            <button type="button" class="btn btn-primary js-create-order-detail-table" data-toggle="modal" data-target="#o_pay_image">check</button>
+                            <label for="p_display_flg">{{$o_column_name['o_pay_flg']}}： <span class="{{ 'option' . count($o_pay_flg_text) . '_text_' . $order->o_pay_flg }}">{{$o_pay_flg_text[$order->o_pay_flg]}}</span></label>
+                            @if($order->o_pay_flg > 0)
+                                <button type="button" class="btn btn-primary js-create-order-detail-table" data-toggle="modal" data-target="#o_pay_image">check</button>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="p_display_flg">{{$o_column_name['o_deliver_flg']}}： <span class="<?= 'option' . count($o_deliver_flg_text) . '_text_' . $order->o_deliver_flg ?>">{{$o_deliver_flg_text[$order->o_deliver_flg]}}</span></label>

@@ -3,8 +3,8 @@
     <div class="row">
         <div>
             <ul class="nav nav-tabs">
-                <li><a data-toggle="tab" class="tab-p" href="#p_form">商品資訊</a></li>
-                <li class="active"><a data-toggle="tab" class="tab-ps" href="#ps_form">商品明細</a></li>
+                <li><a data-toggle="tab" class="tab-p" href="#p_form">{{$p_column_name['product']}}</a></li>
+                <li class="active"><a data-toggle="tab" class="tab-ps" href="#ps_form">{{$p_column_name['product_detail']}}</a></li>
             </ul>
             <div class="tab-content">
                 <div id="p_form" class="tab-pane fade form">

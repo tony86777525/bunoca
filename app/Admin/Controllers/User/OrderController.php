@@ -90,6 +90,7 @@ class OrderController extends BaseController
         $od_column_name = $this->od_column_name;
         $od_arrival_flg_text = $this->od_arrival_flg_text;
         $ps_column_name = $this->ps_column_name;
+        $column_name = $this->column_name;
         $grid = new Grid(new Order);
 
         $grid->model()->orderBy('id', 'DESC');
@@ -154,8 +155,8 @@ class OrderController extends BaseController
 //        $grid->column('deleted_at', __('Deleted at'));
 
         $grid->disableExport();
-        $grid->tools(function ($tools) {
-            $tools->append(new UpdateArrival());
+        $grid->tools(function ($tools) use ($column_name) {
+            $tools->append(new UpdateArrival($column_name));
         });
 
         $grid->tools(function ($tools) {
@@ -227,12 +228,13 @@ class OrderController extends BaseController
     protected function create_form()
     {
         $new_order_no = \Config::get('const.create_order_no');
-
+        $o_column_name = $this->column_name;
         $users = User::get();
         return view('admin.user.order.create',compact(
             'new_order_no',
             'order',
-            'users'
+            'users',
+            'o_column_name'
         ));
     }
 
