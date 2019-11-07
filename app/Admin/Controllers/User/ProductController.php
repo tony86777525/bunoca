@@ -122,7 +122,7 @@ class ProductController extends BaseController
                     'ps_inventory' => $ps->ps_inventory,
                     'ps_display_flg' => '<span class="option' . count($ps_display_flg_text) . '_text_' . $ps->ps_display_flg .'">' . $ps_display_flg_text[$ps->ps_display_flg] . '</span>',
                 ];
-                if(Admin::user()->name === 'Administrator'){
+                if(Admin::user()->isRole('admin')){
                     $column['tool'] = '<form id="ps-' . $ps->id . '" action="#" method="POST" onsubmit="return false">'
                         . '<input type="hidden" name="id" value="' . $ps->id . '">'
                         . '<input type="text" name="inventory" style="padding-bottom: 5px;margin-right: 0.9em;">'
@@ -139,14 +139,14 @@ class ProductController extends BaseController
         // $grid->deleted_at('Deleted at');
         $grid->actions(function ($actions) {
             // $actions->disableView();
-            if(Admin::user()->name !== 'Administrator'){
+            if(!Admin::user()->isRole('admin')){
                 $actions->disableEdit();
                 $actions->disableDelete();
             }
         });
 
         $grid->disableExport();
-        if(Admin::user()->name !== 'Administrator') {
+        if(!Admin::user()->isRole('admin')) {
             $grid->disableCreateButton();
         }
 
@@ -179,7 +179,7 @@ class ProductController extends BaseController
 
     protected function create_form()
     {
-        return view('admin.user.product.index');
+        return view('admin.user.product.create');
     }
 
     protected function edit_form($id = NULL)

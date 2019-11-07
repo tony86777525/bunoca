@@ -17,8 +17,8 @@
     <div class="row">
         <div>
             <ul class="nav nav-tabs">
-                <li><a data-toggle="tab" class="tab-o" href="#o_form">訂單資訊</a></li>
-                <li class="active"><a data-toggle="tab" class="tab-od" href="#od_form">訂單明細</a></li>
+                <li><a data-toggle="tab" class="tab-o" href="#o_form">{{ $o_column_name['order'] }}</a></li>
+                <li class="active"><a data-toggle="tab" class="tab-od" href="#od_form">{{ $o_column_name['order_detail'] }}</a></li>
             </ul>
             <form id="order-update-form" action="#" method="POST" onsubmit="return false">
                 <div class="tab-content">
@@ -58,20 +58,30 @@
                             </div>
                             <div class="form-group">
                                 <label for="o_arrival_flg">{{$o_column_name['o_pay_flg']}}：
-                                    <select name="o_pay_flg" id="o_pay_flg">
-                                        @foreach($o_pay_flg_text as $val => $text)
-                                            <option value="{{$val}}" @if($order->o_pay_flg == $val) selected @endif>{{$text}}</option>
-                                        @endforeach
-                                    </select>
+                                    @if(Admin::user()->isRole('admin'))
+                                        <select name="o_pay_flg" id="o_pay_flg">
+                                            @foreach($o_pay_flg_text as $val => $text)
+                                                <option value="{{$val}}" @if($order->o_pay_flg == $val) selected @endif>{{$text}}</option>
+                                            @endforeach
+                                        </select>
+                                    @else
+                                        <input type="hidden" name="o_pay_flg" value="{{ $order->o_pay_flg }}">
+                                        <span class="<?= 'option' . count($o_pay_flg_text) . '_text_' . $order->o_pay_flg ?>">{{$o_pay_flg_text[$order->o_pay_flg]}}</span>
+                                    @endif
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label for="o_deliver_flg">{{$o_column_name['o_deliver_flg']}}：
-                                    <select name="o_deliver_flg" id="o_deliver_flg">
-                                        @foreach($o_deliver_flg_text as $val => $text)
-                                            <option value="{{$val}}" @if($order->o_deliver_flg == $val) selected @endif>{{$text}}</option>
-                                        @endforeach
-                                    </select>
+                                    @if(Admin::user()->isRole('admin'))
+                                        <select name="o_deliver_flg" id="o_deliver_flg">
+                                            @foreach($o_deliver_flg_text as $val => $text)
+                                                <option value="{{$val}}" @if($order->o_deliver_flg == $val) selected @endif>{{$text}}</option>
+                                            @endforeach
+                                        </select>
+                                    @else
+                                        <input type="hidden" name="o_deliver_flg" value="{{ $order->o_deliver_flg }}">
+                                        <span class="<?= 'option' . count($o_deliver_flg_text) . '_text_' . $order->o_deliver_flg ?>">{{$o_deliver_flg_text[$order->o_deliver_flg]}}</span>
+                                    @endif
                                 </label>
                             </div>
                             <div class="form-group">
@@ -110,11 +120,16 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <select name="od[{{$v->id}}][od_arrival_flg]" id="od_arrival_flg">
-                                                @foreach($od_arrival_flg_text as $val => $text)
-                                                    <option value="{{$val}}" @if($v->od_arrival_flg == $val) selected @endif>{{$text}}</option>
-                                                @endforeach
-                                            </select>
+                                            @if(Admin::user()->isRole('admin'))
+                                                <select name="od[{{$v->id}}][od_arrival_flg]" id="od_arrival_flg">
+                                                    @foreach($od_arrival_flg_text as $val => $text)
+                                                        <option value="{{$val}}" @if($v->od_arrival_flg == $val) selected @endif>{{$text}}</option>
+                                                    @endforeach
+                                                </select>
+                                            @else
+                                                <input type="hidden" name="od[{{$v->id}}][od_arrival_flg]" value="{{ $v->od_arrival_flg }}">
+                                                <span class="<?= 'option' . count($od_arrival_flg_text) . '_text_' . $v->od_arrival_flg ?>">{{ $od_arrival_flg_text[$v->od_arrival_flg] }}</span>
+                                            @endif
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-danger delete-order-detail" data-odid="{{$v->id}}" @if($v->od_arrival_flg == \App\OrderDetail::OD_ARRIVAL_FLG_ON) disabled="disabled" @endif>X</button>
@@ -137,7 +152,7 @@
                         </div>
                     </div>
                     <center class="spacing">
-                        <button type="button" class="btn btn-success button-spacing update-order">儲存</button>
+                        <button type="button" class="btn btn-success button-spacing update-order">Save</button>
                     </center>
                 </div>
             </form>
@@ -148,7 +163,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">商品入單</h5>
+                <h5 class="modal-title">{{ $o_column_name['order_detail_insert'] }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -157,7 +172,12 @@
                 <form id="create-order-detail-form" action="#" method="POST" onsubmit="return false">
                     <div class="form-group">
                         <label for="n_product_single_id" class="col-form-label">{{$od_column_name['product_single_id']}}:</label>
-                        <select type="text" name="nod[product_single_id]" class="form-control js-select2" id="n_product_single_id"></select>
+                        <select type="text" name="nod[product_single_id]" class="form-control js-select2" id="n_product_single_id">
+                            <option>-</option>
+                            @foreach($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->product->p_title }} - {{ $product->ps_type }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="nod_num" class="col-form-label">{{$od_column_name['od_num']}}:</label>
@@ -166,17 +186,21 @@
                     <div class="form-group">
                         <label class="col-form-label">{{$od_column_name['od_money']}}: <span class="js-nod-money">0</span></label>
                     </div>
-                    <div class="form-group">
-                        <label for="nod_arrival_flg" class="col-form-label">{{$od_column_name['od_arrival_flg']}}:</label>
-                        <select type="text" name="nod[od_arrival_flg]" class="form-control" id="nod_arrival_flg">
-                            @foreach($od_arrival_flg_text as $val => $text)
-                                <option value="{{$val}}">{{$text}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    @if(Admin::user()->isRole('admin'))
+                        <div class="form-group">
+                            <label for="nod_arrival_flg" class="col-form-label">{{$od_column_name['od_arrival_flg']}}:</label>
+                            <select type="text" name="nod[od_arrival_flg]" class="form-control" id="nod_arrival_flg">
+                                @foreach($od_arrival_flg_text as $val => $text)
+                                    <option value="{{$val}}">{{$text}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @else
+                        <input type="hidden" name="nod[od_arrival_flg]" value="0">
+                    @endif
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary js-create-order-detail">入單</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary js-create-order-detail">Save</button>
                     </div>
                 </form>
             </div>
@@ -225,7 +249,7 @@
                     }
                 },
                 error : function() {
-
+                    $.unblockUI();
                 }
             });
         });
@@ -258,7 +282,9 @@
                             }
                     }
                 },
-                error : function() {}
+                error : function() {
+                    $.unblockUI();
+                }
             });
         });
 
@@ -282,7 +308,7 @@
                     }
                 },
                 error : function() {
-
+                    $.unblockUI();
                 }
             });
         });
@@ -331,6 +357,7 @@
             const ps_id = $(this).attr("data-id");
             let data = get_order_detail_price(ps_id, od_num);
             data.success(function(res) {
+                $.unblockUI();
                 if(res.check){
                     $('.js-nod-money').html(res.data);
                 }else{
@@ -345,6 +372,7 @@
             const ps_id = $(this).val();
             let data = get_order_detail_price(ps_id, od_num);
             data.success(function(res) {
+                $.unblockUI();
                 if(res.check){
                     $('.js-nod-money').html(res.data);
                 }else{
@@ -377,7 +405,7 @@
                     }
                 },
                 error : function() {
-
+                    $.unblockUI();
                 }
             });
         });
@@ -405,6 +433,25 @@
                 },
                 error : function() {
 
+                }
+            });
+        });
+
+        $(".js-create-order-detail").click(function(){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                url: "create_order_detail",
+                data: $('#create-order-detail-form').serialize(),
+                dataType: "json",
+                success: function (res) {
+                    if(res.check){
+                        $('.modal-backdrop').remove();
+                        $.pjax.reload('#pjax-container');
+                        toastr.success(res.message);
+                    }
                 }
             });
         });

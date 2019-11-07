@@ -22,7 +22,7 @@ Route::group([
 
     // User Procuct
     $router->get('user/product', 'User\ProductController@index');
-    $router->get('user/product/index', 'User\ProductController@index');
+    $router->get('user/product/create', 'User\ProductController@create');
     $router->get('user/product/{id}', 'User\ProductController@show');
     $router->get('user/product/{id}/edit', 'User\ProductController@edit');
 
@@ -33,22 +33,20 @@ Route::group([
     $router->post('user/order/{id}/update_order_and_detail', 'User\ApiController@update_order_and_detail');
     $router->post('user/order/{id}/get_all_product', 'User\ApiController@get_all_product');
 
-    $router->post('user/order/index/create_order', 'User\ApiController@create_order');
+    $router->post('user/order/create/create_order', 'User\ApiController@create_order');
     $router->post('user/order/{id}/create_order_detail', 'User\ApiController@create_order_detail');
     $router->post('user/order/{id}/delete_order_detail', 'User\ApiController@delete_order_detail');
 
     // User Order
     $router->get('user/order', 'User\OrderController@index');
-    $router->get('user/order/index', 'User\OrderController@index');
+    $router->get('user/order/create', 'User\OrderController@create');
     $router->get('user/order/{id}', 'User\OrderController@show');
     $router->get('user/order/{id}/edit', 'User\OrderController@edit');
 
     $router->resource('products', ProductController::class);
     $router->resource('product-singles', ProductSingleController::class);
     $router->resource('product-inventory-records', ProductInventoryRecordController::class);
-    $router->resource('product-categories', ProductCategoryController::class);
 
-    $router->resource('user', UserController::class);
     $router->resource('users', UserController::class);
     $router->resource('orders', OrderController::class);
     $router->resource('order-details', OrderDetailController::class);

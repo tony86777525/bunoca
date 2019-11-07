@@ -109,6 +109,9 @@ return [
                     'o_pay_flg' => '付款狀態',
                     'o_deliver_flg' => '出貨狀態',
                     'created_at' => '成單時間',
+                    'order' => '訂單',
+                    'order_detail' => '訂單明細',
+                    'order_detail_insert' => '商品入單',
                 ],
                 'sex' => [
                     0 => '女',
@@ -197,7 +200,7 @@ return [
                 ],
             ],
             'product_single' => [
-                'title' => '單品',
+                'title' => 'Hạng  Mục',
                 'column' => [
                     'id' => '#',
                     'product_id' => 'SẢN PHẨM',
@@ -256,13 +259,16 @@ return [
                     'o_pay_flg' => 'trạng thái thanh toán',
                     'o_deliver_flg' => 'Tình trạng vận chuyển',
                     'created_at' => 'Thời gian đặt hàng',
+                    'order' => 'Số thứ tự',
+                    'order_detail' => 'Đặt hàng',
+                    'order_detail_insert' => '商品入單',
                 ],
                 'sex' => [
                     0 => '女',
                     1 => '男'
                 ],
                 'arrival_flg_text' => [
-                    0 => '未配貨',
+                    0 => 'Chưa đặt hàng ',
                     1 => '全配貨'
                 ],
                 'pay_flg_text' => [
@@ -276,17 +282,17 @@ return [
                 ],
             ],
             'order_detail' => [
-                'title' => '訂單明細',
+                'title' => 'Chi tiết đặt hàng',
                 'column' => [
                     'id' => '#',
                     'order_id' => 'Đặt hàng',
-                    'product_single_id' => '單品',
+                    'product_single_id' => 'Hạng  Mục',
                     'od_num' => 'Số lượng',
-                    'od_money' => '總額',
+                    'od_money' => 'Tổng số tiền',
                     'od_ps_price' => '單價',
-                    'od_arrival_flg' => '配貨狀態',
+                    'od_arrival_flg' => 'Trạng thái đặt hàng',
                     'actions' => 'Hoạt động',
-                    'arrival' => '配貨',
+                    'arrival' => 'thanh toán',
                 ],
                 'arrival_flg_text' => [
                     0 => 'Chưa đặt hàng',

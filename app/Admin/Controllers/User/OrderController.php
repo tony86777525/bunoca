@@ -5,6 +5,7 @@ namespace App\Admin\Controllers\User;
 use App\Admin\Extensions\Tools\UpdateArrival;
 use App\Order;
 use App\User;
+use App\ProductSingle;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Facades\Admin;
@@ -119,7 +120,7 @@ class OrderController extends BaseController
                     'od_num' => $od->od_num,
                     'ps_inventory' => $od->product_single->ps_inventory,
                 ];
-                if(Admin::user()->name === 'Administrator'){
+                if(Admin::user()->isRole('admin')){
                     $column['tool'] = '<form id="od-' . $od->id . '" action="#" method="POST" onsubmit="return false">'
                         . '<input type="hidden" name="id" value="' . $od->id . '">'
                         . '<button class="btn btn-danger update_od_arrival" data-id="' . $od->id . '">' . $od_column_name['arrival'] . '</button>'
@@ -228,7 +229,7 @@ class OrderController extends BaseController
         $new_order_no = \Config::get('const.create_order_no');
 
         $users = User::get();
-        return view('admin.user.order.index',compact(
+        return view('admin.user.order.create',compact(
             'new_order_no',
             'order',
             'users'
@@ -247,6 +248,7 @@ class OrderController extends BaseController
             $od_column_name = $this->od_column_name;
             $od_arrival_flg_text = $this->od_arrival_flg_text;
             $title = $this->title;
+            $products = ProductSingle::with('product')->get();
             return view('admin.user.order.edit',compact(
                 [
                     'order',
@@ -257,6 +259,7 @@ class OrderController extends BaseController
                     'od_column_name',
                     'od_arrival_flg_text',
                     'users',
+                    'products',
                 ]
             ));
         }
