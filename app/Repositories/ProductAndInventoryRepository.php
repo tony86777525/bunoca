@@ -25,6 +25,7 @@ class ProductAndInventoryRepository
     protected $ps_inventory;
     protected $ps_display_flg;
     protected $ps_image;
+    protected $ps_sort = 0;
 
     protected $ps_add_inventory;
 
@@ -113,6 +114,11 @@ class ProductAndInventoryRepository
         return $this;
     }
 
+    public function set_ps_sort($data) {
+        $this->ps_sort = $data;
+        return $this;
+    }
+
     public function set_ps_image($data) {
         $this->ps_image = $data;
         return $this;
@@ -174,6 +180,7 @@ class ProductAndInventoryRepository
             'ps_title' => $this->ps_title,
             'ps_content' => $this->ps_content,
             'ps_href' => $this->ps_href,
+            'ps_sort' => $this->ps_sort,
         ];
         if(isset($this->ps_image)) $update_array['ps_image'] = $this->ps_image;
 

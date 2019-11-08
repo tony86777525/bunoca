@@ -103,7 +103,7 @@ class ProductController extends BaseController
         $ps_display_flg_text = $this->ps_display_flg_text;
         $grid = new Grid(new Product);
 
-        $grid->model()->orderBy('id', 'DESC');
+        $grid->model()->orderBy('p_sort', 'DESC')->orderBy('id');
         $grid->id('#');
         $grid->p_name($this->p_column_name['p_name']);
         $grid->p_title($this->p_column_name['p_title']);
@@ -134,6 +134,7 @@ class ProductController extends BaseController
 
             return new Table($header, $product_single);
         }, $ps_column_name['ps_inventory']);
+        $grid->p_sort($this->p_column_name['p_sort']);
         // $grid->created_at('Created at');
         // $grid->updated_at('Updated at');
         // $grid->deleted_at('Deleted at');
@@ -196,7 +197,9 @@ class ProductController extends BaseController
     protected function edit_form($id = NULL)
     {
         if(!is_null($id)){
-            $product = Product::find($id);
+            $product = Product::with(['product_single' => function ($query) {
+                $query->orderBy('ps_sort', 'DESC')->orderBy('id', 'DESC');
+            }])->find($id);
             $p_column_name = $this->p_column_name;
             $ps_column_name = $this->ps_column_name;
             $p_display_flg_text = $this->p_display_flg_text;

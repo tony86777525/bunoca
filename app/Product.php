@@ -15,11 +15,13 @@ class Product extends Authenticatable
     const P_DISPLAY_FLG_OFF = 0;
 
     protected $fillable = [
+        'product_category_id',
         'p_name',
         'p_title',
         'p_price',
         'p_display_flg',
-        'p_image'
+        'p_image',
+        'p_sort'
     ];
 
     protected $hidden = [];
@@ -54,5 +56,10 @@ class Product extends Authenticatable
     public function product_single()
     {
         return $this->hasMany(ProductSingle::class, 'product_id');
+    }
+
+    public function product_category()
+    {
+        return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
 }

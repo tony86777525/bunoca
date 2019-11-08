@@ -24,6 +24,7 @@ class ProductSingle extends Authenticatable
         'ps_display_flg',
         'ps_image',
         'ps_href',
+        'ps_sort'
     ];
 
     protected $hidden = [];

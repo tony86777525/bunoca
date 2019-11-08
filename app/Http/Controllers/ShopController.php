@@ -16,7 +16,9 @@ class ShopController extends BaseController
     public function index($id)
     {
         if(!empty($id)){
-            $product = Product::where('id', $id)->Where('p_display_flg', Product::P_DISPLAY_FLG_ON)->whereHas('product_single', function ($query) {
+            $product = Product::with(['product_single' => function ($query) {
+                $query->orderBy('ps_sort', 'DESC')->orderBy('id', 'DESC');
+            }])->where('id', $id)->Where('p_display_flg', Product::P_DISPLAY_FLG_ON)->whereHas('product_single', function ($query) {
                 $query->where('ps_display_flg', ProductSingle::PS_DISPLAY_FLG_ON);
             })->first();
 

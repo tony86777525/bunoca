@@ -46,6 +46,7 @@ Route::group([
     $router->resource('products', ProductController::class);
     $router->resource('product-singles', ProductSingleController::class);
     $router->resource('product-inventory-records', ProductInventoryRecordController::class);
+    $router->resource('product-categories/create', 'ProductCategoryController', ['except' => ['create']])->names('admin.productCategory.create');
 
     $router->resource('users', UserController::class);
     $router->resource('orders', OrderController::class);

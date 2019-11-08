@@ -108,6 +108,7 @@ class ApiController extends Controller
                     'p_title' => $data['p_title'],
                     'p_price' => $data['p_price'],
                     'p_display_flg' => $data['p_display_flg'],
+                    'p_sort' => $data['p_sort'],
                 ];
 
                 if(!empty($data['p_image'])){
@@ -175,6 +176,7 @@ class ApiController extends Controller
                                 ->set_ps_content($product_single['content'])
                                 ->set_ps_href($product_single['href'])
                                 ->set_ps_display_flg($product_single['display_flg'])
+                                ->set_ps_sort($product_single['sort'] ?? 0)
                                 ->set_product_id($data['id'])
                                 ->set_admin_user_id(Admin::user()->id)
                                 ->set_admin_user_name(Admin::user()->username)

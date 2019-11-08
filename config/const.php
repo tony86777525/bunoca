@@ -38,6 +38,7 @@ return [
                     'p_price' => '售價',
                     'p_display_flg' => '狀態',
                     'p_image' => '圖片',
+                    'p_sort' => '排序',
                     'updated_at' => '最後更新',
                     'product' => '商品',
                     'product_detail' => '商品明細',
@@ -49,6 +50,16 @@ return [
                 'display_flg_text' => [
                     0 => '停售中',
                     1 => '販售中'
+                ],
+            ],
+            'product_category' => [
+                'title' => '商品分類',
+                'column' => [
+                    'id' => '#',
+                    'pc_sort' => '分類排序',
+                    'pc_parent_id' => '父分類',
+                    'pc_title' => '分類名稱',
+                    'pc_type' => '分類名稱(越)',
                 ],
             ],
             'product_single' => [
@@ -64,6 +75,7 @@ return [
                     'ps_display_flg' => '狀態',
                     'ps_image' => '圖片',
                     'ps_href' => '連結',
+                    'ps_sort' => '排序',
                     'updated_at' => '最後更新',
                     'actions' => '操作',
                     'update_ps_inventory' => '入庫'
@@ -199,6 +211,7 @@ return [
                     'p_price' => 'Giá Cả',
                     'p_display_flg' => 'Trạng thái',
                     'p_image' => '圖片',
+                    'p_sort' => '排序',
                     'updated_at' => '最後更新',
                     'product' => 'SẢN PHẨM',
                     'product_detail' => '商品明細',
@@ -225,6 +238,7 @@ return [
                     'ps_display_flg' => 'Trạng thái',
                     'ps_image' => '圖片',
                     'ps_href' => 'Liên kết',
+                    'ps_sort' => '排序',
                     'updated_at' => '最後更新',
                     'actions' => 'Hoạt động',
                     'update_ps_inventory' => 'Hàng Nhập kho'

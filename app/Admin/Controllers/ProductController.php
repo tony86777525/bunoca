@@ -31,11 +31,12 @@ class ProductController extends BaseController
     {
         $grid = new Grid(new Product);
 
-        $grid->model()->orderBy('id', 'DESC');
+        $grid->model()->orderBy('p_sort', 'DESC')->orderBy('id', 'DESC');
         $grid->column('id', __($this->column_name['id']));
         $grid->column('p_name', __($this->column_name['p_name']));
         $grid->column('p_title', __($this->column_name['p_title']));
         $grid->column('p_display_flg', __($this->column_name['p_display_flg']))->switch($this->display_flg_option);
+        $grid->column('p_sort', __($this->column_name['p_sort']));
 //        $grid->column('p_image', __('P image'));
 //        $grid->column('created_at', __('Created at'));
 //        $grid->column('updated_at', __('Updated at'));
@@ -62,6 +63,7 @@ class ProductController extends BaseController
         $show->field('p_display_flg', __($this->column_name['p_display_flg']))->as(function () use ($display_flg_text) {
             return  $display_flg_text[$this->p_display_flg];
         });
+        $show->field('p_sort', __($this->column_name['p_sort']));
         $show->field('p_image', __($this->column_name['p_image']))->image();
 //        $show->field('created_at', __('Created at'));
 //        $show->field('updated_at', __('Updated at'));
@@ -83,6 +85,7 @@ class ProductController extends BaseController
         $form->text('p_title', __($this->column_name['p_title']));
         $form->number('p_price', __($this->column_name['p_price']));
         $form->switch('p_display_flg', __($this->column_name['p_display_flg']))->options($this->display_flg_option);
+        $form->number('p_sort', __($this->column_name['p_sort']));
         $form->image('p_image', __($this->column_name['p_image']))->uniqueName();
 
         return $form;

@@ -31,12 +31,14 @@ class ProductSingleController extends BaseController
     {
         $grid = new Grid(new ProductSingle);
 
+        $grid->model()->orderBy('ps_sort', 'DESC')->orderBy('id');
         $grid->column('id', __($this->column_name['id']));
         $grid->column('product.p_name', __($this->column_name['product_id']));
         $grid->column('ps_type', __($this->column_name['ps_type']));
         $grid->column('ps_price', __($this->column_name['ps_price']));
         $grid->column('ps_inventory', __($this->column_name['ps_inventory']));
         $grid->column('ps_title', __($this->column_name['ps_title']));
+        $grid->column('ps_sort', __($this->column_name['ps_sort']));
 //        $grid->column('ps_content', __('Ps content'));
         $grid->column('ps_display_flg', __($this->column_name['ps_display_flg']))->switch($this->display_flg_option);
         $grid->column('ps_href', __($this->column_name['ps_href']))->display(function(){
@@ -74,6 +76,7 @@ class ProductSingleController extends BaseController
         $show->field('ps_display_flg', __($this->column_name['ps_display_flg']))->as(function () use ($display_flg_text) {
             return $display_flg_text[$this->ps_display_flg];
         });
+        $show->field('ps_sort', __($this->column_name['ps_sort']));
         $show->field('ps_image', __($this->column_name['ps_image']))->image();
         $show->field('ps_href', __($this->column_name['ps_href']));
 //        $show->field('created_at', __('Created at'));
@@ -98,6 +101,7 @@ class ProductSingleController extends BaseController
         $form->number('ps_price', __($this->column_name['ps_price']));
         $form->number('ps_inventory', __($this->column_name['ps_inventory']));
         $form->text('ps_title', __($this->column_name['ps_title']));
+        $form->number('ps_sort', __($this->column_name['ps_sort']));
         // $form->textarea('ps_content', __($this->column_name['ps_content']));
         $form->ckeditor('ps_content');
         $form->switch('ps_display_flg', __($this->column_name['ps_display_flg']))->options($this->display_flg_option);

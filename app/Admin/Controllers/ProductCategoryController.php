@@ -2,91 +2,109 @@
 
 namespace App\Admin\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\ProductCategory;
-use App\Tree;
-use Encore\Admin\Controllers\AdminController;
-use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
-use Encore\Admin\Grid;
+use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Show;
+use Encore\Admin\Layout\Row;
+use Encore\Admin\Tree;
+use Encore\Admin\Widgets\Box;
+use Illuminate\Routing\Controller;
+use Encore\Admin\Facades\Admin;
 
 class ProductCategoryController extends Controller
 {
+    use \Encore\Admin\Controllers\HasResourceActions;
 
+    protected $page_name = 'product_category';
+    protected $lang = [];
+    protected $language;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->language = get_language(Admin::user());
+            $this->lang = \Config::get('const.language.' . $this->language . '.' . $this->page_name);
+
+
+            return $next($request);
+        });
+    }
     /**
      * Index interface.
      *
+     * @param Content $content
+     *
      * @return Content
      */
-    public function index()
+    public function index(Content $content)
     {
-        return Admin::content(function (Content $content) {
+        $lang = $this->lang;
+        return $content
+            ->title($this->lang['title'])
+            ->description('List')
+            ->row(function (Row $row) use ($lang) {
+                $row->column(6, $this->treeView()->render());
 
-            $content->header('商品分類排序');
-            $content->description('description');
+                $row->column(6, function (Column $column) use ($lang) {
+                    $form = new \Encore\Admin\Widgets\Form();
+                    $form->action(admin_url('product-categories/create'));
 
-            $content->body(Tree::tree(function ($tree) {
-                // $tree->branch(function ($branch) {
-                //     $src = config('admin.upload.host') . '/image/Xefo7q71.png';
-                //     $logo = "<img src='$src' style='max-width:30px;max-height:30px' class='img'/>";
+                    $menuModel = ProductCategory::class;
 
-                //     return "{$branch['sort']} ：{$branch['title']} $logo";
-                // });
-            }));
+                    $form->select('pc_parent_id', $lang['column']['pc_parent_id'])->options($menuModel::selectOptions());
+                    $form->text('pc_title', $lang['column']['pc_title'])->rules('required');
+                    $form->text('pc_type', $lang['column']['pc_type'])->rules('required');
+
+                    $column->append((new Box(trans('admin.new'), $form))->style('success'));
+                });
+            });
+    }
+
+    /**
+     * Redirect to edit page.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function show($id)
+    {
+        return redirect()->route('admin.auth.menu.edit', ['id' => $id]);
+    }
+
+    /**
+     * @return \Encore\Admin\Tree
+     */
+    protected function treeView()
+    {
+        $menuModel = ProductCategory::class;
+        $language = $this->language;
+        return $menuModel::tree(function (Tree $tree) use ($language) {
+            $tree->disableCreate();
+
+            $tree->branch(function ($branch) use ($language) {
+                $payload = $language == 'chinese' ? "<strong>{$branch['pc_title']}</strong>" : "<strong>{$branch['pc_type']}</strong>";
+
+                return $payload;
+            });
         });
     }
 
     /**
      * Edit interface.
      *
-     * @param $id
-     * @return Content
-     */
-    public function edit($id)
-    {
-        return Admin::content(function (Content $content) use ($id) {
-
-            $content->header('header');
-            $content->description('description');
-
-            $content->body($this->form()->edit($id));
-        });
-    }
-
-    /**
-     * Create interface.
+     * @param string  $id
+     * @param Content $content
      *
      * @return Content
      */
-    public function create()
+    public function edit($id, Content $content)
     {
-        return Admin::content(function (Content $content) {
-
-            $content->header('header');
-            $content->description('description');
-
-            $content->body($this->form());
-        });
-    }
-
-    /**
-     * Make a grid builder.
-     *
-     * @return Grid
-     */
-    protected function grid()
-    {
-        return Admin::grid(Tree::class, function (Grid $grid) {
-            $grid->actions(function ($actions) {
-                $actions->disableDelete();
-            });
-            $grid->id('ID')->sortable();
-
-            $grid->created_at();
-            $grid->updated_at();
-        });
+        return $content
+            ->title($this->lang['title'])
+            ->description('Edit')
+            ->row($this->form()->edit($id));
     }
 
     /**
@@ -94,15 +112,29 @@ class ProductCategoryController extends Controller
      *
      * @return Form
      */
-    protected function form()
+    public function form()
     {
-        return Admin::form(Tree::class, function (Form $form) {
+        $menuModel = ProductCategory::class;
+        $form = new Form(new $menuModel());
 
-            //$form->display('id', 'ID');
-            $form->select('parent_id')->options(Tree::selectOptions());
-            $form->text('title')->rules('required');
-            //$form->display('created_at', 'Created At');
-            //$form->display('updated_at', 'Updated At');
-        });
+//        $form->display('id', 'ID');
+
+        $form->select('pc_parent_id', $this->lang['column']['pc_parent_id'])->options($menuModel::selectOptions());
+        $form->text('pc_title', $this->lang['column']['pc_title'])->rules('required');
+        $form->text('pc_type', $this->lang['column']['pc_type'])->rules('required');
+//        $form->display('created_at', trans('admin.created_at'));
+//        $form->display('updated_at', trans('admin.updated_at'));
+
+        return $form;
+    }
+
+    /**
+     * Help message for icon field.
+     *
+     * @return string
+     */
+    protected function iconHelp()
+    {
+        return 'For more icons please see <a href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>';
     }
 }
