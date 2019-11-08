@@ -27,7 +27,7 @@
                 <label for="o_free_discount">{{$o_column_name['o_free_discount']}}</label>
                 <input type="number" name="o_free_discount" class="form-control" id="o_free_discount" placeholder="Enter Order Free Discount" value="0">
             </div>
-            <button type="button" class="btn btn-primary js-create-order">{{$o_column_name['add_order_and_continue_add_order_detail']}}}</button>
+            <button type="button" class="btn btn-primary js-create-order">{{$o_column_name['add_order_and_continue_add_order_detail']}}</button>
         </form>
     </div>
 </div>

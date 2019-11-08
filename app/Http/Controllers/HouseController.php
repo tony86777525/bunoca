@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Presenters\HousePresenter;
 
-class HouseController extends Controller
+class HouseController extends BaseController
 {
     private $housePresenter;
 

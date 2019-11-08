@@ -11,14 +11,14 @@ $(function(){
             success: function (res) {
                 if(res.check){
                     swal({
-                        title: '已加入購物車',
-                        text: "是否前往結帳",
+                        title: window.text.hasAddedShoppingCart,
+                        text: window.text.isToPay,
                         type: 'success',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: '前往結帳',
-                        cancelButtonText: '繼續選購'
+                        confirmButtonText: window.text.toPay,
+                        cancelButtonText: window.text.continueToShop
                     }).then((result) => {
                         if (result) {
                             window.location.href = '/home/shoppingCart';
@@ -27,7 +27,7 @@ $(function(){
                 }else{
                     swal({
                         type: 'error',
-                        title: '請稍後再試',
+                        title: window.text.waitForTry,
                         text: res.message,
                     })
                 }

@@ -13,7 +13,6 @@ class BaseController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
         $this->mainPresenter()->setSite($this->site);
         $this->mainPresenter()->setLanguage($this->language);
     }

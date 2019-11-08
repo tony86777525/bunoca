@@ -7,7 +7,7 @@ use App\ProductSingle;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class ShopController extends Controller
+class ShopController extends BaseController
 {
     use AuthenticatesUsers;
 

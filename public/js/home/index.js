@@ -55,13 +55,13 @@ $(function () {
     $(document).on('click', '.js-delete-order-detail', function() {
         var ps_id = $(this).attr('data-id');
         swal({
-            text: "是否刪除",
+            text: window.text.isDelete,
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: 'gray',
             cancelButtonColor: '#d33',
-            confirmButtonText: '是',
-            cancelButtonText: '否'
+            confirmButtonText: 'YES',
+            cancelButtonText: 'NO'
         }).then((result) => {
             if (result) {
                 $.ajax({
@@ -85,7 +85,7 @@ $(function () {
                         }else{
                             swal({
                                 type: 'error',
-                                title: '請稍後再試',
+                                title: window.text.waitForTry,
                                 text: res.message,
                             })
                         }

@@ -4,34 +4,35 @@
         <div class="col-md-12">
 
             <h3 class="text-center">
-                <span class="step-spacing step-list step-list-1 step-list-on">商品資訊</span>
-                <span class="step-spacing step-list step-list-2">商品明細</span>
+                <span class="step-spacing step-list step-list-1 step-list-on">{{ $p_column_name['product'] }}</span>
+                <span class="step-spacing step-list step-list-2">{{ $p_column_name['product_detail'] }}</span>
             </h3>
 
             <form id="product-create-form" action="#" method="POST" onsubmit="return false">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="new-product">
                     <div class="form-group">
-                        <label for="p_name">商品名稱</label>
+                        <label for="p_name">{{ $p_column_name['p_name'] }}</label>
                         <input type="text" name="p_name" class="form-control" id="p_name" placeholder="Enter Product Name">
                     </div>
                     <div class="form-group">
-                        <label for="p_title">商品名稱(越)</label>
+                        <label for="p_title">{{ $p_column_name['p_title'] }}</label>
                         <input type="text" name="p_title" class="form-control" id="p_title" placeholder="Enter Product Title">
                     </div>
                     <div class="form-group">
-                        <label for="p_price">預設價格</label>
+                        <label for="p_price">{{ $p_column_name['p_price'] }}</label>
                         <input type="number" name="p_price" class="form-control" id="p_price" placeholder="Enter Product Price">
                     </div>
                     <div class="form-group">
-                        <label for="p_display_flg">顯示狀態</label>
+                        <label for="p_display_flg">{{ $p_column_name['p_display_flg'] }}</label>
                         <select name="p_display_flg" class="form-control" id="p_display_flg">
-                            <option value="1">販售中</option>
-                            <option value="0">停售中</option>
+                            @foreach($p_display_flg_text as $k => $v)
+                                <option value="{{ $k }}">{{ $v }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="p_image"><span class="p_image_text">選擇圖片</span></label>
+                        <label for="p_image"><span class="p_image_text">{{ $p_column_name['p_image'] }}</span></label>
                         <input type="file" id="p_image" class="js-image hide" name="p_image">
                         <img class="p_image" style="display: none;">
                     </div>
@@ -46,11 +47,11 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">品名</th>
-                                <th scope="col">單價</th>
-                                <th scope="col">庫存</th>
-                                <th scope="col">狀態</th>
-                                <th scope="col">操作</th>
+                                <th scope="col">{{ $ps_column_name['ps_type'] }}</th>
+                                <th scope="col">{{ $ps_column_name['ps_price'] }}</th>
+                                <th scope="col">{{ $ps_column_name['ps_inventory'] }}</th>
+                                <th scope="col">{{ $ps_column_name['ps_display_flg'] }}</th>
+                                <th scope="col">{{ $ps_column_name['actions'] }}</th>
                             </tr>
                         </thead>
                         <tbody class="js-add-new-single"></tbody>
@@ -61,8 +62,8 @@
                         </tr>
                     </table>
                     <center class="spacing">
-                        <button type="button" class="btn btn-primary next-new-product button-spacing" data-stepClass="step-list-1">上一步</button>
-                        <button type="button" class="btn btn-primary create-product" data-stepClass="step-list-3">新增商品</button>
+                        <button type="button" class="btn btn-primary next-new-product button-spacing" data-stepClass="step-list-1">←</button>
+                        <button type="button" class="btn btn-primary create-product" data-stepClass="step-list-3">Save</button>
                     </center>
                 </div>
             </form>
@@ -111,8 +112,8 @@
             .append($('<td>')
                 .append($('<div class="form-group">')
                     .append($('<select name="nps[' + num + '][display_flg]" class="">')
-                        .append('<option value="1">販售中</option>')
-                        .append('<option value="0">停售中</option>')
+                        .append('<option value="1"><?= $ps_display_flg_text[1] ?></option>')
+                        .append('<option value="0"><?= $ps_display_flg_text[0] ?></option>')
                     )
                 )
             )
@@ -126,12 +127,12 @@
                 .append($('<table>')
                     .append($('<tr>')
                         .append($('<td>')
-                            .append($('<input class="ps_title" name="nps[' + num + '][title]" placeholder="標題">'))
+                            .append($('<input class="ps_title" name="nps[' + num + '][title]" placeholder="<?= $ps_column_name['ps_type'] ?>">'))
                         )
                     )
                     .append($('<tr>')
                         .append($('<td></td>')
-                            .append($('<textarea class="ps_content" id="new_ps_content_' + num + '" name="nps[' + num + '][content]" placeholder="內容"></textarea>'))
+                            .append($('<textarea class="ps_content" id="new_ps_content_' + num + '" name="nps[' + num + '][content]" placeholder="<?= $ps_column_name['ps_content'] ?>"></textarea>'))
                         )
                     )
                 )
@@ -139,9 +140,9 @@
             .append($('<td colspan="3">')
                 .append($('<div>')
                     .append($('<label for="nps_image_' + num + '">')
-                        .append($('<span class="nps_image_' + num + '_text"></span>').html('選擇圖片'))
+                        .append($('<span class="nps_image_' + num + '_text"></span>').html('<?= $ps_column_name['ps_image'] ?>'))
                         .append($('<img class="nps_image_' + num + '" style="display: none;">'))
-                        .append($('<input class="js-image hide" type="file" id="nps_image_' + num + '" name="nps[' + num + '][image]"><label class="ps_href_label" for="nps_href_' + num + '">圖片連結<input class="ps_href_input" type="text" id="nps_href_' + num + '" name="nps[' + num + '][href]" style="width: calc(100% - 60px);"></label>'))
+                        .append($('<input class="js-image hide" type="file" id="nps_image_' + num + '" name="nps[' + num + '][image]"><label class="ps_href_label" for="nps_href_' + num + '"><?= $ps_column_name['ps_href'] ?><input class="ps_href_input" type="text" id="nps_href_' + num + '" name="nps[' + num + '][href]" style="width: calc(100% - 60px);"></label>'))
                     )
                 )
             )
@@ -193,10 +194,10 @@
     $('body').on('change', '.js-image', function(){
         $('.' + $(this).attr('id')).attr('src', '');
         if($(this).val()){
-            $('.' + $(this).attr('id') + '_text').text('已選取圖片');
+            $('.' + $(this).attr('id') + '_text').text('CHECKED');
             $('.' + $(this).attr('id') + '_text').css('color', 'green');
         }else{
-            $('.' + $(this).attr('id') + '_text').text('無選取圖片');
+            $('.' + $(this).attr('id') + '_text').text('UNCHECK');
             $('.' + $(this).attr('id') + '_text').css('color', 'red');
         }
 

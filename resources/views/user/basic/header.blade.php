@@ -1,4 +1,5 @@
 @inject('housePresenter', 'App\Presenters\HousePresenter')
+@inject('mainPresenter', 'App\Presenters\MainPresenter')
 <div class="fixed-top">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="">
         <div class="container">
@@ -16,8 +17,8 @@
                     @endif
                 </ul>
                 @guest
-                    <div><a href="/login" class="nav-link">Đăng nhập</a></div>
-                    <div><a href="/register" class="nav-link">Đăng ký</a></div>
+                    <div><a href="{{ route('login') }}" class="nav-link">{{ $mainPresenter->showText('login') }}</a></div>
+                    <div><a href="{{ route('register') }}" class="nav-link">{{ $mainPresenter->showText('register') }}</a></div>
                 @else
                     <div>
                         <a href="/login" class="nav-link">{{ Auth::user()->name }}</a>

@@ -32,6 +32,9 @@
     <!-- Basic Js End -->
     <!-- Page Js Start -->
     @yield('pageJs')
+    <script type="text/javascript">
+        window.text = <?php echo json_encode($mainPresenter->showTextJS(), JSON_UNESCAPED_UNICODE) ?>;
+    </script>
     <!-- Page Js End -->
 </body>
 </html>

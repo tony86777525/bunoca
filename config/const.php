@@ -217,14 +217,14 @@ return [
                 'column' => [
                     'id' => '#',
                     'product_id' => 'SẢN PHẨM',
-                    'ps_type' => '規格',
+                    'ps_type' => 'Hạng  Mục',
                     'ps_price' => 'Giá Cả',
                     'ps_inventory' => 'Hàng tồn kho',
                     'ps_title' => '標題',
                     'ps_content' => '內容',
                     'ps_display_flg' => 'Trạng thái',
                     'ps_image' => '圖片',
-                    'ps_href' => '連結',
+                    'ps_href' => 'Liên kết',
                     'updated_at' => '最後更新',
                     'actions' => 'Hoạt động',
                     'update_ps_inventory' => 'Hàng Nhập kho'
@@ -239,19 +239,19 @@ return [
                 ],
             ],
             'product_inventory_record' => [
-                'title' => '庫存紀錄',
+                'title' => 'Hàng tồn kho',
                 'column' => [
                     'id' => '#',
                     'p_name' => 'SẢN PHẨM',
-                    'ps_type' => '規格',
-                    'admin_user_id' => '操作者ID',
-                    'admin_user_name' => '操作者',
+                    'ps_type' => 'Hạng  Mục',
+                    'admin_user_id' => 'Điều hành',
+                    'admin_user_name' => 'Điều hành',
                     'pir_num' => 'Hàng Nhập kho',
-                    'pir_before_num' => '入庫前',
-                    'pir_after_num' => '入庫後',
-                    'pir_message' => '備註',
-                    'ps_href' => '連結',
-                    'created_at' => '時間',
+                    'pir_before_num' => 'Trước',
+                    'pir_after_num' => 'Sau',
+                    'pir_message' => 'Ghi chú',
+                    'ps_href' => 'Liên kết',
+                    'created_at' => 'Thời gian',
                 ],
             ],
             'order' => [
@@ -259,9 +259,9 @@ return [
                 'column' => [
                     'id' => '#',
                     'user_id' => 'Thành viên',
-                    'user_name' => '收件姓名',
-                    'user_address' => '收件地址',
-                    'o_no' => '訂單編號',
+                    'user_name' => 'Tên',
+                    'user_address' => 'Địa chỉ',
+                    'o_no' => 'Số thứ tự',
                     'o_money' => 'Tổng số tiền',
                     'o_discount' => '訂單折扣',
                     'o_free_discount' => '自訂折扣',
@@ -273,7 +273,7 @@ return [
                     'o_deliver_flg' => 'Tình trạng vận chuyển',
                     'created_at' => 'Thời gian đặt hàng',
                     'order' => 'Số thứ tự',
-                    'order_detail' => 'Đặt hàng',
+                    'order_detail' => 'Chi tiết đặt hàng',
                     'order_detail_insert' => '商品入單',
                     'sure_to_arrival' => 'chắc chắn muốn đặt hàng?',
                     'add_order_and_continue_add_order_detail' => '新增訂單並繼續新增訂單商品',
@@ -284,15 +284,15 @@ return [
                 ],
                 'arrival_flg_text' => [
                     0 => 'Chưa đặt hàng ',
-                    1 => '全配貨'
+                    1 => 'Đã'
                 ],
                 'pay_flg_text' => [
                     0 => 'Chưa thanh toán',
-                    1 => '待確認',
+                    1 => 'Đang chờ xác nhận',
                     2 => 'Đã thanh toán'
                 ],
                 'deliver_flg_text' => [
-                    0 => '未出貨',
+                    0 => 'Chưa',
                     1 => 'Đã đặt hàng '
                 ],
             ],
@@ -304,7 +304,7 @@ return [
                     'product_single_id' => 'Hạng  Mục',
                     'od_num' => 'Số lượng',
                     'od_money' => 'Tổng số tiền',
-                    'od_ps_price' => '單價',
+                    'od_ps_price' => 'Giá Cả',
                     'od_arrival_flg' => 'Trạng thái đặt hàng',
                     'actions' => 'Hoạt động',
                     'arrival' => 'thanh toán',
@@ -332,6 +332,9 @@ return [
 
         'frontend' => [
             'chinese' => [
+                'login' => '登入',
+                'logout' => '登出',
+                'register' => '註冊',
                 'message' => '訊息',
                 'goIndex' => '回首頁',
                 'userMailCheck' => '會員驗證',
@@ -391,8 +394,20 @@ return [
                 'orderDetailMoney' => '價錢',
 
                 'orderRecord' => '訂單紀錄',
+
+                'js' => [
+                    'hasAddedShoppingCart' => '已加入購物車',
+                    'isToPay' => '是否前往結帳',
+                    'toPay' => '前往結帳',
+                    'continueToShop' => '繼續選購',
+                    'waitForTry' => '請稍後再試',
+                    'isDelete' => '是否刪除',
+                ],
             ],
             'vietnamese' => [
+                'login' => 'Đăng nhập',
+                'logout' => '登出',
+                'register' => 'Đăng ký',
                 'message' => '訊息',
                 'goIndex' => '回首頁',
                 'userMailCheck' => '會員驗證',
@@ -401,7 +416,7 @@ return [
                 'finish' => '完成',
 
                 'active' => 'Hoạt động',
-                'toOrderDetail' => '明細',
+                'toOrderDetail' => 'Chi tiết đặt hàng',
                 'toOrderPay' => 'thanh toán',
 
                 'user' => 'Thành viên',
@@ -417,18 +432,18 @@ return [
 
                 'userLoginTimes' => '次登入',
                 'userToChange' => 'Chỉnh sửa',
-                'userToRevert' => '還原',
+                'userToRevert' => 'Reset',
                 'userToSave' => 'Xác định',
 
-                'shoppingCart' => '購物車',
+                'shoppingCart' => 'giỏ hàng',
                 'shoppingCartToPay' => 'Đi đến thanh toán',
                 'shoppingCartNoCount' => '購物車內尚無商品',
                 'shoppingCartUnPay' => '項商品未結帳',
 
-                'orderNo' => '訂單編號',
+                'orderNo' => 'Số thứ tự',
                 'orderPay' => 'thanh toán',
                 'orderCount' => '項訂單',
-                'orderLittleTotal' => '小計',
+                'orderLittleTotal' => 'Tổng số tiền',
                 'orderMoney' => 'Tổng số tiền phải trả',
                 'orderNoCount' => '尚無訂單',
                 'orderPayTo' => '請匯款至',
@@ -441,17 +456,26 @@ return [
                 ],
                 'orderDeliverType' => 'Tình trạng vận chuyển',
                 'orderDeliverFlg' => [
-                    0 => '待出貨',
-                    1 => '已出貨'
+                    0 => 'Chưa',
+                    1 => 'Đã'
                 ],
 
-                'OrderDetail' => '訂單明細',
+                'OrderDetail' => 'Chi tiết đặt hàng',
                 'orderDetailCount' => '項商品',
                 'orderDetailType' => 'SẢN PHẨM',
                 'orderDetailNum' => 'Số lượng',
                 'orderDetailMoney' => 'Tổng số tiền',
 
-                'orderRecord' => '訂單紀錄',
+                'orderRecord' => 'Đặt hàng',
+
+                'js' => [
+                    'hasAddedShoppingCart' => 'Thêm vào xe giỏ hàng',
+                    'isToPay' => 'Có phải đi đến thành toán ',
+                    'toPay' => 'Đi đến thanh toán',
+                    'continueToShop' => 'Tiếp tục mua hàng',
+                    'waitForTry' => 'Try it later',
+                    'isDelete' => 'Xóa?',
+                ],
             ],
         ]
     ],

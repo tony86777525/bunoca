@@ -29,9 +29,9 @@ class MainPresenter  {
         return \Config::get('const.language.' . $this->site . '.' . $this->language . '.' . $text);
     }
 
-    public function showFlg($text)
+    public function showTextJS()
     {
-        return \Config::get('const.language.' . $this->site . '.' . $this->language . '.' . $text);
+        return \Config::get('const.language.' . $this->site . '.' . $this->language . '.js');
     }
 
     public function productList()

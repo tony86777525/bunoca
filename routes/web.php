@@ -39,10 +39,13 @@ Route::post('home/create_order', 'ApiController@create_order');
 Route::post('home/shoppingPay/result', 'ApiController@shopping_pay_result');
 Route::post('home/update_user', 'ApiController@update_user');
 
-Route::get('home', 'HomeController@index')->name('home');
-Route::get('home/shoppingCart', 'HomeController@shopping_cart')->name('shoppingCart');
-Route::get('home/shoppingPay/{o_no}', 'HomeController@shopping_pay')->name('shoppingPay');
-Route::get('home/orderRecord', 'HomeController@order_record')->name('orderRecord');
-Route::get('home/orderRecord/{o_no}/detail', 'HomeController@order_detail')->name('orderDetail');
-Route::get('home/user', 'HomeController@user')->name('user');
 
+Route::group(['middleware' =>'auth'], function ()
+{
+    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('home/shoppingCart', 'HomeController@shopping_cart')->name('shoppingCart');
+    Route::get('home/shoppingPay/{o_no}', 'HomeController@shopping_pay')->name('shoppingPay');
+    Route::get('home/orderRecord', 'HomeController@order_record')->name('orderRecord');
+    Route::get('home/orderRecord/{o_no}/detail', 'HomeController@order_detail')->name('orderDetail');
+    Route::get('home/user', 'HomeController@user')->name('user');
+});
