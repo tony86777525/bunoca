@@ -6,6 +6,10 @@ return [
         0 => 'vietnamese',
         1 => 'chinese',
     ],
+    'product_category_title' => [
+        'vietnamese' => 'pc_type',
+        'chinese' => 'pc_title',
+    ],
     'language' => [
         'chinese' => [
             'user' => [
@@ -33,6 +37,7 @@ return [
                 'title' => '商品',
                 'column' => [
                     'id' => '#',
+                    'product_category_id' => '商品分類',
                     'p_name' => '商品',
                     'p_title' => '商品(越)',
                     'p_price' => '售價',
@@ -206,6 +211,7 @@ return [
                 'title' => 'SẢN PHẨM',
                 'column' => [
                     'id' => '#',
+                    'product_category_id' => '商品分類',
                     'p_name' => 'SẢN PHẨM',
                     'p_title' => 'SẢN PHẨM',
                     'p_price' => 'Giá Cả',

@@ -9,6 +9,9 @@
             <div class="tab-content">
                 <div id="p_form" class="tab-pane fade form">
                     <div class="new-product">
+                        <div class="form-group">
+                            <label for="product_category_id">{{$p_column_name['product_category_id']}}： {{$pcArray[$product->product_category_id]}}</label>
+                        </div>
                         <!-- 訂購者 -->
                         <div class="form-group">
                             <label for="p_name">{{$p_column_name['p_name']}}： {{$product->p_name}}</label>

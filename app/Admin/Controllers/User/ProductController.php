@@ -3,6 +3,8 @@
 namespace App\Admin\Controllers\User;
 
 use App\Product;
+use App\ProductCategory;
+use App\Repositories\ProductCategoryRepository;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
@@ -105,6 +107,7 @@ class ProductController extends BaseController
 
         $grid->model()->orderBy('p_sort', 'DESC')->orderBy('id');
         $grid->id('#');
+        $grid->product_category_id($this->p_column_name['product_category_id'])->using(ProductCategoryRepository::getOption());
         $grid->p_name($this->p_column_name['p_name']);
         $grid->p_title($this->p_column_name['p_title']);
         $grid->p_price($this->p_column_name['p_price']);
@@ -184,12 +187,15 @@ class ProductController extends BaseController
         $ps_column_name = $this->ps_column_name;
         $p_display_flg_text = $this->p_display_flg_text;
         $ps_display_flg_text = $this->ps_display_flg_text;
+        $pcArray = ProductCategory::selectOptions();
+
         return view('admin.user.product.create',compact(
             [
                 'p_column_name',
                 'ps_column_name',
                 'p_display_flg_text',
                 'ps_display_flg_text',
+                'pcArray',
             ]
         ));
     }
@@ -204,6 +210,7 @@ class ProductController extends BaseController
             $ps_column_name = $this->ps_column_name;
             $p_display_flg_text = $this->p_display_flg_text;
             $ps_display_flg_text = $this->ps_display_flg_text;
+            $pcArray = ProductCategory::selectOptions();
 
             return view('admin.user.product.edit',compact(
                 [
@@ -212,6 +219,7 @@ class ProductController extends BaseController
                     'ps_column_name',
                     'p_display_flg_text',
                     'ps_display_flg_text',
+                    'pcArray'
                 ]
             ));
         }
@@ -225,6 +233,7 @@ class ProductController extends BaseController
             $p_column_name = $this->p_column_name;
             $p_display_flg_text = $this->p_display_flg_text;
             $ps_display_flg_text = $this->ps_display_flg_text;
+            $pcArray = ProductCategoryRepository::getOption();
 
             return view('admin.user.product.detail',compact(
                 [
@@ -232,7 +241,8 @@ class ProductController extends BaseController
                     'p_column_name',
                     'ps_column_name',
                     'p_display_flg_text',
-                    'ps_display_flg_text'
+                    'ps_display_flg_text',
+                    'pcArray'
                 ]
             ));
         }

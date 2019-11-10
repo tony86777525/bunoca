@@ -12,6 +12,14 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="id" value="{{$product['id']}}">
                         <div class="new-product">
+                            <div class="form-group">
+                                <label for="product_category_id">{{ $p_column_name['product_category_id'] }}</label>
+                                <select name="product_category_id" class="form-control" id="product_category_id">
+                                    @foreach($pcArray as $k => $v)
+                                        <option value="{{ $k }}"{{ $product->product_category_id == $k ? ' selected="selected"' : '' }}>{{ $v }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <!-- 訂購者 -->
                             <div class="form-group">
                                 <label for="p_name">{{$p_column_name['p_name']}}</label>

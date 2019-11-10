@@ -3,15 +3,20 @@
 namespace App\Admin\Controllers;
 
 use App\Product;
+use App\ProductCategory;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
+use App\Repositories\ProductCategoryRepository;
+
 class ProductController extends BaseController
 {
     protected $title = 'App\Product';
     protected $page_name = 'product';
+    protected $pcArray = [];
+
 
     public function __construct()
     {
@@ -22,7 +27,6 @@ class ProductController extends BaseController
             $this->column_name = $lang['column'];
             $this->display_flg_option = $lang['display_flg_option'];
             $this->display_flg_text = $lang['display_flg_text'];
-
             return $next($request);
         });
     }
@@ -33,6 +37,7 @@ class ProductController extends BaseController
 
         $grid->model()->orderBy('p_sort', 'DESC')->orderBy('id', 'DESC');
         $grid->column('id', __($this->column_name['id']));
+        $grid->column('product_category_id', __($this->column_name['product_category_id']))->using(ProductCategoryRepository::getOption());
         $grid->column('p_name', __($this->column_name['p_name']));
         $grid->column('p_title', __($this->column_name['p_title']));
         $grid->column('p_display_flg', __($this->column_name['p_display_flg']))->switch($this->display_flg_option);
@@ -57,6 +62,7 @@ class ProductController extends BaseController
         $show = new Show(Product::findOrFail($id));
 
         $show->field('id', __($this->column_name['id']));
+        $show->field('product_category_id', __($this->column_name['product_category_id']))->using(ProductCategoryRepository::getOption());
         $show->field('p_name', __($this->column_name['p_name']));
         $show->field('p_tile', __($this->column_name['p_title']));
         $show->field('p_price', __($this->column_name['p_price']));
@@ -81,6 +87,7 @@ class ProductController extends BaseController
     {
         $form = new Form(new Product);
 
+        $form->select('product_category_id', __($this->column_name['product_category_id']))->options(ProductCategory::selectOptions());
         $form->text('p_name', __($this->column_name['p_name']));
         $form->text('p_title', __($this->column_name['p_title']));
         $form->number('p_price', __($this->column_name['p_price']));

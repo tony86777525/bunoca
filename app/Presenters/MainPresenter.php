@@ -3,6 +3,7 @@
 namespace App\Presenters;
 
 use App\Product;
+use App\ProductCategory;
 
 class MainPresenter  {
 
@@ -36,7 +37,18 @@ class MainPresenter  {
 
     public function productList()
     {
-        return Product::Where('p_display_flg', Product::P_DISPLAY_FLG_ON)->get();
+        return (ProductCategory::with(
+            [
+                'product' => function ($query) {
+                    $query->where('p_display_flg', Product::P_DISPLAY_FLG_ON);
+                },
+                'children' => function ($query) {
+                    $query;
+                },
+            ]
+        )->where('pc_parent_id', '0')->orderBy('pc_sort')->get()->sortBy(function ($pc, $key) {
+            return $pc->pc_sort == 0 ? 9999 : $pc->pc_sort;
+        }));
     }
 
     public function getPrice($price)

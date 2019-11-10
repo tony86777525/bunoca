@@ -12,6 +12,14 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="new-product">
                     <div class="form-group">
+                        <label for="product_category_id">{{ $p_column_name['product_category_id'] }}</label>
+                        <select name="product_category_id" class="form-control" id="product_category_id">
+                            @foreach($pcArray as $k => $v)
+                                <option value="{{ $k }}">{{ $v }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="p_name">{{ $p_column_name['p_name'] }}</label>
                         <input type="text" name="p_name" class="form-control" id="p_name" placeholder="Enter Product Name">
                     </div>
@@ -151,8 +159,8 @@
         make_ckeditor($('#new_ps_content_' + num));
         num += 1;
     });
-    $(".index-product").click(function(){
-        data = new FormData($('#product-index-form')[0]);
+    $(".create-product").click(function(){
+        data = new FormData($('#product-create-form')[0]);
         $(".ps_content").each(function(){
             data.append($(this).attr('name'), CKEDITOR.instances[$(this).attr('id')].getData());
         });

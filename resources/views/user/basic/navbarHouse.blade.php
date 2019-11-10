@@ -1,3 +1,4 @@
+@inject('mainPresenter', 'App\Presenters\MainPresenter')
 @inject('housePresenter', 'App\Presenters\HousePresenter')
 <li class="nav-item
 @if($housePresenter->isCurrentRouteName('house'))

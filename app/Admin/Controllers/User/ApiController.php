@@ -47,6 +47,7 @@ class ApiController extends Controller
 
         try {
             $product_insert = [
+                'product_category_id' => $data['product_category_id'],
                 'p_name' => $data['p_name'],
                 'p_title' => $data['p_title'],
                 'p_price' => $data['p_price'],
@@ -104,6 +105,7 @@ class ApiController extends Controller
         if(!empty($data['id'])){
             try {
                 $product_insert = [
+                    'product_category_id' => $data['product_category_id'],
                     'p_name' => $data['p_name'],
                     'p_title' => $data['p_title'],
                     'p_price' => $data['p_price'],
