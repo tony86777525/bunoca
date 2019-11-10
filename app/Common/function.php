@@ -8,10 +8,12 @@ const APP_URL = 'http://bunoca.tet/';
  */
 function get_language($admin_user)
 {
-    $language = 'chinese';
-
-    if($admin_user->isRole('vietnamese')) $language = 'vietnamese';
-    if($admin_user->isRole('chinese')) $language = 'chinese';
+    $language = 'vietnamese';
+    if($admin_user)
+    {
+        if($admin_user->isRole('vietnamese')) $language = 'vietnamese';
+        if($admin_user->isRole('chinese')) $language = 'chinese';
+    }
 
     return $language;
 }

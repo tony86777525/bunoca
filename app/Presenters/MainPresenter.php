@@ -37,7 +37,12 @@ class MainPresenter  {
 
     public function productList()
     {
-        return (ProductCategory::with(
+        return Product::Where('p_display_flg', Product::P_DISPLAY_FLG_ON)->get();
+    }
+
+    public function productCategoryList()
+    {
+        return ProductCategory::with(
             [
                 'product' => function ($query) {
                     $query->where('p_display_flg', Product::P_DISPLAY_FLG_ON);
@@ -48,7 +53,7 @@ class MainPresenter  {
             ]
         )->where('pc_parent_id', '0')->orderBy('pc_sort')->get()->sortBy(function ($pc, $key) {
             return $pc->pc_sort == 0 ? 9999 : $pc->pc_sort;
-        }));
+        });
     }
 
     public function getPrice($price)
