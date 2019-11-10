@@ -363,7 +363,7 @@ return [
         'frontend' => [
             'chinese' => [
                 'login' => '登入',
-                'logout' => '登出',
+                'logout' => 'Thoát ra',
                 'register' => '註冊',
                 'message' => '訊息',
                 'goIndex' => '回首頁',
