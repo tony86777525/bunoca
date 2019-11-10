@@ -14,7 +14,22 @@
 {{--</li>--}}
 <li class="dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">SẢN PHẨM</a>
-    <div class="dropdown-menu dropdown-menu-center">
+    <div class="dropdown-menu d-lg-none">
+        @foreach($mainPresenter->productList() as $productCategory)
+            <div class="dropdown-item">{{ $productCategory->pc_type }}</div>
+            <div class="dropdown-divider"></div>
+            @foreach($productCategory->product as $product)
+                <a class="dropdown-item dropdown-item-product" href="{{ route('shop', ['id' => $product->id]) }}/" target="_blank"> - {{ $product->p_title }}</a>
+            @endforeach
+            @foreach($productCategory->children as $productCategory)
+                <div class="dropdown-item">{{ $productCategory->pc_type }}</div>
+                @foreach($productCategory->product as $product)
+                    <a class="dropdown-item dropdown-item-product" href="{{ route('shop', ['id' => $product->id]) }}/" target="_blank"> - {{ $product->p_title }}</a>
+                @endforeach
+            @endforeach
+        @endforeach
+    </div>
+    <div class="dropdown-menu dropdown-menu-center d-none d-lg-block">
         <table>
             <thead>
             <tr>
