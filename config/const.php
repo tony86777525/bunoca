@@ -195,8 +195,8 @@ return [
                     'address' => 'Địa chỉ',
                     'phone' => 'Điện thoại',
                     'email' => 'Địa chỉ email',
-                    'times' => '登入次數',
-                    'updated_at' => '最後登入',
+                    'times' => 'Số lượng',
+                    'updated_at' => 'Thời gian',
                 ],
                 'sex_text' => [
                     0 => '女',
@@ -231,6 +231,16 @@ return [
                     1 => 'Trong bán'
                 ],
             ],
+            'product_category' => [
+                'title' => '商品分類',
+                'column' => [
+                    'id' => '#',
+                    'pc_sort' => '分類排序',
+                    'pc_parent_id' => '父分類',
+                    'pc_title' => '分類名稱',
+                    'pc_type' => '分類名稱(越)',
+                ],
+            ],
             'product_single' => [
                 'title' => 'Hạng  Mục',
                 'column' => [
@@ -259,7 +269,7 @@ return [
                 ],
             ],
             'product_inventory_record' => [
-                'title' => 'Hàng tồn kho',
+                'title' => 'Hồ sơ tồn kho',
                 'column' => [
                     'id' => '#',
                     'p_name' => 'SẢN PHẨM',

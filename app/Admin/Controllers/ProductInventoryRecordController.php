@@ -51,8 +51,8 @@ class ProductInventoryRecordController extends BaseController
 
         $grid->filter(function ($filter){
             $filter->disableIdFilter();
-            $filter->like('p_name', '商品名稱');
-            $filter->like('ps_type', '單品名稱');
+            $filter->like('p_name', $this->column_name['p_name']);
+            $filter->like('ps_type', $this->column_name['ps_type']);
         });
 
         $grid->actions(function ($actions) {

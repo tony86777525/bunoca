@@ -45,6 +45,7 @@ class ConfigController extends AdminController
 
         $grid->disableExport();
         $grid->disableCreateButton();
+        $grid->disableFilter();
 
         return $grid;
     }

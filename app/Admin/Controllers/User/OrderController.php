@@ -165,6 +165,11 @@ class OrderController extends BaseController
             });
         });
 
+        $grid->filter(function ($filter){
+            $filter->disableIdFilter();
+            $filter->like('o_no', $this->column_name['o_no']);
+        });
+
         return $grid;
     }
 
