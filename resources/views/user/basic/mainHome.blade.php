@@ -18,6 +18,22 @@
     <!-- Basic Css Start -->
     <!-- Page Css Start -->
     @yield('pageCss')
+    <style>
+        .dropdown-menu-center {
+            right: auto;
+            left: 50%;
+            -webkit-transform: translate(-50%, 0);
+            -o-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+        }
+        .dropdown-item-product {
+            margin-left: 5px;
+            color: gray;
+        }
+        .dropdown-table-tbody {
+            vertical-align:text-top;
+        }
+    </style>
     <!-- Page Css End -->
 </head>
 <body>

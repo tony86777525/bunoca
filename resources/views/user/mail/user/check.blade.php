@@ -1,10 +1,10 @@
 <div>
     <ul>
-        <li>Name: {{ $name }}</li>
-        <li>email: {{ $email }}</li>
-        <li>phone: {{ $phone }}</li>
-        <li>sex: {{ $sex }}</li>
-        <li>address: {{ $address }}</li>
+        <li>Tên: {{ $name }}</li>
+        <li>Địa chỉ email: {{ $email }}</li>
+        <li>Điện thoại: {{ $phone }}</li>
+        <li>Giới tính: {{ $sex }}</li>
+        <li>Địa chỉ: {{ $address }}</li>
     </ul>
-    <a href="{{ $href }}">LOGIN</a>
+    <a href="{{ $href }}">Đăng nhập</a>
 </div>

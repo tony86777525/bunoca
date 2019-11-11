@@ -26,7 +26,7 @@ class UserCheck extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.user.check')
+        return $this->view('user.mail.user.check')
             ->subject('Email Check')
             ->with([
                 'name' => $this->user->name,
