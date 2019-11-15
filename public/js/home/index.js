@@ -5,7 +5,7 @@ $(function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: "POST",
-            url: "send_check",
+            url: "/home/send_check",
             dataType: "json",
             beforeSend : function(){
                 $.blockUI({ message: '<h1><img src="/css/ajax_loading.gif" /> Loading... </h1>' });

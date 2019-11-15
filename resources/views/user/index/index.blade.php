@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-12 space bg-light card" id="companyLocation">
-                <p class='title wow fadeInLeft'>公司位置</p>
+                <p class='title wow fadeInLeft'>Địa điểm công ty</p>
                 <center>
                     <div id="map" class="wow flipInX" data-wow-delay="0.6s"><img src="/img/index/map.jpg" style="max-width: 100%;"></div>
                 </center>

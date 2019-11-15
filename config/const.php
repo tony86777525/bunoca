@@ -440,8 +440,8 @@ return [
                 'register' => 'Đăng ký',
                 'message' => '訊息',
                 'goIndex' => '回首頁',
-                'userMailCheck' => '會員驗證',
-                'userMailUncheck' => '尚未通過會員驗證',
+                'userMailCheck' => 'Xác minh thành viên',
+                'userMailUncheck' => 'Không được xác minh bởi thành viên',
                 'userMailChecked' => '已通過會員驗證',
                 'finish' => '完成',
 
@@ -456,8 +456,8 @@ return [
                 'userAddress' => 'Địa chỉ',
                 'userSexType' => 'Giới tính',
                 'userSex' => [
-                    0 => '女',
-                    1 => '男'
+                    0 => 'Female',
+                    1 => 'Male'
                 ],
 
                 'userLoginTimes' => '次登入',
@@ -468,7 +468,7 @@ return [
                 'shoppingCart' => 'giỏ hàng',
                 'shoppingCartToPay' => 'Đi đến thanh toán',
                 'shoppingCartNoCount' => '購物車內尚無商品',
-                'shoppingCartUnPay' => '項商品未結帳',
+                'shoppingCartUnPay' => 'Dự án Hàng hóa chưa giải quyết',
 
                 'orderNo' => 'Số thứ tự',
                 'orderPay' => 'thanh toán',
