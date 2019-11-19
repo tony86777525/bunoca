@@ -66,7 +66,20 @@
                 </table>
                 <div class="form-group">
                     <div class="text-left font-weight-bold">{{ $mainPresenter->showText('orderPayTo') }}</div>
-                    <h1 class="text-center font-weight-bold text-danger ">{{ $account }}</h1>
+                    <table>
+                        <tr>
+                            <td><h3 class="font-weight-bold text-danger">{{ $mainPresenter->showText('configBank') }}： </h3></td>
+                            <td><h3 class="font-weight-bold text-danger">{{ $config->bank }}</h3></td>
+                        </tr>
+                        <tr>
+                            <td><h3 class="font-weight-bold text-danger">{{ $mainPresenter->showText('configCompany') }}： </h3></td>
+                            <td><h3 class="font-weight-bold text-danger">{{ $config->company }}</h3></td>
+                        </tr>
+                        <tr>
+                            <td><h3 class="font-weight-bold text-danger">{{ $mainPresenter->showText('configAccount') }}： </h3></td>
+                            <td><h3 class="font-weight-bold text-danger">{{ $config->account }}</h3></td>
+                        </tr>
+                    </table>
                 </div>
                 <form id="shopping-pay-success-form" action="#" method="POST" onsubmit="return false">
                     <input type="hidden" name="o_no" value="{{ $order->o_no }}">

@@ -11,6 +11,8 @@ class Config extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
+        'bank',
+        'company',
         'account',
     ];
 

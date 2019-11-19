@@ -31,6 +31,8 @@ class ConfigController extends AdminController
         $grid = new Grid(new Config);
 
         $grid->column('id', $this->column_name['id']);
+        $grid->column('bank', $this->column_name['bank']);
+        $grid->column('company', $this->column_name['company']);
         $grid->column('account', $this->column_name['account']);
 
         $grid->tools(function ($tools) {
@@ -61,6 +63,8 @@ class ConfigController extends AdminController
         $show = new Show(Config::findOrFail($id));
 
         $show->field('id', $this->column_name['id']);
+        $show->field('bank', $this->column_name['bank']);
+        $show->field('company', $this->column_name['company']);
         $show->field('account', $this->column_name['account']);
 
         return $show;
@@ -75,6 +79,8 @@ class ConfigController extends AdminController
     {
         $form = new Form(new Config);
 
+        $form->text('bank', $this->column_name['bank']);
+        $form->text('company', $this->column_name['company']);
         $form->text('account', $this->column_name['account']);
 
         return $form;

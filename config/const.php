@@ -174,7 +174,9 @@ return [
                 'title' => '設定',
                 'column' => [
                     'id' => '#',
-                    'account' => '帳戶',
+                    'bank' => '銀行名',
+                    'company' => '公司帳戶',
+                    'account' => '帳號',
                 ],
             ],
             'api' => [
@@ -348,7 +350,9 @@ return [
                 'title' => '設定',
                 'column' => [
                     'id' => '#',
-                    'account' => '帳戶',
+                    'bank' => '銀行名',
+                    'company' => '公司帳戶',
+                    'account' => '帳號',
                 ],
             ],
             'api' => [
@@ -425,6 +429,10 @@ return [
 
                 'orderRecord' => '訂單紀錄',
 
+                'configBank' => '銀行名',
+                'configCompany' => '公司帳戶',
+                'configAccount' => '帳號',
+
                 'js' => [
                     'hasAddedShoppingCart' => '已加入購物車',
                     'isToPay' => '是否前往結帳',
@@ -497,6 +505,10 @@ return [
                 'orderDetailMoney' => 'Tổng số tiền',
 
                 'orderRecord' => 'Đặt hàng',
+
+                'configBank' => '銀行名',
+                'configCompany' => '公司帳戶',
+                'configAccount' => '帳號',
 
                 'js' => [
                     'hasAddedShoppingCart' => 'Thêm vào xe giỏ hàng',

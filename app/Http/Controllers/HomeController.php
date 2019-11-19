@@ -90,7 +90,7 @@ class HomeController extends BaseController
     public function shopping_pay($o_no)
     {
         $order = [];
-        $account = [];
+        $config = [];
 
         if(!empty($o_no)) {
             $order = Order::with('order_detail', 'user', 'order_detail.product_single')
@@ -98,7 +98,7 @@ class HomeController extends BaseController
                 ->where('o_no', $o_no)
                 ->where('o_pay_flg', Order::O_PAY_FLG_OFF)
                 ->first();
-            $account = Config::first()->account;
+            $config = Config::first();
         }
 
         if(empty($order)){
@@ -106,7 +106,7 @@ class HomeController extends BaseController
         }
 
         $this->data['order'] = $order;
-        $this->data['account'] = $account;
+        $this->data['config'] = $config;
         $this->after();
         return view('user.home.shopping_pay', $this->data);
     }
