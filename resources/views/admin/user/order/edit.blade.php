@@ -218,7 +218,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img style="width: 100%" src="{{ env('APP_URL').'/uploads/'.$order->o_pay_image }}">
+                    <img style="width: 100%" src="{{ '/uploads/'.$order->o_pay_image }}">
                 </div>
             </div>
         </div>

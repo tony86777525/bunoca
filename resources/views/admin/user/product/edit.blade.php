@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group">
                                 @if(!empty($product->p_image))
-                                    <label for="p_image"><span class="p_image_text">{{$p_column_name['p_image']}}</span><img class="p_image" src="{{env('APP_URL').'/uploads/'.$product->p_image}}"></label>
+                                    <label for="p_image"><span class="p_image_text">{{$p_column_name['p_image']}}</span><img class="p_image" src="{{'/uploads/'.$product->p_image}}"></label>
                                 @else
                                     <label for="p_image"><span class="p_image_text">{{$p_column_name['p_image']}}</span><img class="p_image hide"></label>
                                 @endif
@@ -139,7 +139,7 @@
                                         </td>
                                         <td colspan="4">
                                             @if(!empty($v->ps_image))
-                                                <label for="ps_image_{{$k}}"><span class="ps_image_{{$k}}_text">{{ $ps_column_name['ps_image'] }}</span><img class="ps_image_{{$k}}" src="{{env('APP_URL').'/uploads/'.$v->ps_image}}"></label>
+                                                <label for="ps_image_{{$k}}"><span class="ps_image_{{$k}}_text">{{ $ps_column_name['ps_image'] }}</span><img class="ps_image_{{$k}}" src="{{'/uploads/'.$v->ps_image}}"></label>
                                             @else
                                                 <label for="ps_image_{{$k}}"><span class="ps_image_{{$k}}_text">{{ $ps_column_name['ps_image'] }}</span><img class="ps_image_{{$k}}"></label>
                                             @endif

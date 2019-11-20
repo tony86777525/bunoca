@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-group">
                             @if(!empty($product->p_image))
-                                <img class="p_image" src="{{env('APP_URL').'/uploads/'.$product->p_image}}"></label>
+                                <img class="p_image" src="{{'/uploads/'.$product->p_image}}"></label>
                             @endif
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                                         </table>
                                     </td>
                                     <td colspan="2">
-                                        <img class="ps_image_{{$k}}" src="{{env('APP_URL').'/uploads/'.$v->ps_image}}">
+                                        <img class="ps_image_{{$k}}" src="{{'/uploads/'.$v->ps_image}}">
                                     </td>
                                 </tr>
                                 @endforeach
