@@ -30,7 +30,6 @@ class ProductCategory extends Model
         return $this->hasMany(Product::class, 'product_category_id');
     }
 
-
     public function children()
     {
         return $this->hasMany(get_class($this), 'pc_parent_id', $this->getKeyName());
