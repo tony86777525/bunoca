@@ -34,7 +34,7 @@ class UserCheck extends Mailable
                 'phone' => $this->user->phone,
                 'sex' => $this->user->sex,
                 'address' => $this->user->address,
-                'href' => APP_URL . 'check/?token=' . $this->user->create_token . '&user=' . $this->user->email,
+                'href' => env('APP_URL') . 'check/?token=' . $this->user->create_token . '&user=' . $this->user->email,
             ]);
     }
 }
