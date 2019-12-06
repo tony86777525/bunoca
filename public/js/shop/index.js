@@ -1,11 +1,12 @@
 $(function(){
     $(".js-add-item").submit(function () {
+        let p_id = $('input[name="p_id"]').val();
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: "POST",
-            url: "set_buy_record",
+            url: "/shop/" + p_id + "/set_buy_record",
             data: $(this).serialize(),
             dataType: "json",
             success: function (res) {

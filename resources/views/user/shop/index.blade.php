@@ -29,6 +29,7 @@
     </div>
     <div class="container">
         <div class="row">
+            <input type="hidden" name="p_id" value="{{ $product->id }}">
             @foreach($product->product_single as $ps)
                 <div class="col-12 space bg-light card">
                     <p class='title wow fadeInLeft'>{{$ps->ps_title}}</p>

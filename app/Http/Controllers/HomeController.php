@@ -165,8 +165,10 @@ class HomeController extends BaseController
 
     private function get_unpay_order_count()
     {
-        $count = Order::where('user_id', Auth::user()->id)->where('o_pay_flg', Order::O_PAY_FLG_OFF)->count();
-
+        $count = 0;
+        if(Auth::check()){
+            $count = Order::where('user_id', Auth::user()->id)->where('o_pay_flg', Order::O_PAY_FLG_OFF)->count();
+        }
         return $count;
     }
 }
