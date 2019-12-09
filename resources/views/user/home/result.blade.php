@@ -21,7 +21,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">訊息</div>
+                    <div class="card-header">Tin nhắn</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -38,7 +38,7 @@
                         @endif
                         <div>
                             <a href="/home" class="btn btn-primary" style="margin-top: 100px;">Thành viên</a>
-                            <a href="/index" class="btn btn-primary" style="margin-top: 100px;">回首頁</a>
+                            <a href="/index" class="btn btn-primary" style="margin-top: 100px;">Quay lại trang chủ</a>
                         </div>
                     </div>
                 </div>

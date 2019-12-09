@@ -65,6 +65,7 @@
                     </tbody>
                 </table>
                 <div class="form-group">
+                    <h4 class="text-right font-weight-bold text-danger">{{ $mainPresenter->showText('orderUntilPayMoney') }}  {{ $mainPresenter->showText('currencyVietnamese') }}</h4>
                     <div class="text-left font-weight-bold">{{ $mainPresenter->showText('orderPayTo') }}</div>
                     <table>
                         <tr>

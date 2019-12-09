@@ -350,9 +350,9 @@ return [
                 'title' => '設定',
                 'column' => [
                     'id' => '#',
-                    'bank' => '銀行名',
-                    'company' => '公司帳戶',
-                    'account' => '帳號',
+                    'bank' => 'Ngân hàng',
+                    'company' => 'Công ty',
+                    'account' => 'Tài khoản',
                 ],
             ],
             'api' => [
@@ -367,7 +367,7 @@ return [
         'frontend' => [
             'chinese' => [
                 'login' => '登入',
-                'logout' => 'Thoát ra',
+                'logout' => '登出',
                 'register' => '註冊',
                 'message' => '訊息',
                 'goIndex' => '回首頁',
@@ -400,6 +400,8 @@ return [
                 'shoppingCartToPay' => '前往付款',
                 'shoppingCartNoCount' => '購物車內尚無商品',
                 'shoppingCartUnPay' => '項商品未結帳',
+                'orderUntilPayMoney' => '訂單金額未達',
+                'currencyVietnamese' => '越盾VND',
 
                 'orderNo' => '訂單編號',
                 'orderPay' => '付款',
@@ -444,14 +446,14 @@ return [
             ],
             'vietnamese' => [
                 'login' => 'Đăng nhập',
-                'logout' => '登出',
+                'logout' => 'Thoát ra',
                 'register' => 'Đăng ký',
-                'message' => '訊息',
-                'goIndex' => '回首頁',
+                'message' => 'Tin nhắn',
+                'goIndex' => 'Quay lại trang chủ',
                 'userMailCheck' => 'Xác minh thành viên',
                 'userMailUncheck' => 'Không được xác minh bởi thành viên',
-                'userMailChecked' => '已通過會員驗證',
-                'finish' => '完成',
+                'userMailChecked' => 'Thành viên xác minh đã thành công',
+                'finish' => 'Hoàn thành',
 
                 'active' => 'Hoạt động',
                 'toOrderDetail' => 'Chi tiết đặt hàng',
@@ -477,6 +479,8 @@ return [
                 'shoppingCartToPay' => 'Đi đến thanh toán',
                 'shoppingCartNoCount' => '購物車內尚無商品',
                 'shoppingCartUnPay' => 'Dự án Hàng hóa chưa giải quyết',
+                'orderUntilPayMoney' => 'Tiền đặt hàng không đến',
+                'currencyVietnamese' => 'Việt Nam VND',
 
                 'orderNo' => 'Số thứ tự',
                 'orderPay' => 'thanh toán',
@@ -485,11 +489,11 @@ return [
                 'orderMoney' => 'Tổng số tiền phải trả',
                 'orderNoCount' => '尚無訂單',
                 'orderPayTo' => '請匯款至',
-                'orderPayAndUpload' => '上傳匯款紀錄的照片',
+                'orderPayAndUpload' => 'Xin vui lòng tải lên Ghi lại bức ảnh chuyển tiền của bạn',
                 'orderPayType' => 'trạng thái thanh toán',
                 'orderPayFlg' => [
                     0 => 'Chưa thanh toán',
-                    1 => '待確認',
+                    1 => 'Đang chờ xác nhận',
                     2 => 'Đã thanh toán'
                 ],
                 'orderDeliverType' => 'Tình trạng vận chuyển',
@@ -506,9 +510,9 @@ return [
 
                 'orderRecord' => 'Đặt hàng',
 
-                'configBank' => '銀行名',
-                'configCompany' => '公司帳戶',
-                'configAccount' => '帳號',
+                'configBank' => 'Ngân hàng',
+                'configCompany' => 'Công ty',
+                'configAccount' => 'Tài khoản',
 
                 'js' => [
                     'hasAddedShoppingCart' => 'Thêm vào xe giỏ hàng',

@@ -27,7 +27,7 @@ class HomeController extends BaseController
 
     public function mail_check(Request $request)
     {
-        $message = '驗證失敗!';
+        $message = 'FAIL!';
         $check = false;
 
         try {
@@ -40,12 +40,12 @@ class HomeController extends BaseController
                         if ($user['create_token'] == $token) {
                             $user->update(['create_token' => NULL]);
                             $check = true;
-                            $message = '驗證成功!' . "<br>" . '來去購物吧~!';
+                            $message = 'xác minh đã thành công!' . "<br>" . 'Đi mua sắm!';
                         } else {
                             $message .= "<br>" . '驗證碼已失效 請重新取得驗證!';
                         }
                     } else {
-                        $message .= "<br>" . '會員已驗證! 來去購物吧~!';
+                        $message .= "<br>" . 'Thành viên xác minh đã thành công! Đi mua sắm!';
                     }
                 } else {
                     $message .= "<br>" . '無此會員!';
