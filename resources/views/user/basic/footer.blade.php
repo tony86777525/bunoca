@@ -6,9 +6,9 @@
         <p>Mobile. +84 962 764 918</p>
         <p>Email. bunocatw19@gmail.com</p>
         <div class="row">
-	        <button type="button" class="btn btn-primary col-4"><a href="https://www.facebook.com/" class="text-white">FB</a></button>
-	        <button type="button" class="btn btn-danger col-4"><a href="https://www.youtube.com/" class="text-white">YouTube</a></button>
-	        <button type="button" class="btn btn-success col-4"><a href="http://line.naver.jp/R/msg/text/?http://www.emath.math.ncu.edu.tw/e_school/" class="text-white">LINE</a></button>
+            <a href="https://www.facebook.com/messages/t/100041531262812" class="btn btn-primary col-4 font-weight-bold" target="_blank">FB</a>
+            <a href="http://zaloapp.com/qr/p/1uszq9x56f5rz" class="btn btn-default bg-white col-4 text-primary font-weight-bold" target="_blank">Zalo</a>
+            <a href="https://line.me/ti/p/log5HzHJvh" class="btn btn-success col-4 font-weight-bold">LINE</a>
 	    </div>
     </div>
 </div>

@@ -488,7 +488,7 @@ return [
                 'orderLittleTotal' => 'Tổng số tiền',
                 'orderMoney' => 'Tổng số tiền phải trả',
                 'orderNoCount' => '尚無訂單',
-                'orderPayTo' => '請匯款至',
+                'orderPayTo' => 'Xin vui lòng gửi tiền đến',
                 'orderPayAndUpload' => 'Xin vui lòng tải lên Ghi lại bức ảnh chuyển tiền của bạn',
                 'orderPayType' => 'trạng thái thanh toán',
                 'orderPayFlg' => [
